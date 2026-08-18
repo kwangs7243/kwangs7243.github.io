@@ -1,0 +1,20 @@
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local runtime files
+__pycache__/
+*.pyc
+*.log
+.qa/
+qa-screenshots/
+
+# Planning and screenshot-production sources are not part of the published site
+docs/
+reproductions/
+
+# Unused source screenshots retained locally
+projects/pilos/assets/pilos-detail.jpeg
+projects/pilos/assets/pilos-dashboard.jpeg

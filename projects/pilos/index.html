@@ -1,0 +1,1383 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="PILOS Sentiment Index의 데이터 처리, 모델 학습·추론과 서비스 통합 과정을 정리한 이주광의 프로젝트 Case Study"
+    />
+    <title>PILOS Sentiment Index | 이주광 프로젝트 Case Study</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="../../styles.css?v=20260819-1" />
+  </head>
+  <body class="project-detail-page pilos-detail-page">
+    <a class="skip-link" href="#main-content">본문으로 건너뛰기</a>
+
+    <header class="detail-site-header">
+      <div class="container detail-header-inner">
+        <a class="detail-back-link" href="../../">← 이주광 포트폴리오</a>
+        <a
+          class="detail-github-link"
+          href="https://github.com/kwangs7243/pilos-sentiment-index"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <article id="sentiment-case-study" class="case-study" aria-labelledby="case-study-title">
+        <header class="case-study-header case-hero section">
+          <div class="container">
+            <p class="eyebrow">Project Case Study</p>
+            <p class="case-project-index">Project 01 · Latest</p>
+            <h1 id="case-study-title">PILOS Sentiment <span class="case-title-break">Index</span></h1>
+            <p class="case-study-lead">
+              종목 댓글과 같은 날 개인투자자 매수·매도 우세의 통계적 연관성을 분석하고,
+              댓글 데이터 처리부터 서비스 결과 제공까지 연결한 팀 프로젝트입니다.
+            </p>
+
+            <dl class="case-hero-meta" aria-label="PILOS 핵심 프로젝트 정보">
+              <div><dt>Period</dt><dd>2026.07 – 2026.08</dd></div>
+              <div><dt>Team</dt><dd>4인 팀 프로젝트</dd></div>
+              <div><dt>Role</dt><dd>팀장 · 분석 및 서비스 실행 흐름 통합</dd></div>
+              <div><dt>Core Stack</dt><dd>Python · Flask · MySQL · scikit-learn · Kiwi · TF-IDF · Ridge · LLM API</dd></div>
+            </dl>
+            <a class="case-hero-repository" href="https://github.com/kwangs7243/pilos-sentiment-index" target="_blank" rel="noopener noreferrer">GitHub Repository <span aria-hidden="true">↗</span></a>
+
+            <nav class="case-study-nav case-nav" aria-label="PILOS Case Study 목차">
+              <a href="#project-overview">Overview</a>
+              <a href="#my-contribution">Contribution</a>
+              <a href="#how-it-works">How It Works</a>
+              <a href="#service-result">Screens</a>
+              <a href="#development-challenges">Challenges</a>
+              <a href="#technical-deep-dive">Deep Dive</a>
+              <a href="#automation">Automation</a>
+              <a href="#result-limitations">Results</a>
+              <a href="#retrospective">Retrospective</a>
+            </nav>
+          </div>
+        </header>
+
+        <section id="project-overview" class="case-section section" aria-labelledby="overview-title">
+          <div class="container case-section-grid">
+            <header class="case-section-heading">
+              <span class="case-step">01</span>
+              <p class="section-label">Project Overview</p>
+              <h2 id="overview-title">
+                댓글 표현과 당일 개인투자자 매수·매도 우세 관계를 학습했습니다
+              </h2>
+            </header>
+            <div class="overview-layout case-overview">
+              <div class="overview-content case-overview-copy">
+                <p class="overview-project-name">
+                  PILOS — 종목 댓글과 개인투자자 매매 우세의 통계적 연관 분석 서비스
+                </p>
+                <p class="overview-definition">
+                  종목·일자별 온라인 댓글 표현과, 같은 날 개인투자자의 매수량과 매도량 중 어느 쪽이
+                  상대적으로 우세했는지를 연결해 두 데이터의 통계적 연관성을 분석합니다. 이때 매수와
+                  매도의 상대적 우세를 수치로 나타낸 값이 ‘개인투자자 매수·매도 우세도’입니다.
+                </p>
+
+                <div class="overview-role">
+                  <h4>개인 역할 요약</h4>
+                  <p>
+                    4인 팀의 팀장으로 전체 기술 관리를 맡았습니다. 댓글 데이터 처리와 TF-IDF 기반
+                    모델 파이프라인, Ridge 학습·추론, 결과 변환과 일별 댓글·매매 해설 연동, 댓글
+                    수집부터 해설 생성까지 이어지는 실행 흐름 통합을 담당했습니다.
+                  </p>
+                </div>
+
+                <aside class="scope-note case-scope-note" aria-labelledby="scope-note-title">
+                  <strong id="scope-note-title">분석 범위</strong>
+                  <p>
+                    일반적인 긍정·부정 감성분류가 아니며, 미래 주가나 개인투자자 매수·매도를
+                    예측하지 않습니다. 투자 종목·매매 시점을 추천하거나 댓글과 매매 행동의
+                    인과관계를 판단하는 서비스도 아닙니다.
+                  </p>
+                </aside>
+                <dl class="case-overview-facts" aria-label="PILOS 핵심 데이터">
+                <div>
+                  <dt>Data</dt>
+                  <dd>종목·일자별 온라인 댓글, 개인투자자 일별 매수량·매도량 및 매수·매도 우세도</dd>
+                </div>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="my-contribution" class="case-section case-contribution section" aria-labelledby="contribution-title">
+          <div class="container case-section-grid">
+            <header class="case-section-heading">
+              <span class="case-step">02</span>
+              <p class="section-label">My Contribution</p>
+              <h2 id="contribution-title">댓글 처리부터 모델 결과의 서비스 연결까지 담당했습니다</h2>
+              <p class="section-intro">
+                4인 팀의 팀장으로 전체 기술 흐름을 관리했습니다. 동시에 댓글 전처리와 TF-IDF부터
+                모델 비교·학습·추론, 결과 변환, 일별 댓글·매매 해설, backend와 자동화 통합까지
+                핵심 분석 흐름을 직접 구현했습니다.
+              </p>
+            </header>
+
+            <div class="contribution-layout case-contribution-layout">
+              <section class="leadership-band case-contribution-main" aria-labelledby="leadership-title">
+                <div class="leadership-copy">
+                  <p class="contribution-kicker">Team Lead / Technical Coordination</p>
+                  <h4 id="leadership-title">전체 기술 흐름과 기능 간 통합을 관리했습니다</h4>
+                  <p>
+                    데이터·모델·서비스 사이의 연결을 기준으로 처리 규칙과 완료 조건을 정리하고,
+                    각 기능이 하나의 서비스 흐름으로 이어지도록 조정했습니다.
+                  </p>
+                </div>
+                <ul class="leadership-points" aria-label="팀장 역할">
+                  <li>기술 흐름 관리</li>
+                  <li>데이터·처리 규칙 정리</li>
+                  <li>기능 간 통합</li>
+                  <li>완료 기준 관리</li>
+                </ul>
+              </section>
+
+              <div class="contribution-flow-heading">
+                <p class="contribution-kicker">Direct Implementation</p>
+                <p>직접 구현한 핵심 영역을 서비스 흐름 순서로 정리했습니다.</p>
+              </div>
+
+              <ol class="contribution-flow" aria-label="다섯 가지 직접 구현 기여">
+                <li class="contribution-item">
+                  <span class="contribution-index" aria-hidden="true">01</span>
+                  <div class="contribution-content">
+                    <p class="contribution-title-en">Model Input Pipeline</p>
+                    <h4>원본 댓글을 모델 입력으로 연결했습니다</h4>
+                    <ol class="contribution-process" aria-label="모델 입력 생성 과정">
+                      <li>댓글 전처리</li>
+                      <li>Kiwi 토큰화</li>
+                      <li>댓글 분석 단위</li>
+                      <li>TF-IDF</li>
+                    </ol>
+                    <p class="contribution-description">
+                      종목·일자별 댓글을 학습과 추론에서 재사용할 수 있는 입력으로 만드는 분석
+                      전처리 파이프라인을 구현했습니다.
+                    </p>
+                  </div>
+                </li>
+
+                <li class="contribution-item">
+                  <span class="contribution-index" aria-hidden="true">02</span>
+                  <div class="contribution-content">
+                    <p class="contribution-title-en">Model Development</p>
+                    <h4>후보 비교부터 서비스 모델 관리까지 담당했습니다</h4>
+                    <ol class="contribution-process" aria-label="모델 개발 과정">
+                      <li>Ridge · ElasticNet 후보</li>
+                      <li>날짜 단위 검증</li>
+                      <li>최종 Ridge 선정</li>
+                      <li>전체 Dataset 재학습</li>
+                      <li>Model Artifact</li>
+                    </ol>
+                    <p class="contribution-description">
+                      모델을 단순 호출하는 데 그치지 않고 후보 비교, 검증, 최종 학습과 재사용할
+                      학습 결과의 저장·검증·등록까지 구현했습니다.
+                    </p>
+                  </div>
+                </li>
+
+                <li class="contribution-item">
+                  <span class="contribution-index" aria-hidden="true">03</span>
+                  <div class="contribution-content">
+                    <p class="contribution-title-en">Inference &amp; Data Contract</p>
+                    <h4>추론 결과를 안전하게 저장하고 재사용하게 했습니다</h4>
+                    <ol class="contribution-process" aria-label="추론과 데이터 저장 과정">
+                      <li>매매 우세별 추론</li>
+                      <li>결과 제공 상태</li>
+                      <li>DB 적재</li>
+                      <li>중복 방지</li>
+                    </ol>
+                    <p class="contribution-description">
+                      학습된 두 댓글 분석 모델의 결과 품질을 확인하고, 재실행해도 기존 결과를
+                      덮어쓰지 않는 추론·저장 계약을 구현했습니다.
+                    </p>
+                  </div>
+                </li>
+
+                <li class="contribution-item">
+                  <span class="contribution-index" aria-hidden="true">04</span>
+                  <div class="contribution-content">
+                    <p class="contribution-title-en">Service Result</p>
+                    <h4>모델 원출력을 사용자가 읽을 수 있는 결과로 바꿨습니다</h4>
+                    <ol class="contribution-process" aria-label="서비스 결과 변환 과정">
+                      <li>모델 원출력값</li>
+                      <li>Calibration</li>
+                      <li>댓글·매매 연관 점수</li>
+                      <li>일별 댓글·매매 해설</li>
+                    </ol>
+                    <p class="contribution-description">
+                      모델 원출력을 그대로 노출하지 않고 같은 모델의 과거 출력분포에 상대화한 뒤,
+                      사용자용 결과와 일별 댓글·매매 해설로 연결했습니다.
+                    </p>
+                  </div>
+                </li>
+
+                <li class="contribution-item">
+                  <span class="contribution-index" aria-hidden="true">05</span>
+                  <div class="contribution-content">
+                    <p class="contribution-title-en">Backend &amp; Operation</p>
+                    <h4>분석 기능을 backend와 최상위 실행 흐름으로 통합했습니다</h4>
+                    <ol class="contribution-process" aria-label="backend 서비스 연결 과정">
+                      <li>분석 결과</li>
+                      <li>Flask backend 계약·API</li>
+                      <li>Flask 웹 서비스</li>
+                    </ol>
+                    <ol class="contribution-process contribution-process-secondary" aria-label="최상위 자동화 과정">
+                      <li>수집 완료 이후</li>
+                      <li>댓글 처리</li>
+                      <li>댓글 분석 단위</li>
+                      <li>매매 데이터 연계</li>
+                      <li>추론</li>
+                      <li>LLM 보고서</li>
+                    </ol>
+                    <p class="contribution-description">
+                      Flask의 backend 데이터 계약과 API를 통합하고, 각 처리 단계를 순서대로 실행하는
+                      최상위 서비스 파이프라인을 구현했습니다.
+                    </p>
+                  </div>
+                </li>
+              </ol>
+
+              <aside class="team-scope case-contribution-boundary" aria-labelledby="team-scope-title">
+                <div>
+                  <p class="contribution-kicker">Team / Project</p>
+                  <h4 id="team-scope-title">팀이 함께 완성한 서비스 영역</h4>
+                  <p>
+                    아래 영역은 프로젝트 전체에 포함되지만, 개인 단독 구현 범위로 표시하지 않습니다.
+                  </p>
+                </div>
+                <ul>
+                  <li>댓글 수집</li>
+                  <li>개인투자자 데이터 수집</li>
+                  <li>최종 웹 UI</li>
+                  <li>RAG 기반 답변 기능</li>
+                </ul>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <section id="how-it-works" class="case-chapter case-how-it-works-chapter" aria-label="How It Works">
+        <section id="system-concept" class="case-section case-flow case-how-it-works case-subsection section section-muted" aria-labelledby="concept-title">
+          <div class="container">
+            <header class="case-section-heading case-section-heading-wide">
+              <span class="case-step">03 · A</span>
+              <p class="section-label">How It Works · System Concept</p>
+              <h2 id="concept-title">학습 구조와 서비스 추론 구조를 분리합니다</h2>
+              <p class="section-intro">두 흐름을 섞지 않고 각각의 개념도를 배치할 수 있는 구조입니다.</p>
+            </header>
+            <div class="concept-grid">
+              <div class="diagram-placeholder training-panel">
+                <div class="diagram-title"><span>A</span><h4>학습 구조</h4></div>
+                <div class="training-diagram" aria-label="PILOS 매매 우세별 댓글 분석 모델 학습 구조">
+                  <div class="concept-sources">
+                    <section class="concept-source" aria-labelledby="comment-path-title">
+                      <div class="concept-source-heading">
+                        <span>01</span>
+                        <h5 id="comment-path-title">댓글 데이터</h5>
+                      </div>
+                      <div class="process-chain" aria-label="댓글 TF-IDF 특성 생성 과정">
+                        <span>전처리</span><i aria-hidden="true">→</i>
+                        <span>Kiwi</span><i aria-hidden="true">→</i>
+                        <span>댓글 분석 단위</span><i aria-hidden="true">→</i>
+                        <span>TF-IDF</span>
+                      </div>
+                      <div class="xy-card">
+                        <strong class="xy-symbol">X</strong>
+                        <div>
+                          <b>종목·일자별 댓글 TF-IDF 특성</b>
+                          <span>모델 학습 입력</span>
+                        </div>
+                      </div>
+                    </section>
+
+                    <section class="concept-source" aria-labelledby="supply-path-title">
+                      <div class="concept-source-heading">
+                        <span>02</span>
+                        <h5 id="supply-path-title">개인투자자 매수량·매도량</h5>
+                      </div>
+                      <div class="process-chain process-chain-short" aria-label="학습 정답 생성 과정">
+                        <span>매수량·매도량</span><i aria-hidden="true">→</i>
+                        <span>매수·매도 우세를 수치화</span>
+                      </div>
+                      <div class="xy-card">
+                        <strong class="xy-symbol">Y</strong>
+                        <div>
+                          <b>개인투자자 매수·매도 우세도</b>
+                          <span>매수량과 매도량 중 어느 쪽이 상대적으로 우세한지를 나타내는 학습 정답</span>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+
+                  <div class="concept-merge" aria-label="X와 Y의 연결 기준">
+                    <div class="merge-label">
+                      <span>연결 기준</span>
+                      <strong>같은 종목 · 같은 일자</strong>
+                    </div>
+                  </div>
+
+                  <div class="concept-training-flow" aria-label="연결된 X와 Y의 학습 결과">
+                    <span class="concept-down-arrow" aria-hidden="true">↓</span>
+                    <div class="ridge-stage">
+                      <strong>매매 우세별 댓글 분석 모델 학습</strong>
+                      <span>Ridge Regression</span>
+                    </div>
+                    <span class="concept-down-arrow" aria-hidden="true">↓</span>
+                    <div class="model-stage">
+                      <strong>학습된 두 모델</strong>
+                      <span>매수 우세일 댓글 분석 모델 · 매도 우세일 댓글 분석 모델</span>
+                    </div>
+                  </div>
+
+                  <p class="training-caption">
+                    같은 종목·일자의 댓글 표현을 입력 X로 만들고, 해당 일자의 개인투자자 매수·매도
+                    우세도를 정답 Y로 사용해 두 값 사이의 통계적 연관성을 학습했습니다.
+                  </p>
+                  <p class="training-boundary">
+                    개인투자자 매수·매도 우세도는 학습 정답 Y이며, 서비스 추론 입력으로 사용하지
+                    않습니다.
+                  </p>
+                </div>
+              </div>
+              <div class="diagram-placeholder inference-panel">
+                <div class="diagram-title"><span>B</span><h4>서비스 추론 구조</h4></div>
+                <div class="inference-diagram" aria-label="신규 댓글이 서비스 결과로 제공되는 추론 구조">
+                  <div class="inference-spine">
+                    <section class="spine-section" aria-labelledby="comment-analysis-title">
+                      <header class="spine-section-heading">
+                        <span>01</span>
+                        <h5 id="comment-analysis-title">신규 댓글 분석</h5>
+                      </header>
+
+                      <div class="spine-node new-comment-node">
+                        <strong>신규 댓글</strong>
+                      </div>
+                      <span class="spine-arrow" aria-hidden="true">↓</span>
+
+                      <div class="spine-support-step">
+                        <strong>댓글 처리</strong>
+                        <span>전처리 · Kiwi · 종목·일자별 댓글 분석 단위</span>
+                      </div>
+                      <span class="spine-arrow" aria-hidden="true">↓</span>
+
+                      <div class="spine-node trained-model-node">
+                        <strong>학습된 TF-IDF + 두 댓글 분석 모델</strong>
+                        <span>매수 우세일 댓글 분석 모델 · 매도 우세일 댓글 분석 모델</span>
+                      </div>
+                      <span class="spine-arrow" aria-hidden="true">↓</span>
+
+                      <div class="spine-node raw-output-node">
+                        <strong>댓글 분석 모델 원출력값</strong>
+                        <span>변환 전 중간 계산값</span>
+                      </div>
+                    </section>
+
+                    <span class="spine-section-arrow" aria-hidden="true">↓</span>
+
+                    <section class="spine-section" aria-labelledby="result-transform-title">
+                      <header class="spine-section-heading">
+                        <span>02</span>
+                        <h5 id="result-transform-title">서비스 결과 변환과 제공</h5>
+                      </header>
+
+                      <div class="spine-support-step result-status-step">
+                        <strong>결과 제공 상태</strong>
+                        <span>제공 가능 · 입력 기준 미충족</span>
+                      </div>
+                      <span class="spine-arrow" aria-hidden="true">↓</span>
+
+                      <div class="spine-support-step result-save-step">
+                        <strong>결과 저장</strong>
+                      </div>
+                      <span class="spine-arrow" aria-hidden="true">↓</span>
+
+                      <div class="spine-support-step score-conversion-step">
+                        <strong>상대 점수 변환</strong>
+                        <small>Calibration</small>
+                        <span>같은 모델의 과거 출력분포와 비교</span>
+                      </div>
+                      <span class="spine-arrow" aria-hidden="true">↓</span>
+
+                      <div class="service-result-group">
+                        <div class="spine-node association-score-node">
+                          <strong>댓글·매매 연관 점수</strong>
+                          <span>0~100 사용자용 상대 결과</span>
+                        </div>
+                        <span class="service-plus" aria-hidden="true">+</span>
+                        <div class="commentary-result">
+                          <strong>일별 댓글·매매 해설</strong>
+                          <span>댓글·매매 연관 점수를 바탕으로 생성</span>
+                        </div>
+                      </div>
+                      <span class="spine-arrow" aria-hidden="true">↓</span>
+
+                      <div class="flask-result">
+                        <strong>Flask 웹 서비스</strong>
+                        <span>댓글·매매 연관 점수 + 일별 댓글·매매 해설을 함께 제공</span>
+                      </div>
+                    </section>
+                  </div>
+
+                  <p class="inference-caption">
+                    신규 댓글을 학습된 댓글 분석 모델로 분석한 뒤, 모델 원출력값을 사용자용 상대
+                    결과로 변환해 일별 해설과 함께 웹 서비스로 제공합니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="architecture" class="case-section case-flow case-how-it-works case-subsection section section-muted" aria-labelledby="architecture-title">
+          <div class="container">
+            <header class="case-section-heading case-section-heading-wide">
+              <span class="case-step">03 · B</span>
+              <p class="section-label">How It Works · Architecture &amp; Responsibility</p>
+              <h2 id="architecture-title">분석 로직, 데이터 접근, 실행 조합의 책임을 분리했습니다</h2>
+              <p class="section-intro">
+                분석 계산과 DB 입출력, 실행 순서 조합, 웹 요청 처리를 서로 다른 책임으로
+                나눴습니다. 배치 실행은 jobs가, 웹 요청은 web과 service가 각각 필요한 기능을
+                조합합니다.
+              </p>
+            </header>
+
+            <div class="architecture-layout">
+              <div class="architecture-views">
+                <section class="architecture-view" aria-labelledby="batch-architecture-title">
+                  <header class="architecture-view-heading">
+                    <div>
+                      <span>01</span>
+                      <h4 id="batch-architecture-title">Batch / Automation</h4>
+                    </div>
+                    <p>명령·스케줄로 시작되는 실행 경로</p>
+                  </header>
+
+                  <div class="architecture-node architecture-orchestrator">
+                    <p>JOBS</p>
+                    <strong>Batch Orchestration</strong>
+                    <span>분리된 기능의 실행 순서를 조합</span>
+                  </div>
+
+                  <div class="architecture-branch-label" aria-hidden="true">
+                    <span>↓</span>
+                    <small>호출 · 조합</small>
+                  </div>
+
+                  <div class="responsibility-grid responsibility-grid-batch">
+                    <section class="responsibility-node">
+                      <p>COLLECTION</p>
+                      <strong>External Data Access</strong>
+                      <span>외부 통신 · 데이터 수집</span>
+                      <small>분석 계산 제외</small>
+                    </section>
+                    <section class="responsibility-node responsibility-node-core">
+                      <p>ANALYSIS</p>
+                      <strong>Processing &amp; Calculation</strong>
+                      <span>전처리 · 모델 · Calibration</span>
+                      <small>DB 입출력 제외</small>
+                    </section>
+                    <section class="responsibility-node">
+                      <p>STORAGE</p>
+                      <strong>Persistence / I/O</strong>
+                      <span>MySQL · Files · Artifacts</span>
+                      <small>분석 계산 제외</small>
+                    </section>
+                  </div>
+
+                  <div class="architecture-boundaries" aria-label="배치 영역 외부 연결">
+                    <div>
+                      <span aria-hidden="true">↕</span>
+                      <small>External APIs / Data Sources</small>
+                    </div>
+                    <div aria-hidden="true"></div>
+                    <div>
+                      <span aria-hidden="true">↕</span>
+                      <small>MySQL / Files / Artifacts</small>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="architecture-view" aria-labelledby="web-architecture-title">
+                  <header class="architecture-view-heading">
+                    <div>
+                      <span>02</span>
+                      <h4 id="web-architecture-title">Web Request</h4>
+                    </div>
+                    <p>HTTP 요청으로 시작되는 실행 경로</p>
+                  </header>
+
+                  <div class="architecture-node architecture-web">
+                    <p>WEB</p>
+                    <strong>HTTP / Flask</strong>
+                    <span>요청 파싱 · 응답 · 화면 연결</span>
+                    <small>분석·DB 로직 제외</small>
+                  </div>
+                  <span class="architecture-down-arrow" aria-hidden="true">↓</span>
+                  <div class="architecture-node architecture-orchestrator architecture-service">
+                    <p>SERVICE</p>
+                    <strong>Web Use Cases</strong>
+                    <span>웹 요청에 필요한 내부 기능 조합</span>
+                  </div>
+
+                  <div class="architecture-branch-label" aria-hidden="true">
+                    <span>↓</span>
+                    <small>호출 · 조합</small>
+                  </div>
+
+                  <div class="responsibility-grid responsibility-grid-web">
+                    <section class="responsibility-node responsibility-node-core">
+                      <p>ANALYSIS</p>
+                      <strong>Processing &amp; Calculation</strong>
+                      <span>요청에 필요한 분석 계산</span>
+                      <small>DB 입출력 제외</small>
+                    </section>
+                    <section class="responsibility-node">
+                      <p>STORAGE</p>
+                      <strong>Persistence / I/O</strong>
+                      <span>저장 결과 조회 · Artifact 로드</span>
+                      <small>분석 계산 제외</small>
+                    </section>
+                  </div>
+                </section>
+              </div>
+
+              <aside class="dto-contract" aria-label="계층 사이의 데이터 계약">
+                <span>DTO / Data Contract</span>
+                <p>실행 계층이 아니라, 서로 다른 책임 사이에서 전달되는 데이터 구조입니다.</p>
+              </aside>
+
+              <ul class="architecture-principles" aria-label="Architecture 책임 분리 원칙">
+                <li>
+                  <strong>분석 ≠ 저장</strong>
+                  <span>analysis는 계산하고 storage가 영속화를 담당합니다.</span>
+                </li>
+                <li>
+                  <strong>기능 ≠ 실행 순서</strong>
+                  <span>jobs는 기능을 다시 구현하지 않고 순서를 조합합니다.</span>
+                </li>
+                <li>
+                  <strong>HTTP ≠ 내부 구현</strong>
+                  <span>web은 service를 통해 분석과 저장 기능을 사용합니다.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="data-pipeline" class="case-section case-flow case-how-it-works case-subsection section" aria-labelledby="pipeline-title">
+          <div class="container">
+            <header class="case-section-heading case-section-heading-wide">
+              <span class="case-step">03 · C</span>
+              <p class="section-label">How It Works · Data &amp; Model Pipeline</p>
+              <h2 id="pipeline-title">댓글 데이터를 종목·일자 단위의 모델 입력으로 변환했습니다</h2>
+              <p class="section-intro">
+                댓글 한 건을 바로 모델에 넣지 않습니다. 같은 처리 계약으로 정제·토큰화한 댓글을
+                종목·일자별 분석 단위로 구성한 뒤, 학습된 TF-IDF를 적용해 Ridge가 사용할 희소
+                벡터로 변환합니다.
+              </p>
+            </header>
+
+            <div class="data-shape-pipeline">
+              <div class="pipeline-example-note">
+                <span>형태 설명용 예시</span>
+                <p>실제 수집 댓글이 아닌, 데이터 형태 변화를 보여주기 위해 직접 작성한 예시입니다.</p>
+              </div>
+
+              <div class="data-shape-row" aria-label="원본 댓글에서 Kiwi 토큰까지의 데이터 변화">
+                <article class="pipeline-stage raw-comment-stage">
+                  <header class="pipeline-stage-heading">
+                    <span>01</span>
+                    <div><small>Source Comments</small><h4>같은 종목·일자의 원천 댓글</h4></div>
+                  </header>
+                  <div class="source-comment-context">
+                    <span>예시 종목</span>
+                    <strong>2026-07-30</strong>
+                  </div>
+                  <ol class="source-comment-list" aria-label="같은 종목과 일자의 가상 댓글 세 건">
+                    <li>
+                      <div class="source-comment-meta"><b>A</b><time>09:15</time></div>
+                      <div class="source-message-context">
+                        <p>실적 발표</p>
+                        <p>매수 관심이 늘어나는 것 같아요</p>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="source-comment-meta"><b>B</b><time>11:40</time></div>
+                      <div class="source-message-context">
+                        <p>외인 들어오네요</p>
+                        <p>오늘 매수세가 계속 붙는 느낌</p>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="source-comment-meta"><b>C</b><time>14:20</time></div>
+                      <div class="source-message-context">
+                        <p>실적 기대</p>
+                        <p>장마감까지 지켜봐야겠네요</p>
+                      </div>
+                    </li>
+                  </ol>
+                  <p class="source-contract-note">
+                    원천의 <code>message.title</code>과 <code>message.message</code>는
+                    하나의 댓글 문맥을 구성합니다.
+                  </p>
+                </article>
+
+                <span class="data-shape-arrow" aria-hidden="true">→</span>
+
+                <article class="pipeline-stage preprocessed-stage">
+                  <header class="pipeline-stage-heading">
+                    <span>02</span>
+                    <div><small>Preprocessed Text</small><h4>댓글별 분석용 텍스트</h4></div>
+                  </header>
+                  <ol class="processed-comment-list" aria-label="A B C 댓글의 분석용 텍스트">
+                    <li><b>A</b><p>실적 발표 매수 관심이 늘어나는 것 같아요</p></li>
+                    <li><b>B</b><p>외인 들어오네요 오늘 매수세가 계속 붙는 느낌</p></li>
+                    <li><b>C</b><p>실적 기대 장마감까지 지켜봐야겠네요</p></li>
+                  </ol>
+                  <ul class="preprocess-actions" aria-label="핵심 댓글 전처리">
+                    <li>필수값 검증</li>
+                    <li>title·message 문맥 결합</li>
+                    <li>불필요 문자 정리</li>
+                    <li>소셜 표현 정규화</li>
+                    <li>중복 제어</li>
+                  </ul>
+                </article>
+
+                <span class="data-shape-arrow" aria-hidden="true">→</span>
+
+                <article class="pipeline-stage token-stage">
+                  <header class="pipeline-stage-heading">
+                    <span>03</span>
+                    <div><small>Kiwi Tokens</small><h4>댓글별 모델 토큰</h4></div>
+                  </header>
+                  <ol class="tokenized-comment-list" aria-label="현재 Kiwi 계약으로 확인한 A B C 토큰">
+                    <li><b>A</b><div><span>실적</span><span>발표</span><span>매수</span><span>관심</span><span>늘어나</span><span>같</span></div></li>
+                    <li><b>B</b><div><span>외인</span><span>들어오</span><span>매수세</span><span>계속</span><span>붙</span><span>느낌</span></div></li>
+                    <li><b>C</b><div><span>실적</span><span>기대</span><span>장마감</span><span>지켜보</span><span>어야</span><span>겠</span></div></li>
+                  </ol>
+                  <p class="stage-note">
+                    형태소 분석 후 현재 모델의 token form 선택·사용자 사전·불용어 계약을 적용한 결과입니다.
+                  </p>
+                </article>
+              </div>
+
+              <div class="pipeline-row-connector" aria-label="A B C 댓글을 동일 종목과 동일 일자 기준으로 하나의 문서로 집계">
+                <div class="aggregate-comments" aria-hidden="true">
+                  <span>A</span><span>B</span><span>C</span>
+                </div>
+                <i aria-hidden="true">↓</i>
+                <strong>동일 종목 · 동일 일자 기준 집계</strong>
+                <small>여러 댓글의 토큰 → 하나의 모델 입력 문서</small>
+              </div>
+
+              <div class="data-shape-row" aria-label="댓글 분석 단위에서 Ridge 입력까지의 데이터 변화">
+                <article class="pipeline-stage analysis-unit-stage">
+                  <header class="pipeline-stage-heading">
+                    <span>04</span>
+                    <div><small>Comment Analysis Unit</small><h4>종목·일자별 댓글 분석 단위</h4></div>
+                  </header>
+                  <div class="analysis-unit-key">
+                    <span>예시 종목</span>
+                    <strong>2026-07-30</strong>
+                  </div>
+                  <ul class="analysis-comment-list" aria-label="같은 종목과 일자의 댓글 토큰 예시">
+                    <li><b>A</b><span>실적 · 발표 · 매수 · 관심 · 늘어나 · 같</span></li>
+                    <li><b>B</b><span>외인 · 들어오 · 매수세 · 계속 · 붙 · 느낌</span></li>
+                    <li><b>C</b><span>실적 · 기대 · 장마감 · 지켜보 · 어야 · 겠</span></li>
+                  </ul>
+                  <div class="analysis-unit-output">
+                    <small>A + B + C → 하나의 댓글 분석 단위</small>
+                    <p>실적 발표 매수 관심 늘어나 같 외인 들어오 매수세 계속 붙 느낌 실적 기대 장마감 지켜보 어야 겠</p>
+                  </div>
+                </article>
+
+                <span class="data-shape-arrow" aria-hidden="true">→</span>
+
+                <article class="pipeline-stage tfidf-stage">
+                  <header class="pipeline-stage-heading">
+                    <span>05</span>
+                    <div><small>TF-IDF</small><h4>희소 특성 벡터 변환</h4></div>
+                  </header>
+                  <div class="tfidf-shape">
+                    <div>
+                      <small>Step 04의 동일 댓글 분석 단위</small>
+                      <p>실적 발표 매수 관심 늘어나 같 외인 들어오 매수세 계속 붙 느낌 실적 기대 장마감 지켜보 어야 겠</p>
+                    </div>
+                    <span aria-hidden="true">↓</span>
+                    <div>
+                      <small>학습된 Vocabulary / IDF</small>
+                      <p class="vector-values">[0, 0.18, 0, 0.42, 0, …]</p>
+                    </div>
+                  </div>
+                  <p class="stage-note">숫자는 희소 벡터의 형태를 설명하기 위한 예시입니다.</p>
+                </article>
+
+                <span class="data-shape-arrow" aria-hidden="true">→</span>
+
+                <article class="pipeline-stage ridge-input-stage">
+                  <header class="pipeline-stage-heading">
+                    <span>06</span>
+                    <div><small>Model Input</small><h4>Ridge text-only 입력</h4></div>
+                  </header>
+                  <div class="ridge-input-shape">
+                    <span>Step 05의 동일 TF-IDF Sparse Vector</span>
+                    <code>[0, 0.18, 0, 0.42, 0, …]</code>
+                    <strong>Ridge Regression</strong>
+                    <small>이 Pipeline은 모델 입력에서 끝납니다.</small>
+                  </div>
+                </article>
+              </div>
+
+              <div class="analysis-unit-reason">
+                <div>
+                  <p class="pipeline-message-label">왜 종목·일자 단위인가?</p>
+                  <p>
+                    모델의 학습 정답이 같은 종목·일자의 개인투자자 매수·매도 우세도이므로,
+                    댓글도 같은 기준으로 묶어 비교 가능한 하나의 입력 단위를 만들었습니다.
+                  </p>
+                </div>
+                <div class="training-only-note">
+                  <span>Training Only</span>
+                  <p>개인투자자 매수·매도 우세도 Y는 학습 시 정답으로만 연결되며 서비스 추론 입력이 아닙니다.</p>
+                </div>
+              </div>
+
+              <aside class="shared-input-contract" aria-labelledby="shared-contract-title">
+                <div>
+                  <p class="pipeline-message-label">Same Input Contract</p>
+                  <h4 id="shared-contract-title">학습과 서비스 추론의 입력 기준을 동일하게 유지했습니다</h4>
+                </div>
+                <ol aria-label="학습과 서비스 추론이 공유하는 처리 계약">
+                  <li>댓글 처리</li>
+                  <li>Kiwi 토큰</li>
+                  <li>댓글 분석 단위</li>
+                  <li>학습된 TF-IDF</li>
+                </ol>
+                <p>서비스 추론에서도 학습 때와 동일한 댓글 처리·토큰·TF-IDF 계약을 재사용합니다.</p>
+              </aside>
+
+            </div>
+          </div>
+        </section>
+        </section>
+
+        <section id="service-result" class="case-section case-screens section" aria-labelledby="service-title">
+          <div class="container">
+            <header class="case-section-heading case-section-heading-wide">
+              <span class="case-step">04</span>
+              <p class="section-label">Service Screens</p>
+              <h2 id="service-title">실제 서비스 화면</h2>
+            </header>
+            <div class="service-screen-grid case-screen-grid">
+              <figure class="service-screen-slot service-screen-slot-image case-screen">
+                <a href="./assets/pilos-dashboard.png" target="_blank" rel="noopener noreferrer" aria-label="PILOS Service Dashboard 정적 재현 이미지 새 탭에서 보기">
+                  <img src="./assets/pilos-dashboard.png" alt="PILOS 서비스 메인 화면에서 종목 검색과 댓글·개인투자자 매매 데이터 비교 방향을 소개하는 모습">
+                </a>
+                <figcaption><strong>Service Dashboard</strong><span>종목 검색을 시작점으로 댓글 표현과 개인투자자 매수·매도 데이터를 함께 살펴보는 서비스 진입 화면</span></figcaption>
+              </figure>
+              <figure class="service-screen-slot service-screen-slot-image case-screen">
+                <a href="./assets/pilos-market-overview.png" target="_blank" rel="noopener noreferrer" aria-label="PILOS Market Overview 정적 재현 이미지 새 탭에서 보기">
+                  <img src="./assets/pilos-market-overview.png" alt="PILOS 시장 분위기 화면에서 실제 개인투자자 매수·매도 관계와 댓글·매매 연관 점수를 종목별로 비교하는 모습">
+                </a>
+                <figcaption><strong>Market Overview</strong><span>실제 개인투자자 매수·매도 관계와 댓글·매매 연관 점수, 결과 제공 상태를 종목별로 비교한 화면</span></figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <section id="development-challenges" class="case-section case-challenge-section section section-muted" aria-labelledby="development-challenges-title">
+          <div class="container">
+            <header class="case-section-heading case-section-heading-wide">
+              <span class="case-step">05</span>
+              <p class="section-label">Development Challenges</p>
+              <h2 id="development-challenges-title">라이브러리를 적용하는 데서 끝내지 않고 실제 중간 결과를 검수했습니다</h2>
+              <p class="section-intro">댓글이 모델 입력으로 바뀌는 과정에서 의미 손실과 불필요한 메모리 사용을 발견하고 처리 기준을 수정했습니다.</p>
+            </header>
+
+            <div class="pilos-challenge-list">
+              <article class="tokenizer-quality-case case-challenge">
+                <div class="pilos-challenge-heading case-challenge-header"><span>01</span><p>Tokenizer Quality</p></div>
+                <h5>약 78,422개 댓글의 실제 토큰 결과에서 의미가 깨지는 사례를 찾았습니다</h5>
+                <div class="tokenizer-problem-example">
+                  <div><small>원문</small><strong>안 팔아</strong></div>
+                  <i aria-hidden="true">→</i>
+                  <div><small>문제</small><strong>핵심 부정 표현이 사라져 ‘팔’ 중심으로 왜곡될 가능성</strong></div>
+                </div>
+                <p>커뮤니티 표현 제거, 투자 용어 분절과 희귀 bigram 증가를 함께 검수해 tokenizer 설정을 조정했습니다.</p>
+                <dl class="tokenizer-change-metrics">
+                  <div><dt>빈 토큰 문서</dt><dd><del>3,195</del><strong>2,226</strong></dd></div>
+                  <div><dt>TF-IDF Feature</dt><dd><del>46,482</del><strong>27,495</strong></dd></div>
+                </dl>
+                <aside class="secondary-tokenizer-finding">
+                  <strong>수정 뒤 다시 발견한 문제</strong>
+                  <p>‘않’을 보존한 뒤 ‘오르잖아’ 같은 표현이 부정형으로 오인될 수 있었습니다. ‘않’ 포함 1,263건 중 146건이 -잖아 계열임을 확인하고 원문 표면형을 다시 검사하는 필터를 추가했습니다.</p>
+                </aside>
+              </article>
+
+              <article class="case-challenge">
+                <div class="pilos-challenge-heading case-challenge-header"><span>02</span><p>Memory &amp; Data Structure</p></div>
+                <h5>필요한 값만 순회하고 일별 문서를 한 건씩 생성하도록 변경했습니다</h5>
+                <div class="implementation-change-pair">
+                  <section><small>Sparse Row</small><del>toarray().flatten()</del><strong>row.indices + row.data</strong><p>0이 아닌 feature만 순회</p></section>
+                  <section><small>Daily Document</small><del>전체 DataFrame 선구성</del><strong>iter_daily_documents() + yield</strong><p>종목·일자가 바뀔 때 현재 문서만 생성</p></section>
+                </div>
+                <p class="pilos-challenge-result">전체 중간 집계 데이터를 먼저 만들지 않고 종목·일자별 문서를 순차 생성하도록 바꿨습니다. 검증되지 않은 메모리 감소 수치는 사용하지 않았습니다.</p>
+              </article>
+
+              <article class="compact-implementation-note case-challenge">
+                <div class="pilos-challenge-heading case-challenge-header"><span>03</span><p>Bulk Insert Policy</p></div>
+                <h5>예상 가능한 중복 한 건이 전체 댓글 적재를 실패시키지 않도록 처리</h5>
+                <p>대량 댓글 적재에서 중복 때문에 전체 작업이 중단되는 문제를 경험한 뒤, 예상 가능한 중복은 기존 데이터를 유지하고 건너뛰는 <code>INSERT IGNORE</code> 정책을 적용했습니다.</p>
+                <small>당시 전체 적재 규모와 최초 오류 로그가 Git에서 직접 확인되지 않아 정확한 건수는 공개 문구에 사용하지 않았습니다.</small>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="technical-deep-dive" class="case-chapter case-deep-dive-chapter" aria-label="Technical Deep Dive">
+        <section id="model-selection" class="case-section case-deep-dive case-subsection section section-muted" aria-labelledby="model-title">
+          <div class="container">
+            <header class="case-section-heading case-section-heading-wide">
+              <span class="case-step">06 · A</span>
+              <p class="section-label">Technical Deep Dive · Model Selection &amp; Validation</p>
+              <h2 id="model-title">연관성 재현과 시간 변화 검증을 분리해 모델을 선택했습니다</h2>
+              <p class="section-intro">
+                Ridge와 ElasticNet 후보를 날짜 단위로 반복 검증했습니다. 후보 선정에서는 R²와
+                안정성·희소성·입력 계약을 함께 비교하고, 최종 Ridge 모델은 MAE·RMSE·R²를 모두
+                확인했습니다.
+              </p>
+            </header>
+
+            <section id="model-validation-challenge" class="validation-problem-story" aria-labelledby="model-validation-challenge-title">
+              <div>
+                <p class="section-label">Model Validation Challenge</p>
+                <h4 id="model-validation-challenge-title">시간 순서를 강제하자 설명력이 크게 낮아졌습니다</h4>
+                <p>댓글량·어휘와 개인투자자 매수·매도 우세도 분포가 시점에 따라 달라져 Walk-forward 평균 R²가 낮았습니다. 이 결과를 숨기거나 미래 예측 성능으로 바꾸어 설명하지 않았습니다.</p>
+              </div>
+              <div class="validation-question-split">
+                <section>
+                  <span>시간 변화 Stress Test</span><h5>Walk-forward</h5>
+                  <p>과거로 학습해 이후 시점의 분포 변화에서 관계가 얼마나 유지되는지 확인</p>
+                  <strong>Positive 0.0481 · Negative 0.0503</strong>
+                </section>
+                <section>
+                  <span>Dataset 내부 관계 재현</span><h5>Date-group Random</h5>
+                  <p>같은 날짜의 모든 종목을 한쪽에만 두고 Seed 42~46으로 5회 반복</p>
+                  <strong>Positive 0.206797 · Negative 0.221247</strong>
+                </section>
+              </div>
+              <p class="validation-boundary-message"><strong>판단</strong> 미래 매수·매도 예측 모델이 아니라, 같은 시점의 댓글 표현과 개인투자자 매수·매도 우세 사이의 통계적 연관 신호로 범위를 제한했습니다.</p>
+            </section>
+
+            <div class="model-selection-flow">
+              <section class="model-selection-block" aria-labelledby="candidate-selection-title">
+                <header class="model-block-heading">
+                  <span>01</span>
+                  <div>
+                    <p>Candidate Selection</p>
+                    <h4 id="candidate-selection-title">Ridge와 ElasticNet의 대표 후보를 비교했습니다</h4>
+                  </div>
+                </header>
+
+                <div class="candidate-family-grid">
+                  <article class="candidate-family candidate-family-primary">
+                    <div class="candidate-family-name"><span>R</span><h5>Ridge</h5></div>
+                    <p>모든 TF-IDF 계수를 유지하면서 대표 후보 중 더 높은 검증 R²를 보였습니다.</p>
+                    <ul><li>text-only 중심</li><li>alpha 1 / 10 비교</li><li>계수 희소성 0%</li></ul>
+                  </article>
+                  <article class="candidate-family">
+                    <div class="candidate-family-name"><span>E</span><h5>ElasticNet</h5></div>
+                    <p>계수를 크게 줄이고 학습-검증 격차를 낮췄지만 Ridge보다 검증 R²가 낮았습니다.</p>
+                    <ul><li>높은 계수 희소성</li><li>약 190~281개 계수 유지</li><li>설명용 대안</li></ul>
+                  </article>
+                </div>
+
+                <div class="candidate-direction-grid">
+                  <article class="candidate-result-card">
+                    <header>
+                      <div><span>매수 우세일 댓글 분석 모델</span><small>Positive · Date-group Random</small></div>
+                      <strong>R² 중심 비교</strong>
+                    </header>
+                    <div class="candidate-result-row is-selected">
+                      <span>Ridge · text-only · α=1</span><b>0.2068</b><em>최저 0.1871 · σ 0.0172 · 선정</em>
+                    </div>
+                    <div class="candidate-result-row">
+                      <span>ElasticNet · text-only</span><b>0.1451</b><em>최저 0.1299 · 희소성 98.7%</em>
+                    </div>
+                    <div class="candidate-result-row">
+                      <span>Ridge · text-only · α=10</span><b>0.1189</b><em>표준편차 0.0089</em>
+                    </div>
+                  </article>
+
+                  <article class="candidate-result-card">
+                    <header>
+                      <div><span>매도 우세일 댓글 분석 모델</span><small>Negative · Date-group Random</small></div>
+                      <strong>R² 중심 비교</strong>
+                    </header>
+                    <div class="candidate-result-row">
+                      <span>Ridge · text + 댓글 수 · α=1</span><b>0.2215</b><em>최저 0.1831 · σ 0.0260</em>
+                    </div>
+                    <div class="candidate-result-row is-selected">
+                      <span>Ridge · text-only · α=1</span><b>0.2212</b><em>최저 0.1826 · σ 0.0265 · 최종</em>
+                    </div>
+                    <div class="candidate-result-row">
+                      <span>ElasticNet · text + 댓글 수</span><b>0.1816</b><em>최저 0.1404 · 희소성 98.8%</em>
+                    </div>
+                  </article>
+                </div>
+
+                <aside class="candidate-record-note">
+                  <strong>후보 선정 지표</strong>
+                  <p>
+                    댓글 TF-IDF가 같은 날 매수·매도 우세도 변동을 어느 정도 설명하는지 비교하기 위해
+                    R²를 중심으로 보되, 최저 R²·표준편차·학습 격차·희소성·입력 복잡도를 함께 판단했습니다.
+                    과거 후보 기록에는 후보별 MAE와 RMSE가 보존되어 있지 않아 이 비교에는 사용하지 않았습니다.
+                  </p>
+                </aside>
+              </section>
+
+              <section class="model-selection-block" aria-labelledby="validation-strategy-title">
+                <header class="model-block-heading">
+                  <span>02</span>
+                  <div>
+                    <p>Validation Strategy</p>
+                    <h4 id="validation-strategy-title">두 검증은 서로 다른 질문에 답합니다</h4>
+                  </div>
+                </header>
+
+                <div class="validation-perspective-grid">
+                  <article class="validation-perspective validation-random">
+                    <p class="validation-purpose">보유 Dataset 내부 관계 재현</p>
+                    <h5>Date-group Random</h5>
+                    <p>각 월의 날짜 약 20%를 검증에 사용하고, 같은 날짜의 모든 종목을 한쪽에만 배치했습니다.</p>
+                    <div class="validation-r2-pair">
+                      <div><span>매수 우세일</span><strong>R² 0.2068</strong></div>
+                      <div><span>매도 우세일</span><strong>R² 0.2212</strong></div>
+                    </div>
+                    <small>Seed 42~46 · 5회 반복 · 같은 날짜 정보 누출 방지</small>
+                  </article>
+
+                  <div class="validation-versus" aria-hidden="true"><span>다른 목적</span></div>
+
+                  <article class="validation-perspective validation-forward">
+                    <p class="validation-purpose">시간 분포 변화 Stress Test</p>
+                    <h5>Walk-forward</h5>
+                    <p>과거 구간으로 학습하고 이후 월을 검증해 댓글량·어휘·매수·매도 우세도 분포 변화의 영향을 확인했습니다.</p>
+                    <div class="validation-r2-pair">
+                      <div><span>매수 우세일</span><strong>R² 0.0481</strong></div>
+                      <div><span>매도 우세일</span><strong>R² 0.0503</strong></div>
+                    </div>
+                    <small>2026년 4월~7월 24일 · 4개 Fold · 미래 예측 성능 검증이 아님</small>
+                  </article>
+                </div>
+              </section>
+
+              <section class="model-selection-block" aria-labelledby="model-decision-title">
+                <header class="model-block-heading">
+                  <span>03</span>
+                  <div>
+                    <p>Decision</p>
+                    <h4 id="model-decision-title">성능과 입력 계약을 함께 보고 최종 구성을 정했습니다</h4>
+                  </div>
+                </header>
+
+                <div class="model-decision-layout">
+                  <article class="selected-model-card">
+                    <p>Final Service Model</p>
+                    <h5>Ridge Regression</h5>
+                    <dl>
+                      <div><dt>Input</dt><dd>TF-IDF text-only</dd></div>
+                      <div><dt>alpha</dt><dd>1.0</dd></div>
+                      <div><dt>ngram</dt><dd>unigram (1, 1)</dd></div>
+                      <div><dt>Comment count</dt><dd>사용하지 않음</dd></div>
+                    </dl>
+                    <small>매수 우세일·매도 우세일 모델 모두 같은 입력 계약</small>
+                  </article>
+
+                  <article class="decision-judgment-card">
+                    <div class="marginal-gain">
+                      <span>댓글 수 추가 시 평균 R² 이득</span>
+                      <strong>+0.000227</strong>
+                      <small>매도 우세일 후보 · 5개 분할 중 1개에서는 오히려 하락</small>
+                    </div>
+                    <ul>
+                      <li>매수 우세일 Walk-forward에서는 댓글 수 특성이 성능을 악화했습니다.</li>
+                      <li>시점별 활동량을 대리하는 불안정한 특성을 모델 입력에서 제거했습니다.</li>
+                      <li>두 방향의 입력 구조를 통일해 학습·서비스 계약을 단순화했습니다.</li>
+                    </ul>
+                    <p class="artifact-summary">TF-IDF Vectorizer + Ridge Model을 함께 저장해 서비스에서도 같은 입력 계약을 재사용합니다.</p>
+                  </article>
+                </div>
+              </section>
+
+              <section class="model-selection-block" aria-labelledby="final-validation-title">
+                <header class="model-block-heading">
+                  <span>04</span>
+                  <div>
+                    <p>Final Model Validation</p>
+                    <h4 id="final-validation-title">최종 Ridge는 세 지표로 오차와 설명력을 함께 확인했습니다</h4>
+                  </div>
+                </header>
+
+                <div class="final-validation-grid">
+                  <article class="direction-validation-card">
+                    <header><div><span>매수 우세일 댓글 분석 모델</span><small>Positive</small></div><em>평균 검증 395행</em></header>
+                    <div class="validation-metric-grid">
+                      <div><span>MAE</span><strong>0.112</strong></div>
+                      <div><span>RMSE</span><strong>0.140</strong></div>
+                      <div><span>R²</span><strong>0.207</strong></div>
+                    </div>
+                  </article>
+                  <article class="direction-validation-card">
+                    <header><div><span>매도 우세일 댓글 분석 모델</span><small>Negative</small></div><em>평균 검증 355행</em></header>
+                    <div class="validation-metric-grid">
+                      <div><span>MAE</span><strong>0.104</strong></div>
+                      <div><span>RMSE</span><strong>0.133</strong></div>
+                      <div><span>R²</span><strong>0.221</strong></div>
+                    </div>
+                  </article>
+                </div>
+
+                <dl class="metric-meaning-grid">
+                  <div><dt>MAE</dt><dd>실제 매수·매도 우세도와 모델 출력이 평균적으로 얼마나 벗어났는지 확인합니다.</dd></div>
+                  <div><dt>RMSE</dt><dd>일부 큰 오차에 더 큰 영향을 주어 전체 오차 규모를 함께 확인합니다.</dd></div>
+                  <div><dt>R²</dt><dd>평균값만 사용한 기준보다 목표값 변동을 어느 정도 설명하는지 확인합니다.</dd></div>
+                </dl>
+
+                <aside class="model-interpretation">
+                  <div>
+                    <p class="pipeline-message-label">Interpretation</p>
+                    <p>보유 Dataset 내부에서는 당일 댓글 표현과 당일 매수·매도 우세도 사이의 일부 통계적 연관성이 재현됐습니다.</p>
+                  </div>
+                  <div>
+                    <p class="pipeline-message-label">Limitations</p>
+                    <p>시간 순서를 강제하면 설명력이 크게 낮아졌고, 학습-검증 R² 격차도 약 0.50이었습니다. 이를 미래 개인투자자 매매 예측 성능으로 확대 해석하지 않았습니다.</p>
+                  </div>
+                </aside>
+              </section>
+            </div>
+          </div>
+        </section>
+
+        <section id="service-signal" class="case-section case-deep-dive case-subsection section section-dark" aria-labelledby="service-signal-title">
+          <div class="container">
+            <header class="case-section-heading case-section-heading-wide case-section-heading-light">
+              <span class="case-step">06 · B</span>
+              <p class="section-label">Technical Deep Dive · From Model Output to Service Signal</p>
+              <h2 id="service-signal-title">LLM을 더 강하게 제어하는 대신 입력과 역할을 다시 설계했습니다</h2>
+              <p class="section-intro">모델 feature를 원댓글 문맥까지 추적하는 시도에서 출발해, LLM 이전 단계에서 해석 가능한 정형 결과를 만드는 구조로 전환했습니다.</p>
+            </header>
+
+            <ol class="service-signal-progression" aria-label="Feature contribution 분석에서 서비스 상대 신호로 전환한 과정">
+              <li><span>01</span><div><h3>현재 입력의 Feature Contribution 계산</h3><p>Ridge coefficient만 보지 않고 <code>TF-IDF × learned coefficient</code>로 실제 입력에서 영향이 큰 feature를 계산했습니다.</p></div></li>
+              <li><span>02</span><div><h3>Feature를 원댓글 문맥으로 연결</h3><p>형태소 token만으로는 의미를 이해하기 어려워, 주요 feature를 포함한 원댓글 후보를 다시 추적했습니다.</p></div></li>
+              <li><span>03</span><div><h3>여러 기여 표현을 포함한 대표 댓글 선정</h3><p>상위 feature의 <code>abs(contribution)</code> 합을 selection score로 사용해 대표 문맥을 고르고, 부정·질문 여부도 함께 기록했습니다.</p><div class="representative-comment-fields"><code>comment_id</code><code>text</code><code>matched_features</code><code>selection_score</code><code>has_negation</code><code>has_question</code></div></div></li>
+              <li><span>04</span><div><h3>원댓글 문맥을 LLM Evidence로 전달</h3><p>LLM이 대표 댓글 전체를 읽고 설명하도록 시도했지만 질문·반어·부정·미래 전망과 투자 조언을 막는 규칙이 계속 늘었습니다.</p></div></li>
+              <li class="service-signal-pivot"><span>05</span><div><h3>문제 재정의</h3><p>LLM에게 더 잘 판단시키는 문제가 아니라, LLM 이전 단계에서 사용자가 이해할 수 있는 정형 결과를 먼저 만드는 문제로 바꿨습니다.</p></div></li>
+              <li><span>06</span><div><h3>같은 모델의 과거 출력분포와 비교</h3><p>현재 raw output을 학습 데이터의 predicted score 분포와 비교해 0~100 상대 신호로 변환하고, 방향과 비교값을 코드에서 확정했습니다.</p></div></li>
+              <li><span>07</span><div><h3>LLM은 정형 결과를 문장화</h3><p>이미 계산된 방향·댓글·매매 연관 점수·등급·비교값만 전달하고, LLM은 사용자용 일별 설명을 정리하는 역할만 맡겼습니다.</p></div></li>
+            </ol>
+
+            <aside class="service-signal-boundary">
+              <strong>0~100 댓글·매매 연관 점수의 의미</strong>
+              <p>동일 Ridge 모델의 과거 출력분포에서 현재 값이 위치한 상대적 결과입니다.</p>
+              <ul><li>확률 아님</li><li>정확도 아님</li><li>미래 개인투자자 매수·매도 예측 아님</li></ul>
+            </aside>
+          </div>
+        </section>
+
+        <section id="engineering-decisions" class="case-section case-deep-dive case-subsection section" aria-labelledby="decisions-title">
+          <div class="container">
+            <header class="case-section-heading case-section-heading-wide">
+              <span class="case-step">06 · C</span>
+              <p class="section-label">Technical Deep Dive · 문제 해결과 설계 판단</p>
+              <h2 id="decisions-title">서비스로 연결하면서 생긴 세 가지 문제를 이렇게 해결했습니다</h2>
+              <p class="section-intro">
+                각 기능이 따로 동작하는 것과 하나의 서비스로 안전하게 연결되는 것은 달랐습니다.
+                모델 재현성, 결과의 의미, LLM의 역할에서 문제가 될 지점을 정하고 서비스 기준을 만들었습니다.
+              </p>
+            </header>
+
+            <div class="engineering-case-list">
+              <!-- D-010 / D-017 / D-020 -->
+              <article class="engineering-case" aria-labelledby="decision-01-title">
+                <header class="engineering-case-heading">
+                  <div><span>01</span><p>모델 재현</p></div>
+                  <h4 id="decision-01-title">모델과 입력 기준이 섞이지 않도록 하나의 버전으로 관리</h4>
+                  <p>모델 파일 하나가 아니라, 같은 결과를 재현하는 데 필요한 입력 기준까지 하나의 버전으로 관리했습니다.</p>
+                </header>
+
+                <div class="engineering-case-body">
+                  <div class="decision-story">
+                    <section class="decision-story-part decision-problem">
+                      <p>문제</p>
+                      <h5>모델 파일만 저장해서는 같은 결과를 다시 만들 수 없었습니다</h5>
+                      <p>다른 학습에서 만든 TF-IDF Vectorizer와 Ridge 모델이 섞이면 같은 댓글도 학습 당시와 다르게 계산될 수 있었습니다.</p>
+                    </section>
+                    <section class="decision-story-part decision-reasoning">
+                      <p>판단</p>
+                      <p>추론에 필요한 것은 Ridge 파일 하나가 아니라, 학습 당시의 입력 변환 기준과 모델 전체라고 판단했습니다.</p>
+                    </section>
+                    <section class="decision-story-part decision-choice">
+                      <p>해결</p>
+                      <h5>한 번의 학습에서 나온 구성요소를 하나의 모델 묶음으로 관리했습니다</h5>
+                      <p>TF-IDF Vectorizer, Ridge 모델과 모델·토크나이저·Dataset 버전 정보를 함께 저장했습니다. 추론 전에는 DB에서 선택한 정보와 실제 모델 묶음의 구성이 같은지 확인합니다.</p>
+                    </section>
+                  </div>
+
+                  <figure class="decision-diagram model-bundle-diagram" aria-label="서로 다른 학습 결과가 섞일 위험을 하나의 모델 묶음과 구성 확인으로 방지하는 구조">
+                    <div class="diagram-risk-block">
+                      <span>방지하려 한 위험</span>
+                      <div><b>TF-IDF 기준 A</b><i>+</i><b>Ridge 모델 B</b></div>
+                      <small>서로 다른 학습 결과가 섞일 위험</small>
+                    </div>
+                    <span class="decision-flow-arrow" aria-hidden="true">↓</span>
+                    <div class="model-bundle-node">
+                      <p>한 번의 학습 결과를 하나로 묶음</p>
+                      <div><span>TF-IDF Vectorizer</span><span>Ridge 모델</span><span>모델·토크나이저·Dataset 버전</span></div>
+                    </div>
+                    <span class="decision-flow-arrow" aria-hidden="true">↓</span>
+                    <div class="configuration-check-node">추론 전 모델 구성 일치 확인</div>
+                    <span class="decision-flow-arrow" aria-hidden="true">↓</span>
+                    <div class="model-result-link"><span>분석 결과</span><b>↔</b><span>사용한 모델 연결</span></div>
+                  </figure>
+
+                  <section class="decision-result">
+                    <p>결과</p>
+                    <ul>
+                      <li>서로 다른 Vectorizer와 Ridge가 섞이지 않도록 검증</li>
+                      <li>어떤 모델 버전으로 분석했는지 결과에서 추적</li>
+                      <li>기존 결과를 덮어쓰지 않고 모델 버전별로 관리</li>
+                    </ul>
+                  </section>
+                </div>
+              </article>
+
+              <!-- D-013 -->
+              <article class="engineering-case is-reversed" aria-labelledby="decision-02-title">
+                <header class="engineering-case-heading">
+                  <div><span>02</span><p>결과 의미 구분</p></div>
+                  <h4 id="decision-02-title">같은 모델이라도 댓글 한 줄과 하루치 댓글은 같은 결과로 보여주지 않음</h4>
+                  <p>같은 모델을 재사용하더라도 입력 맥락이 다르면 결과 의미도 분리했습니다.</p>
+                </header>
+
+                <div class="engineering-case-body">
+                  <div class="decision-story">
+                    <section class="decision-story-part decision-problem">
+                      <p>문제</p>
+                      <h5>같은 모델을 써도 댓글 한 줄과 하루치 분석의 의미는 달랐습니다</h5>
+                      <p>댓글 한 줄에는 같은 종목·일자의 전체 댓글 맥락이 없습니다. 이를 일별 분석과 같은 결과로 보여주면 실제 서비스 결과로 오해할 수 있었습니다.</p>
+                    </section>
+                    <section class="decision-story-part decision-reasoning">
+                      <p>판단</p>
+                      <p>모델을 호출할 수 있다는 것과 그 값을 같은 의미로 사용자에게 제공할 수 있다는 것은 별개의 문제라고 판단했습니다.</p>
+                    </section>
+                    <section class="decision-story-part decision-choice">
+                      <p>해결</p>
+                      <h5>학습 객체는 재사용하되 두 기능의 결과 의미를 분리했습니다</h5>
+                      <p>댓글 한 줄 모델 체험은 입력 문장에서 모델이 인식한 표현과 반응만 보여줍니다. 종목·일자별 댓글·매매 연관 결과는 하루치 댓글 분석 경로에서만 제공합니다.</p>
+                    </section>
+                  </div>
+
+                  <figure class="decision-diagram context-split-diagram" aria-label="같은 학습된 모델을 댓글 한 줄 체험과 종목 일자별 분석에 사용하되 결과 의미를 구분하는 구조">
+                    <div class="shared-model-node">
+                      <span>같은 학습 객체 재사용</span>
+                      <strong>학습된 TF-IDF + Ridge 모델</strong>
+                    </div>
+                    <span class="decision-flow-arrow" aria-hidden="true">↓</span>
+                    <div class="context-branch-grid">
+                      <section>
+                        <span>댓글 한 줄</span>
+                        <b>↓</b>
+                        <strong>댓글 한 줄 모델 체험</strong>
+                        <p>입력한 문장에서 모델이 인식한 표현과 반응</p>
+                      </section>
+                      <section>
+                        <span>같은 종목·같은 일자의 댓글 여러 건</span>
+                        <b>↓</b>
+                        <strong>종목·일자별 댓글 분석 단위</strong>
+                        <p>일별 댓글·매매 연관 결과</p>
+                      </section>
+                    </div>
+                    <div class="context-meaning-message">같은 모델을 사용해도 입력 맥락에 따라 결과의 의미를 구분</div>
+                  </figure>
+
+                  <section class="decision-result">
+                    <p>결과</p>
+                    <ul>
+                      <li>같은 모델을 재사용하면서 입력 맥락별 결과 의미 구분</li>
+                      <li>댓글 한 줄 체험을 일별 댓글·매매 연관 결과로 오해하는 문제 방지</li>
+                      <li>체험 기능과 실제 종목·일자 분석의 역할 분리</li>
+                    </ul>
+                  </section>
+                </div>
+              </article>
+
+              <!-- D-019 -->
+              <article class="engineering-case" aria-labelledby="decision-03-title">
+                <header class="engineering-case-heading">
+                  <div><span>03</span><p>LLM 역할 제한</p></div>
+                  <h4 id="decision-03-title">LLM이 서비스 분석을 새로 만들지 못하도록 역할 제한</h4>
+                  <p>LLM에게 판단을 맡기지 않고, 코드가 계산한 결과를 사용자 문장으로 정리하는 역할만 맡겼습니다.</p>
+                </header>
+
+                <div class="engineering-case-body">
+                  <div class="decision-story">
+                    <section class="decision-story-part decision-problem">
+                      <p>문제</p>
+                      <h5>LLM에게 자유롭게 설명하게 하면 계산하지 않은 내용이 추가될 수 있었습니다</h5>
+                      <p>모델 결과를 LLM이 다시 판단하면 입력과 다른 숫자·방향, 미래 전망, 투자 권유나 인과관계 표현이 생성될 위험이 있었습니다.</p>
+                    </section>
+                    <section class="decision-story-part decision-reasoning">
+                      <p>판단</p>
+                      <p>서비스의 기준은 LLM이 만든 문장이 아니라 코드와 모델이 먼저 계산한 결과여야 한다고 판단했습니다.</p>
+                    </section>
+                    <section class="decision-story-part decision-choice">
+                      <p>해결</p>
+                      <h5>코드가 계산한 결과만 전달하고 생성 문장을 다시 검증했습니다</h5>
+                      <p>방향·댓글·매매 연관 점수·등급·비교값만 LLM에 전달합니다. 숫자·방향·전망·권유·인과 표현을 검증하고, 근거가 부족하면 LLM 대신 규칙 기반 설명을 제공합니다.</p>
+                    </section>
+                  </div>
+
+                  <figure class="decision-diagram llm-role-diagram" aria-label="코드가 계산한 결과만 LLM에 전달하고 생성 결과를 검증하며 근거 부족 시 규칙 기반 설명으로 분기하는 구조">
+                    <div class="calculated-result-node">
+                      <span>코드가 계산한 결과</span>
+                      <div><b>방향</b><b>연관 점수</b><b>등급</b><b>비교값</b></div>
+                    </div>
+                    <span class="decision-flow-arrow" aria-hidden="true">↓</span>
+                    <div class="evidence-limit-node">허용된 근거만 전달</div>
+                    <span class="decision-flow-arrow" aria-hidden="true">↓</span>
+                    <div class="llm-editor-node"><span>LLM</span><strong>사용자가 읽기 쉬운 문장으로 정리</strong></div>
+                    <span class="decision-flow-arrow" aria-hidden="true">↓</span>
+                    <div class="generated-text-check-node"><span>생성 결과 검증</span><p>숫자 · 방향 · 전망 · 권유 · 인과</p></div>
+                    <span class="decision-flow-arrow" aria-hidden="true">↓</span>
+                    <div class="user-explanation-node">사용자 설명</div>
+                    <div class="rule-based-branch">
+                      <span>근거 부족</span><i>→</i><span>LLM 호출 생략</span><i>→</i><strong>규칙 기반 설명</strong>
+                    </div>
+                  </figure>
+
+                  <section class="decision-result">
+                    <p>결과</p>
+                    <ul>
+                      <li>코드가 계산한 결과를 서비스 판단 기준으로 유지</li>
+                      <li>근거와 다른 생성 결과를 저장 전에 차단</li>
+                      <li>LLM을 사용할 수 없는 경우에도 규칙 기반 설명 제공</li>
+                    </ul>
+                  </section>
+                </div>
+              </article>
+            </div>
+
+          </div>
+        </section>
+        </section>
+
+        <section id="automation" class="case-section case-automation section section-dark" aria-labelledby="automation-title">
+          <div class="container case-section-grid">
+            <header class="case-section-heading case-section-heading-light">
+              <span class="case-step">07</span>
+              <p class="section-label">Automation &amp; Reliability</p>
+              <h2 id="automation-title">단계를 연결하는 것보다 실패했을 때 멈출 경계를 먼저 정했습니다</h2>
+            </header>
+            <div class="pilos-automation-layout case-automation-layout">
+              <div>
+                <p class="automation-layout-label">Service Pipeline</p>
+                <ol class="pilos-service-pipeline case-pipeline" aria-label="PILOS 서비스 파이프라인 실행 순서">
+                  <li><span>01</span><strong>댓글 수집</strong></li>
+                  <li><span>02</span><strong>댓글 전처리</strong></li>
+                  <li><span>03</span><strong>토큰화</strong></li>
+                  <li><span>04</span><strong>종목·일자별 댓글 분석 단위</strong></li>
+                  <li><span>05</span><strong>개인투자자 매수·매도 데이터 수집</strong></li>
+                  <li><span>06</span><strong>모델 추론</strong></li>
+                  <li><span>07</span><strong>일별 LLM 해설 생성</strong></li>
+                </ol>
+                <p class="automation-execution-note">최상위 service pipeline runner가 각 단계의 <code>run_*</code> 함수를 Python 실행 흐름에서 직접 호출합니다. CLI·subprocess를 이어 붙인 체인이 아닙니다.</p>
+              </div>
+
+              <aside class="pilos-failure-boundary case-reliability">
+                <p class="automation-layout-label">Failure Boundary</p>
+                <h3>선행 결과가 유효할 때만 다음 단계로 이동</h3>
+                <ul>
+                  <li><strong>단계 실패</strong><span>이후 downstream 실행 중단</span></li>
+                  <li><strong>결과 불완전</strong><span>후속 저장·분석 진행 금지</span></li>
+                  <li><strong>이전 실행 중</strong><span>non-blocking file lock으로 중복 실행 방지</span></li>
+                  <li><strong>실행 기록</strong><span>시작·종료와 단계별 반환 상태 기록</span></li>
+                </ul>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <section id="result-limitations" class="case-section case-results section section-dark" aria-labelledby="result-limitations-title">
+          <div class="container">
+            <header class="case-section-heading case-section-heading-wide case-section-heading-light">
+              <span class="case-step">08</span>
+              <p class="section-label">Result &amp; Limitations</p>
+              <h2 id="result-limitations-title">구현 결과와 해석 범위를 함께 남겼습니다</h2>
+            </header>
+            <div class="case-result-grid">
+              <section aria-labelledby="engineering-outcomes-title">
+                <p class="section-label">What I Delivered</p>
+                <h3 id="engineering-outcomes-title">문제 해결 뒤 서비스 기준으로 남긴 설계</h3>
+                <ul>
+                  <li>Producer가 확정한 분석 결과를 서비스의 source of truth로 사용</li>
+                  <li>DB의 active model과 로컬 artifact identity를 추론 전에 검증</li>
+                  <li>최상위 자동화에서 단계별 실패 경계를 두고 downstream 실행을 중단</li>
+                  <li>분석 계산·DB 저장·서비스 제공 책임을 분리</li>
+                </ul>
+              </section>
+              <section>
+                <p class="section-label">Limitations</p>
+                <h3>검증 결과를 서비스 의미보다 크게 해석하지 않았습니다</h3>
+                <ul>
+                  <li>시간 순서를 강제한 Walk-forward에서는 설명력이 크게 낮아졌습니다.</li>
+                  <li>0~100 댓글·매매 연관 점수는 확률이나 정확도가 아닌 같은 모델 출력분포 안의 상대 결과입니다.</li>
+                  <li>미래 개인투자자 매수·매도 예측이나 댓글과 매매 행동의 인과관계를 의미하지 않습니다.</li>
+                </ul>
+              </section>
+            </div>
+          </div>
+        </section>
+
+        <section id="retrospective" class="case-section case-retrospective section section-muted" aria-labelledby="retrospective-title">
+          <div class="container case-section-grid">
+            <header class="case-section-heading">
+              <span class="case-step">09</span>
+              <p class="section-label">Retrospective</p>
+              <h2 id="retrospective-title">성과와 기술적 한계를 함께 정리합니다</h2>
+            </header>
+            <div class="retrospective-grid project-growth-retrospective">
+              <section>
+                <p class="section-label">From First Project</p>
+                <h4>문제가 발생한 뒤 데이터와 실행 흐름을 따라 해결했습니다</h4>
+                <p>Stock Advisor에서는 여러 기능을 연결하면서 조회 성능, 부분 완료 데이터, 중복 코드와 실행 순서 문제를 경험했습니다.</p>
+              </section>
+              <section>
+                <p class="section-label">To PILOS</p>
+                <h4>두 번째 프로젝트에서는 경계와 결과 의미를 먼저 정하려고 했습니다</h4>
+                <p>이 경험을 바탕으로 데이터 계약, 실패 경계, 모델 검증, 사용자 결과의 의미와 LLM의 책임 범위를 구현 전에 더 명확히 고민했습니다.</p>
+              </section>
+            </div>
+          </div>
+        </section>
+      </article>
+    </main>
+
+    <footer class="site-footer detail-footer">
+      <div class="container">
+        <p>PILOS Sentiment Index · Project Case Study</p>
+        <a href="../../">← 이주광 포트폴리오로 돌아가기</a>
+      </div>
+    </footer>
+  </body>
+</html>
