@@ -1,0 +1,1360 @@
+/*
+  Portfolio Readability Dark Theme
+  Load AFTER styles.css and readability.css.
+
+  Design goal:
+  - Not pure black / white inversion.
+  - Low-glare graphite + slate surfaces.
+  - Preserve all current HTML/content/diagrams.
+  - Emphasis by typography, line weight and restrained accent.
+*/
+
+:root {
+  color-scheme: dark;
+
+  --background: #1c2024;
+  --surface: #24292e;
+  --surface-muted: #20252a;
+  --surface-strong: #2b3136;
+
+  --ink: #e1e5e7;
+  --ink-soft: #b2bbc1;
+  --ink-faint: #858f97;
+
+  --line: #394147;
+  --line-strong: #4a545c;
+
+  --accent: #8ba8b2;
+  --accent-dark: #75949f;
+  --accent-bright: #a9c0c7;
+
+  /* Legacy variables are intentionally mapped to the same graphite family. */
+  --dark: #191d20;
+  --dark-surface: #252b30;
+  --dark-text: #e1e5e7;
+  --dark-soft: #aeb8bf;
+}
+
+html,
+body {
+  background: var(--background);
+}
+
+body {
+  color: var(--ink);
+}
+
+/* -------------------------------------------------------------
+   Header / global
+   ------------------------------------------------------------- */
+.site-header,
+.detail-site-header {
+  background: rgba(28, 32, 36, 0.93) !important;
+  border-bottom: 1px solid rgba(74, 84, 92, 0.7) !important;
+  box-shadow: none !important;
+}
+
+.site-name,
+.detail-site-name,
+.primary-nav a,
+.detail-nav a {
+  color: var(--ink-soft) !important;
+}
+
+.site-name:hover,
+.detail-site-name:hover,
+.primary-nav a:hover,
+.detail-nav a:hover {
+  color: var(--ink) !important;
+}
+
+.section,
+.home-section,
+.case-section {
+  color: var(--ink);
+}
+
+/* Only a very small tonal shift for muted sections. */
+.section-muted {
+  background: var(--surface-muted) !important;
+}
+
+.section-dark {
+  color: var(--ink) !important;
+  background: var(--background) !important;
+}
+
+.home-section,
+.case-section {
+  border-bottom-color: var(--line) !important;
+}
+
+.section-heading h2,
+.home-section-heading h2,
+.case-section-heading h2,
+.case-section-heading h3,
+.case-study-header h1,
+.case-study-header h2,
+.case-hero h1,
+.case-hero h2,
+h1,
+h2,
+h3,
+h4,
+h5,
+strong,
+b,
+dt,
+dd {
+  color: var(--ink);
+}
+
+p,
+li,
+.case-study-lead,
+.section-intro,
+.home-section-heading > p:last-child {
+  color: var(--ink-soft);
+}
+
+.section-label,
+.eyebrow,
+.project-kicker,
+.case-project-index,
+.case-step,
+.contribution-kicker,
+.pipeline-message-label,
+.automation-layout-label {
+  color: var(--accent) !important;
+}
+
+code {
+  color: #d5dce0 !important;
+  background: #2b3237 !important;
+  border-color: #404a51 !important;
+}
+
+a:focus-visible {
+  outline-color: rgba(139, 168, 178, .72) !important;
+}
+
+.button-primary {
+  color: #15191c !important;
+  background: var(--accent-bright) !important;
+  border-color: var(--accent-bright) !important;
+}
+
+.button-primary:hover {
+  color: #111518 !important;
+  background: #bfd0d5 !important;
+  border-color: #bfd0d5 !important;
+}
+
+.button-secondary {
+  color: var(--ink) !important;
+  background: transparent !important;
+  border-color: var(--line-strong) !important;
+}
+
+.button-secondary:hover {
+  color: var(--ink) !important;
+  background: var(--surface-strong) !important;
+  border-color: #69757e !important;
+}
+
+/* -------------------------------------------------------------
+   Home hero
+   ------------------------------------------------------------- */
+.home-hero,
+.hero {
+  color: var(--ink);
+  background:
+    linear-gradient(rgba(139,168,178,.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139,168,178,.028) 1px, transparent 1px),
+    var(--background) !important;
+  background-size: 52px 52px !important;
+}
+
+.home-hero-statement,
+.home-hero-support,
+.hero-statement,
+.hero-support {
+  color: var(--ink-soft) !important;
+}
+
+.profile-frame {
+  background: #252a2e !important;
+  border-color: var(--line-strong) !important;
+  box-shadow: none !important;
+}
+
+/* -------------------------------------------------------------
+   Home sections
+   ------------------------------------------------------------- */
+.direction-list,
+.direction-list li,
+.home-skill-grid,
+.home-skill-grid article {
+  border-color: var(--line) !important;
+}
+
+.direction-list li h3,
+.home-skill-grid h3 {
+  color: var(--ink) !important;
+}
+
+.direction-list li p,
+.home-skill-grid p {
+  color: var(--ink-soft) !important;
+}
+
+.home-skill-grid li,
+.portfolio-tech-list li,
+.tag-row span {
+  color: var(--ink-soft) !important;
+  background: #292f34 !important;
+  border: 1px solid #3b444b !important;
+}
+
+.growth-direction {
+  color: var(--ink) !important;
+  background: transparent !important;
+  border-color: var(--line) !important;
+}
+
+.growth-direction p {
+  color: var(--ink-soft) !important;
+}
+
+/* Problem solving: no black island. */
+#problem-solving,
+.problem-solving-section {
+  color: var(--ink) !important;
+  background: var(--background) !important;
+}
+
+.problem-case {
+  color: var(--ink) !important;
+  background: var(--surface) !important;
+  border: 1px solid var(--line) !important;
+  border-left: 3px solid #59656d !important;
+  box-shadow: none !important;
+}
+
+.problem-case:first-child {
+  border-left-color: var(--accent) !important;
+}
+
+.problem-case header,
+.problem-flow li,
+.problem-learning {
+  border-color: var(--line) !important;
+}
+
+.problem-case-number,
+.problem-case p,
+.problem-case li,
+.problem-learning {
+  color: var(--ink-soft) !important;
+}
+
+.problem-case h3,
+.problem-case strong,
+.problem-flow li > span {
+  color: var(--ink) !important;
+}
+
+.problem-case-signal,
+.problem-detail-link {
+  color: var(--accent-bright) !important;
+}
+
+/* Project cards */
+.portfolio-project-card,
+.portfolio-project-card.project-card-featured,
+.portfolio-project-card.project-card-supporting,
+.project-card,
+.project-card-featured,
+.project-card-secondary {
+  color: var(--ink) !important;
+  background: var(--surface) !important;
+  border-color: var(--line) !important;
+  box-shadow: none !important;
+}
+
+.portfolio-project-card p,
+.portfolio-project-card dd,
+.project-card p:not(.project-kicker) {
+  color: var(--ink-soft) !important;
+}
+
+.portfolio-project-card dt {
+  color: var(--ink-faint) !important;
+}
+
+.portfolio-project-meta,
+.portfolio-project-meta > div {
+  border-color: var(--line) !important;
+}
+
+/* -------------------------------------------------------------
+   Contact — intentionally rebuilt because this was visually broken
+   after the previous neutral patch.
+   ------------------------------------------------------------- */
+.contact-section {
+  color: var(--ink) !important;
+  background: #1b1f23 !important;
+  border-top: 1px solid var(--line) !important;
+  border-bottom: 0 !important;
+}
+
+.home-contact-layout {
+  align-items: center !important;
+  padding-block: 8px;
+}
+
+.home-contact-layout h2 {
+  margin-bottom: 6px !important;
+  color: var(--ink) !important;
+  font-size: clamp(2rem, 4vw, 3.5rem) !important;
+}
+
+.home-contact-layout > div > p:not(.section-label),
+.contact-message {
+  color: var(--ink-soft) !important;
+}
+
+.contact-message {
+  margin-top: 16px !important;
+}
+
+.contact-github {
+  min-height: 88px;
+  padding: 18px 20px !important;
+  color: var(--ink) !important;
+  background: #242a2f !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 8px;
+  box-shadow: none !important;
+}
+
+.contact-github:hover {
+  background: #2a3035 !important;
+  border-color: #59656d !important;
+}
+
+.contact-github span,
+.contact-github i {
+  color: var(--accent-bright) !important;
+}
+
+.contact-github strong {
+  color: var(--ink) !important;
+}
+
+.site-footer {
+  color: var(--ink-faint) !important;
+  background: #181c1f !important;
+  border-top: 1px solid #30373c;
+}
+
+.site-footer a,
+.site-footer p {
+  color: var(--ink-faint) !important;
+}
+
+.site-footer a:hover {
+  color: var(--ink) !important;
+}
+
+/* -------------------------------------------------------------
+   Project detail shell / navigation
+   ------------------------------------------------------------- */
+.project-detail-page,
+.project-detail-page .case-study,
+.project-detail-page .case-study-header,
+.project-detail-page .case-hero {
+  color: var(--ink) !important;
+  background: var(--background) !important;
+}
+
+.project-detail-page .case-study-header,
+.project-detail-page .case-hero,
+.project-detail-page .case-hero-meta,
+.project-detail-page .case-section,
+.project-detail-page .case-study-nav a {
+  border-color: var(--line) !important;
+}
+
+.project-detail-page .case-study-nav a {
+  color: var(--ink-soft) !important;
+  background: #23282d !important;
+}
+
+.project-detail-page .case-study-nav a:hover {
+  color: var(--ink) !important;
+  background: #2b3136 !important;
+  border-color: #59656d !important;
+}
+
+.project-detail-page .case-hero-meta dt {
+  color: var(--ink-faint) !important;
+}
+
+.project-detail-page .case-hero-meta dd {
+  color: var(--ink) !important;
+}
+
+/* Any legacy dark band must remain in the same graphite family. */
+.project-detail-page .section-dark,
+.project-detail-page .case-deep-dive.section-dark,
+.project-detail-page .case-automation.section-dark,
+.project-detail-page .case-results.section-dark {
+  color: var(--ink) !important;
+  background: #1d2226 !important;
+}
+
+/* -------------------------------------------------------------
+   Contribution
+   ------------------------------------------------------------- */
+.project-detail-page .leadership-band,
+.project-detail-page .case-contribution-main {
+  color: var(--ink) !important;
+  background: #242a2f !important;
+  border-color: #424b52 !important;
+  border-left-color: var(--accent) !important;
+}
+
+.project-detail-page .leadership-points li,
+.project-detail-page .contribution-flow,
+.project-detail-page .contribution-item,
+.project-detail-page .contribution-flow-heading,
+.project-detail-page .team-scope,
+.project-detail-page .case-contribution-boundary,
+.project-detail-page .team-scope ul,
+.project-detail-page .team-scope li {
+  border-color: var(--line) !important;
+}
+
+.project-detail-page .contribution-index {
+  color: var(--accent-bright) !important;
+  background: var(--background) !important;
+  border-color: var(--accent) !important;
+}
+
+.project-detail-page .contribution-title-en,
+.project-detail-page .contribution-kicker {
+  color: var(--accent) !important;
+}
+
+.project-detail-page .leadership-copy > p:last-child,
+.project-detail-page .contribution-description,
+.project-detail-page .contribution-flow-heading > p:last-child,
+.project-detail-page .team-scope p,
+.project-detail-page .team-scope li {
+  color: var(--ink-soft) !important;
+}
+
+/* -------------------------------------------------------------
+   Architecture and diagrams
+   ------------------------------------------------------------- */
+.project-detail-page .architecture-view {
+  background: transparent !important;
+  border-top-color: #55616a !important;
+}
+
+.project-detail-page .architecture-view-heading,
+.project-detail-page .architecture-principles,
+.project-detail-page .architecture-principles li {
+  border-color: var(--line) !important;
+}
+
+.project-detail-page .architecture-view-heading h4,
+.project-detail-page .architecture-node strong,
+.project-detail-page .responsibility-node strong,
+.project-detail-page .architecture-principles strong {
+  color: var(--ink) !important;
+}
+
+.project-detail-page .architecture-view-heading > p,
+.project-detail-page .architecture-node > span,
+.project-detail-page .responsibility-node > span,
+.project-detail-page .architecture-node small,
+.project-detail-page .responsibility-node small,
+.project-detail-page .architecture-principles span {
+  color: var(--ink-soft) !important;
+}
+
+.project-detail-page .architecture-node,
+.project-detail-page .responsibility-node {
+  color: var(--ink) !important;
+  background: var(--surface) !important;
+  border-color: var(--line) !important;
+}
+
+.project-detail-page .architecture-orchestrator,
+.project-detail-page .architecture-service,
+.project-detail-page .responsibility-node-core {
+  background: #272d32 !important;
+  border-color: #465159 !important;
+  border-left-color: var(--accent) !important;
+}
+
+.project-detail-page .architecture-node p,
+.project-detail-page .responsibility-node p,
+.project-detail-page .architecture-view-heading span,
+.project-detail-page .dto-contract span {
+  color: var(--accent-bright) !important;
+}
+
+.project-detail-page .dto-contract {
+  background: #20252a !important;
+  border-color: #4c575f !important;
+}
+
+.project-detail-page .dto-contract p {
+  color: var(--ink-soft) !important;
+}
+
+/* Generic diagram/card surfaces inherited from the original long CSS. */
+.project-detail-page :is(
+  .diagram-placeholder,
+  .concept-source,
+  .xy-card,
+  .ridge-stage,
+  .model-stage,
+  .spine-node,
+  .spine-support-step,
+  .commentary-result,
+  .flask-result,
+  .pipeline-stage,
+  .candidate-family,
+  .candidate-result-card,
+  .validation-perspective,
+  .selected-model-card,
+  .decision-judgment-card,
+  .direction-validation-card,
+  .engineering-case,
+  .decision-story-part,
+  .decision-diagram,
+  .pilos-failure-boundary,
+  .case-reliability,
+  .tokenizer-quality-case,
+  .case-challenge,
+  .validation-problem-story,
+  .model-selection-block
+) {
+  color: var(--ink) !important;
+  background: var(--surface) !important;
+  border-color: var(--line) !important;
+  box-shadow: none !important;
+}
+
+/* Important nodes: not a different giant background; use a left line + a tiny tone shift. */
+.project-detail-page :is(
+  .trained-model-node,
+  .association-score-node,
+  .selected-model-card,
+  .candidate-result-row.is-selected,
+  .service-signal-pivot,
+  .model-bundle-node,
+  .calculated-result-node
+) {
+  color: var(--ink) !important;
+  background: #293035 !important;
+  border-color: #4b5961 !important;
+  box-shadow: inset 3px 0 0 var(--accent) !important;
+}
+
+.project-detail-page :is(
+  .secondary-tokenizer-finding,
+  .candidate-record-note,
+  .model-interpretation,
+  .service-signal-boundary,
+  .shared-input-contract,
+  .analysis-unit-reason
+) {
+  color: var(--ink) !important;
+  background: #23292e !important;
+  border-color: var(--line) !important;
+  box-shadow: none !important;
+}
+
+/* Keep readable contrast inside nested diagrams. */
+.project-detail-page :is(
+  .diagram-placeholder,
+  .concept-source,
+  .xy-card,
+  .ridge-stage,
+  .model-stage,
+  .spine-node,
+  .spine-support-step,
+  .commentary-result,
+  .flask-result,
+  .pipeline-stage,
+  .candidate-family,
+  .candidate-result-card,
+  .validation-perspective,
+  .selected-model-card,
+  .decision-judgment-card,
+  .direction-validation-card,
+  .engineering-case,
+  .decision-story-part,
+  .decision-diagram
+) :where(p,span,small,em,li) {
+  color: var(--ink-soft);
+}
+
+.project-detail-page :is(
+  .diagram-placeholder,
+  .concept-source,
+  .xy-card,
+  .ridge-stage,
+  .model-stage,
+  .spine-node,
+  .spine-support-step,
+  .commentary-result,
+  .flask-result,
+  .pipeline-stage,
+  .candidate-family,
+  .candidate-result-card,
+  .validation-perspective,
+  .selected-model-card,
+  .decision-judgment-card,
+  .direction-validation-card,
+  .engineering-case,
+  .decision-story-part,
+  .decision-diagram
+) :where(h3,h4,h5,strong,b) {
+  color: var(--ink);
+}
+
+/* Metric emphasis */
+.project-detail-page .tokenizer-change-metrics > div,
+.project-detail-page .validation-metric-grid > div {
+  background: transparent !important;
+  border-top-color: #59656d !important;
+}
+
+.project-detail-page .tokenizer-change-metrics strong,
+.project-detail-page .validation-metric-grid strong,
+.project-detail-page .validation-r2-pair strong,
+.project-detail-page .marginal-gain strong {
+  color: var(--accent-bright) !important;
+}
+
+/* -------------------------------------------------------------
+   Screenshots
+   ------------------------------------------------------------- */
+.project-detail-page .service-screen-slot > a,
+.project-detail-page .case-screen > a {
+  background: #252b30 !important;
+  border-color: #465057 !important;
+}
+
+.project-detail-page .service-screen-slot figcaption,
+.project-detail-page .case-screen figcaption {
+  color: var(--ink-soft) !important;
+}
+
+.project-detail-page .service-screen-slot figcaption strong,
+.project-detail-page .case-screen figcaption strong {
+  color: var(--ink) !important;
+}
+
+/* Bright project screenshots themselves must remain unfiltered; they show the actual service UI. */
+.project-detail-page .service-screen-slot img,
+.project-detail-page .case-screen img {
+  filter: none !important;
+}
+
+/* -------------------------------------------------------------
+   Scrollbars — subtle, not high contrast
+   ------------------------------------------------------------- */
+* {
+  scrollbar-color: #515b62 #20252a;
+}
+
+*::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #20252a;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #515b62;
+  border: 3px solid #20252a;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .contact-github {
+    min-height: auto;
+  }
+}
+/* =============================================================
+   V2 CONTRAST + DIAGRAM HARMONIZATION
+   User feedback pass:
+   - remove remaining pale/white islands
+   - make secondary text actually readable
+   - raise tiny diagram text
+   - one graphite palette for diagrams
+   ============================================================= */
+
+:root {
+  --ink: #e3e7e9;
+  --ink-soft: #c5cdd2;
+  --ink-faint: #a9b4bb;
+  --accent: #9ab7c2;
+  --accent-dark: #82a2ad;
+  --accent-bright: #b4cbd2;
+  --line: #40484f;
+  --line-strong: #56616a;
+  --surface: #24292e;
+  --surface-muted: #20252a;
+  --surface-strong: #2a3035;
+}
+
+/* Body copy should not disappear behind white headings. */
+.project-detail-page :where(p, li, dd, time) {
+  color: var(--ink-soft);
+}
+
+.project-detail-page small {
+  color: var(--ink-faint);
+}
+
+.project-detail-page :where(h1, h2, h3, h4, h5, strong, b, dt) {
+  color: var(--ink);
+}
+
+/* Reapply intended accent labels after the broad readability floor. */
+.project-detail-page :where(
+  .section-label,
+  .case-project-index,
+  .case-step,
+  .contribution-kicker,
+  .contribution-title-en,
+  .pipeline-message-label,
+  .automation-layout-label,
+  .model-block-heading > span,
+  .pipeline-stage-heading > span,
+  .architecture-view-heading > span,
+  .pilos-challenge-heading > span,
+  .engineering-case-heading > div span
+) {
+  color: var(--accent) !important;
+}
+
+/* -------------------------------------------------------------
+   Remove every legacy light island still present in the original CSS.
+   These are the selectors that previously used #edf3ff / #fbfcfd /
+   #f5f8fe / #f7f8f9 etc.
+   ------------------------------------------------------------- */
+.project-detail-page :where(
+  .xy-card,
+  .ridge-stage,
+  .new-comment-node,
+  .trained-model-node,
+  .score-conversion-step,
+  .commentary-result,
+  .leadership-band,
+  .architecture-orchestrator,
+  .pipeline-example-note span,
+  .source-comment-context,
+  .analysis-unit-key,
+  .source-comment-list > li,
+  .preprocessed-stage,
+  .token-stage,
+  .tfidf-stage,
+  .aggregate-comments span,
+  .shared-input-contract,
+  .candidate-family-primary,
+  .candidate-result-card > header,
+  .candidate-result-row.is-selected,
+  .validation-random,
+  .validation-forward,
+  .artifact-summary,
+  .validation-metric-grid > div,
+  .decision-choice,
+  .decision-diagram,
+  .identity-validation-node,
+  .adapter-node,
+  .user-explanation-node,
+  .consumer-layer,
+  .contract-exclusion code,
+  .llm-validation-node,
+  .configuration-check-node,
+  .evidence-limit-node,
+  .generated-text-check-node,
+  .context-meaning-message,
+  .automation-evidence,
+  .secondary-tokenizer-finding,
+  .validation-boundary-message
+) {
+  color: var(--ink) !important;
+  background: var(--surface-strong) !important;
+  border-color: var(--line-strong) !important;
+  box-shadow: none !important;
+}
+
+/* Important nodes use a line, not a bright fill. */
+.project-detail-page :where(
+  .trained-model-node,
+  .selected-model-card,
+  .candidate-result-row.is-selected,
+  .service-signal-pivot,
+  .model-bundle-node,
+  .calculated-result-node,
+  .architecture-orchestrator,
+  .architecture-service,
+  .responsibility-node-core,
+  .decision-choice
+) {
+  background: #293035 !important;
+  border-color: #56636b !important;
+  box-shadow: inset 3px 0 0 var(--accent) !important;
+}
+
+/* -------------------------------------------------------------
+   Data-shape / source-comment diagram
+   ------------------------------------------------------------- */
+.project-detail-page .pipeline-stage {
+  background: var(--surface) !important;
+  border-color: var(--line) !important;
+}
+
+.project-detail-page .pipeline-stage-heading {
+  border-color: var(--line) !important;
+}
+
+.project-detail-page .pipeline-stage-heading > span {
+  font-size: 0.76rem !important;
+}
+
+.project-detail-page .pipeline-stage-heading small {
+  color: var(--accent) !important;
+  font-size: 0.76rem !important;
+  letter-spacing: 0.045em !important;
+}
+
+.project-detail-page .pipeline-stage-heading h4 {
+  font-size: 0.98rem !important;
+  line-height: 1.4 !important;
+}
+
+.project-detail-page .source-comment-context,
+.project-detail-page .analysis-unit-key {
+  padding: 10px 12px !important;
+  color: var(--ink-soft) !important;
+  background: #2b3136 !important;
+  border: 1px solid var(--line) !important;
+}
+
+.project-detail-page .source-comment-context span,
+.project-detail-page .source-comment-context strong,
+.project-detail-page .analysis-unit-key span,
+.project-detail-page .analysis-unit-key strong {
+  color: var(--ink-soft) !important;
+  font-size: 0.80rem !important;
+}
+
+.project-detail-page .source-comment-list > li {
+  padding: 13px 14px !important;
+  background: #292f34 !important;
+  border: 1px solid #465058 !important;
+}
+
+.project-detail-page .source-comment-meta b {
+  color: #172126 !important;
+  background: var(--accent) !important;
+  font-size: 0.72rem !important;
+}
+
+.project-detail-page .source-comment-meta time {
+  color: var(--ink-faint) !important;
+  font-size: 0.74rem !important;
+}
+
+.project-detail-page .source-message-context {
+  border-left-color: #617883 !important;
+}
+
+.project-detail-page .source-message-context p {
+  color: var(--ink-soft) !important;
+  font-size: 0.82rem !important;
+  line-height: 1.62 !important;
+}
+
+.project-detail-page .source-contract-note {
+  color: var(--ink-soft) !important;
+  font-size: 0.80rem !important;
+  line-height: 1.6 !important;
+}
+
+.project-detail-page .source-contract-note code {
+  font-size: 0.76rem !important;
+}
+
+.project-detail-page .processed-comment-list b,
+.project-detail-page .tokenized-comment-list b {
+  color: var(--accent-bright) !important;
+  font-size: 0.78rem !important;
+}
+
+.project-detail-page .processed-comment-list p,
+.project-detail-page .tokenized-comment-list p {
+  color: var(--ink-soft) !important;
+  font-size: 0.80rem !important;
+  line-height: 1.6 !important;
+}
+
+.project-detail-page .tokenized-comment-list span {
+  color: var(--ink-soft) !important;
+  font-size: 0.77rem !important;
+}
+
+.project-detail-page .preprocess-actions li,
+.project-detail-page .analysis-comment-list li,
+.project-detail-page .shared-input-contract li {
+  color: var(--ink-soft) !important;
+  font-size: 0.78rem !important;
+  line-height: 1.55 !important;
+}
+
+.project-detail-page .stage-note,
+.project-detail-page .pipeline-example-note p,
+.project-detail-page .analysis-unit-output p,
+.project-detail-page .tfidf-shape p,
+.project-detail-page .training-only-note p {
+  color: var(--ink-soft) !important;
+  font-size: 0.80rem !important;
+  line-height: 1.6 !important;
+}
+
+.project-detail-page :where(
+  .aggregate-comments span,
+  .pipeline-row-connector strong,
+  .pipeline-row-connector small,
+  .analysis-unit-output small,
+  .tfidf-shape small,
+  .tfidf-shape > span,
+  .ridge-input-shape > span,
+  .ridge-input-shape small,
+  .training-only-note span
+) {
+  color: var(--ink-faint) !important;
+  font-size: 0.76rem !important;
+  line-height: 1.5 !important;
+}
+
+.project-detail-page .ridge-input-shape code {
+  font-size: 0.78rem !important;
+}
+
+/* -------------------------------------------------------------
+   Architecture: one palette, no competing blue/white cards
+   ------------------------------------------------------------- */
+.project-detail-page .architecture-view,
+.project-detail-page .architecture-layout {
+  background: transparent !important;
+}
+
+.project-detail-page :where(
+  .architecture-node,
+  .responsibility-node,
+  .architecture-orchestrator,
+  .architecture-service
+) {
+  background: #272d32 !important;
+  border: 1px solid #465058 !important;
+  box-shadow: none !important;
+}
+
+.project-detail-page :where(
+  .architecture-orchestrator,
+  .architecture-service,
+  .responsibility-node-core
+) {
+  border-left: 3px solid var(--accent) !important;
+}
+
+.project-detail-page .architecture-node p,
+.project-detail-page .responsibility-node p {
+  color: var(--accent-bright) !important;
+  font-size: 0.78rem !important;
+}
+
+.project-detail-page .architecture-node > span,
+.project-detail-page .responsibility-node > span {
+  color: var(--ink-soft) !important;
+  font-size: 0.80rem !important;
+  line-height: 1.5 !important;
+}
+
+.project-detail-page .architecture-node small,
+.project-detail-page .responsibility-node small,
+.project-detail-page .architecture-branch-label small,
+.project-detail-page .architecture-boundaries small {
+  color: var(--ink-faint) !important;
+  font-size: 0.74rem !important;
+}
+
+.project-detail-page .architecture-view-heading > p,
+.project-detail-page .dto-contract p,
+.project-detail-page .architecture-principles span {
+  color: var(--ink-soft) !important;
+  font-size: 0.82rem !important;
+  line-height: 1.55 !important;
+}
+
+.project-detail-page .architecture-principles strong {
+  font-size: 0.88rem !important;
+}
+
+/* -------------------------------------------------------------
+   Candidate model comparison / validation
+   ------------------------------------------------------------- */
+.project-detail-page .model-selection-block,
+.project-detail-page .validation-problem-story,
+.project-detail-page .case-challenge,
+.project-detail-page .engineering-case {
+  background: transparent !important;
+  border-color: var(--line) !important;
+}
+
+.project-detail-page .candidate-family,
+.project-detail-page .candidate-result-card,
+.project-detail-page .validation-perspective,
+.project-detail-page .selected-model-card,
+.project-detail-page .direction-validation-card {
+  color: var(--ink) !important;
+  background: #252b30 !important;
+  border-color: #465058 !important;
+  box-shadow: none !important;
+}
+
+.project-detail-page .candidate-result-card > header {
+  color: var(--ink) !important;
+  background: #2b3136 !important;
+  border-color: var(--line) !important;
+}
+
+.project-detail-page .candidate-result-card header span {
+  color: var(--ink-soft) !important;
+  font-size: 0.78rem !important;
+}
+
+.project-detail-page .candidate-result-card header small,
+.project-detail-page .candidate-result-card header strong {
+  color: var(--ink-faint) !important;
+  font-size: 0.74rem !important;
+}
+
+.project-detail-page .candidate-result-row {
+  color: var(--ink-soft) !important;
+  background: transparent !important;
+  border-color: var(--line) !important;
+}
+
+.project-detail-page .candidate-result-row.is-selected {
+  color: var(--ink) !important;
+  background: #293035 !important;
+  border-left: 3px solid var(--accent) !important;
+  box-shadow: none !important;
+}
+
+.project-detail-page .candidate-result-row span,
+.project-detail-page .candidate-result-row b,
+.project-detail-page .candidate-result-row em {
+  font-size: 0.80rem !important;
+  line-height: 1.5 !important;
+}
+
+.project-detail-page .candidate-result-row b {
+  color: var(--ink) !important;
+}
+
+.project-detail-page .candidate-result-row em {
+  color: var(--ink-faint) !important;
+}
+
+.project-detail-page .candidate-family li,
+.project-detail-page .candidate-family-name span,
+.project-detail-page .candidate-record-note p,
+.project-detail-page .validation-purpose,
+.project-detail-page .validation-perspective > p:not(.validation-purpose),
+.project-detail-page .selected-model-card > p,
+.project-detail-page .selected-model-card dt,
+.project-detail-page .selected-model-card dd {
+  color: var(--ink-soft) !important;
+  font-size: 0.80rem !important;
+  line-height: 1.6 !important;
+}
+
+.project-detail-page .validation-r2-pair span,
+.project-detail-page .validation-perspective > small,
+.project-detail-page .validation-versus span,
+.project-detail-page .selected-model-card > small,
+.project-detail-page .marginal-gain small,
+.project-detail-page .validation-metric-grid span,
+.project-detail-page .direction-validation-card header small,
+.project-detail-page .direction-validation-card header em {
+  color: var(--ink-faint) !important;
+  font-size: 0.75rem !important;
+}
+
+.project-detail-page .validation-r2-pair strong,
+.project-detail-page .marginal-gain strong,
+.project-detail-page .validation-metric-grid strong {
+  color: var(--accent-bright) !important;
+}
+
+.project-detail-page .artifact-summary,
+.project-detail-page .validation-boundary-message,
+.project-detail-page .model-interpretation,
+.project-detail-page .candidate-record-note {
+  color: var(--ink-soft) !important;
+  background: #272d32 !important;
+  border: 1px solid #465058 !important;
+  border-left: 3px solid var(--accent) !important;
+}
+
+.project-detail-page .artifact-summary {
+  font-size: 0.82rem !important;
+}
+
+.project-detail-page .metric-meaning-grid dt {
+  color: var(--accent-bright) !important;
+  font-size: 0.78rem !important;
+}
+
+.project-detail-page .metric-meaning-grid dd {
+  color: var(--ink-soft) !important;
+  font-size: 0.80rem !important;
+  line-height: 1.55 !important;
+}
+
+.project-detail-page .model-interpretation p:last-child {
+  color: var(--ink-soft) !important;
+  font-size: 0.84rem !important;
+}
+
+/* -------------------------------------------------------------
+   Engineering-decision / LLM diagrams
+   ------------------------------------------------------------- */
+.project-detail-page .engineering-case-heading > div span,
+.project-detail-page .decision-story-part > p:first-child,
+.project-detail-page .decision-result > p {
+  color: var(--accent) !important;
+  font-size: 0.76rem !important;
+}
+
+.project-detail-page .engineering-case-heading > div p,
+.project-detail-page .decision-story-part > p:last-child,
+.project-detail-page .decision-result li {
+  color: var(--ink-soft) !important;
+  font-size: 0.82rem !important;
+  line-height: 1.62 !important;
+}
+
+.project-detail-page .decision-judgment-card li {
+  color: var(--ink-soft) !important;
+  font-size: 0.82rem !important;
+}
+
+.project-detail-page :where(
+  .decision-diagram,
+  .diagram-risk-block,
+  .versioned-artifact-node,
+  .identity-validation-node,
+  .adapter-node,
+  .user-explanation-node,
+  .consumer-layer,
+  .contract-layer,
+  .contract-exclusion,
+  .structured-result-node,
+  .allowed-evidence-node,
+  .llm-editor-node,
+  .llm-validation-node,
+  .configuration-check-node,
+  .evidence-limit-node,
+  .generated-text-check-node,
+  .context-meaning-message,
+  .model-bundle-node,
+  .calculated-result-node,
+  .context-branch-grid
+) {
+  color: var(--ink) !important;
+  background: #272d32 !important;
+  border-color: #465058 !important;
+  box-shadow: none !important;
+}
+
+.project-detail-page :where(
+  .identity-validation-node,
+  .allowed-evidence-node,
+  .llm-validation-node,
+  .configuration-check-node,
+  .calculated-result-node
+) {
+  border-left: 3px solid var(--accent) !important;
+}
+
+.project-detail-page :where(
+  .decision-diagram p,
+  .decision-diagram span,
+  .decision-diagram small,
+  .diagram-risk-block span,
+  .diagram-risk-block small,
+  .versioned-artifact-node p,
+  .versioned-artifact-node span,
+  .identity-validation-node,
+  .adapter-node,
+  .user-explanation-node,
+  .contract-layer > span,
+  .contract-layer code,
+  .contract-boundary-message,
+  .contract-exclusion span,
+  .contract-exclusion code,
+  .structured-result-node > span,
+  .structured-result-node b,
+  .allowed-evidence-node strong,
+  .allowed-evidence-node small,
+  .llm-editor-node span,
+  .llm-editor-node strong,
+  .llm-validation-node span,
+  .llm-validation-node p,
+  .deterministic-branch,
+  .model-bundle-node span,
+  .calculated-result-node b,
+  .model-result-link span,
+  .context-branch-grid span,
+  .context-branch-grid b,
+  .context-branch-grid p,
+  .generated-text-check-node p,
+  .rule-based-branch
+) {
+  color: var(--ink-soft) !important;
+  font-size: 0.80rem !important;
+  line-height: 1.55 !important;
+}
+
+.project-detail-page :where(
+  .allowed-evidence-node strong,
+  .llm-editor-node strong,
+  .context-branch-grid b,
+  .calculated-result-node b
+) {
+  color: var(--ink) !important;
+}
+
+.project-detail-page :where(
+  .diagram-risk-block > span,
+  .contract-layer > span,
+  .structured-result-node > span,
+  .llm-editor-node span,
+  .llm-validation-node span,
+  .model-bundle-node span
+) {
+  color: var(--accent-bright) !important;
+}
+
+/* Remove the last few pale-message styles in engineering diagrams. */
+.project-detail-page :where(
+  .decision-choice,
+  .identity-validation-node,
+  .user-explanation-node,
+  .llm-validation-node,
+  .configuration-check-node,
+  .evidence-limit-node,
+  .generated-text-check-node,
+  .validation-boundary-message,
+  .context-meaning-message
+) {
+  background: #2a3035 !important;
+  color: var(--ink) !important;
+}
+
+/* -------------------------------------------------------------
+   General readability floor for dense technical sections
+   ------------------------------------------------------------- */
+.project-detail-page :where(
+  .data-shape-diagram,
+  .model-selection-block,
+  .validation-problem-story,
+  .engineering-case,
+  .decision-diagram,
+  .architecture-layout,
+  .case-contribution
+) p {
+  color: var(--ink-soft);
+}
+
+.project-detail-page :where(
+  .data-shape-diagram,
+  .model-selection-block,
+  .validation-problem-story,
+  .engineering-case,
+  .decision-diagram,
+  .architecture-layout,
+  .case-contribution
+) li {
+  color: var(--ink-soft);
+}
+
+/* Avoid <11px-like presentation on dense desktop diagrams. */
+.project-detail-page :where(
+  .data-shape-diagram,
+  .model-selection-block,
+  .validation-problem-story,
+  .engineering-case,
+  .decision-diagram,
+  .architecture-layout
+) :where(p, li, dd) {
+  font-size: max(0.80rem, 13px) !important;
+}
+
+.project-detail-page :where(
+  .data-shape-diagram,
+  .model-selection-block,
+  .validation-problem-story,
+  .engineering-case,
+  .decision-diagram,
+  .architecture-layout
+) small {
+  font-size: max(0.74rem, 12px) !important;
+}
+
+/* Thin separators instead of more filled backgrounds. */
+.project-detail-page :where(
+  .engineering-case,
+  .model-selection-block,
+  .validation-problem-story
+) {
+  box-shadow: none !important;
+}
+
+/* Mobile: body text remains readable without exploding the diagram. */
+@media (max-width: 768px) {
+  .project-detail-page :where(
+    .data-shape-diagram,
+    .model-selection-block,
+    .validation-problem-story,
+    .engineering-case,
+    .decision-diagram,
+    .architecture-layout
+  ) :where(p, li, dd) {
+    font-size: 0.84rem !important;
+  }
+
+  .project-detail-page .source-message-context p,
+  .project-detail-page .candidate-result-row span,
+  .project-detail-page .candidate-result-row b,
+  .project-detail-page .candidate-result-row em {
+    font-size: 0.82rem !important;
+  }
+}

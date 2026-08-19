@@ -10,6 +10,8 @@
     <title>PILOS Sentiment Index | 이주광 프로젝트 Case Study</title>
     <link rel="icon" href="data:," />
     <link rel="stylesheet" href="../../styles.css?v=20260819-1" />
+      <link rel="stylesheet" href="../../readability.css?v=20260819-readability-1" />
+      <link rel="stylesheet" href="../../readability-dark.css?v=20260819-dark-1" />
   </head>
   <body class="project-detail-page pilos-detail-page">
     <a class="skip-link" href="#main-content">본문으로 건너뛰기</a>
@@ -32,7 +34,7 @@
       <article id="sentiment-case-study" class="case-study" aria-labelledby="case-study-title">
         <header class="case-study-header case-hero section">
           <div class="container">
-            <p class="eyebrow">Project Case Study</p>
+            <p class="eyebrow">프로젝트 상세</p>
             <p class="case-project-index">Project 01 · Latest</p>
             <h1 id="case-study-title">PILOS Sentiment <span class="case-title-break">Index</span></h1>
             <p class="case-study-lead">
@@ -49,15 +51,15 @@
             <a class="case-hero-repository" href="https://github.com/kwangs7243/pilos-sentiment-index" target="_blank" rel="noopener noreferrer">GitHub Repository <span aria-hidden="true">↗</span></a>
 
             <nav class="case-study-nav case-nav" aria-label="PILOS Case Study 목차">
-              <a href="#project-overview">Overview</a>
-              <a href="#my-contribution">Contribution</a>
-              <a href="#how-it-works">How It Works</a>
-              <a href="#service-result">Screens</a>
-              <a href="#development-challenges">Challenges</a>
-              <a href="#technical-deep-dive">Deep Dive</a>
-              <a href="#automation">Automation</a>
-              <a href="#result-limitations">Results</a>
-              <a href="#retrospective">Retrospective</a>
+              <a href="#project-overview">개요</a>
+              <a href="#my-contribution">내 역할</a>
+              <a href="#how-it-works">구현 구조</a>
+              <a href="#service-result">서비스 화면</a>
+              <a href="#development-challenges">문제 해결</a>
+              <a href="#technical-deep-dive">기술 상세</a>
+              <a href="#automation">자동화</a>
+              <a href="#result-limitations">결과</a>
+              <a href="#retrospective">회고</a>
             </nav>
           </div>
         </header>
@@ -66,7 +68,7 @@
           <div class="container case-section-grid">
             <header class="case-section-heading">
               <span class="case-step">01</span>
-              <p class="section-label">Project Overview</p>
+              <p class="section-label">프로젝트 개요</p>
               <h2 id="overview-title">
                 댓글 표현과 당일 개인투자자 매수·매도 우세 관계를 학습했습니다
               </h2>
@@ -114,7 +116,7 @@
           <div class="container case-section-grid">
             <header class="case-section-heading">
               <span class="case-step">02</span>
-              <p class="section-label">My Contribution</p>
+              <p class="section-label">내가 맡은 역할</p>
               <h2 id="contribution-title">댓글 처리부터 모델 결과의 서비스 연결까지 담당했습니다</h2>
               <p class="section-intro">
                 4인 팀의 팀장으로 전체 기술 흐름을 관리했습니다. 동시에 댓글 전처리와 TF-IDF부터
@@ -126,7 +128,7 @@
             <div class="contribution-layout case-contribution-layout">
               <section class="leadership-band case-contribution-main" aria-labelledby="leadership-title">
                 <div class="leadership-copy">
-                  <p class="contribution-kicker">Team Lead / Technical Coordination</p>
+                  <p class="contribution-kicker">팀장 · 기술 흐름 관리</p>
                   <h4 id="leadership-title">전체 기술 흐름과 기능 간 통합을 관리했습니다</h4>
                   <p>
                     데이터·모델·서비스 사이의 연결을 기준으로 처리 규칙과 완료 조건을 정리하고,
@@ -142,7 +144,7 @@
               </section>
 
               <div class="contribution-flow-heading">
-                <p class="contribution-kicker">Direct Implementation</p>
+                <p class="contribution-kicker">직접 구현</p>
                 <p>직접 구현한 핵심 영역을 서비스 흐름 순서로 정리했습니다.</p>
               </div>
 
@@ -150,7 +152,7 @@
                 <li class="contribution-item">
                   <span class="contribution-index" aria-hidden="true">01</span>
                   <div class="contribution-content">
-                    <p class="contribution-title-en">Model Input Pipeline</p>
+                    <p class="contribution-title-en">모델 입력 파이프라인</p>
                     <h4>원본 댓글을 모델 입력으로 연결했습니다</h4>
                     <ol class="contribution-process" aria-label="모델 입력 생성 과정">
                       <li>댓글 전처리</li>
@@ -168,7 +170,7 @@
                 <li class="contribution-item">
                   <span class="contribution-index" aria-hidden="true">02</span>
                   <div class="contribution-content">
-                    <p class="contribution-title-en">Model Development</p>
+                    <p class="contribution-title-en">모델 개발</p>
                     <h4>후보 비교부터 서비스 모델 관리까지 담당했습니다</h4>
                     <ol class="contribution-process" aria-label="모델 개발 과정">
                       <li>Ridge · ElasticNet 후보</li>
@@ -205,7 +207,7 @@
                 <li class="contribution-item">
                   <span class="contribution-index" aria-hidden="true">04</span>
                   <div class="contribution-content">
-                    <p class="contribution-title-en">Service Result</p>
+                    <p class="contribution-title-en">서비스 결과</p>
                     <h4>모델 원출력을 사용자가 읽을 수 있는 결과로 바꿨습니다</h4>
                     <ol class="contribution-process" aria-label="서비스 결과 변환 과정">
                       <li>모델 원출력값</li>
@@ -248,7 +250,7 @@
 
               <aside class="team-scope case-contribution-boundary" aria-labelledby="team-scope-title">
                 <div>
-                  <p class="contribution-kicker">Team / Project</p>
+                  <p class="contribution-kicker">팀 프로젝트 범위</p>
                   <h4 id="team-scope-title">팀이 함께 완성한 서비스 영역</h4>
                   <p>
                     아래 영역은 프로젝트 전체에 포함되지만, 개인 단독 구현 범위로 표시하지 않습니다.
@@ -270,7 +272,7 @@
           <div class="container">
             <header class="case-section-heading case-section-heading-wide">
               <span class="case-step">03 · A</span>
-              <p class="section-label">How It Works · System Concept</p>
+              <p class="section-label">구현 구조 · 프로젝트 개념도</p>
               <h2 id="concept-title">학습 구조와 서비스 추론 구조를 분리합니다</h2>
               <p class="section-intro">두 흐름을 섞지 않고 각각의 개념도를 배치할 수 있는 구조입니다.</p>
             </header>
@@ -456,14 +458,14 @@
                   <header class="architecture-view-heading">
                     <div>
                       <span>01</span>
-                      <h4 id="batch-architecture-title">Batch / Automation</h4>
+                      <h4 id="batch-architecture-title">배치 / 자동 실행</h4>
                     </div>
                     <p>명령·스케줄로 시작되는 실행 경로</p>
                   </header>
 
                   <div class="architecture-node architecture-orchestrator">
                     <p>JOBS</p>
-                    <strong>Batch Orchestration</strong>
+                    <strong>배치 실행 조합</strong>
                     <span>분리된 기능의 실행 순서를 조합</span>
                   </div>
 
@@ -475,7 +477,7 @@
                   <div class="responsibility-grid responsibility-grid-batch">
                     <section class="responsibility-node">
                       <p>COLLECTION</p>
-                      <strong>External Data Access</strong>
+                      <strong>외부 데이터 접근</strong>
                       <span>외부 통신 · 데이터 수집</span>
                       <small>분석 계산 제외</small>
                     </section>
@@ -487,7 +489,7 @@
                     </section>
                     <section class="responsibility-node">
                       <p>STORAGE</p>
-                      <strong>Persistence / I/O</strong>
+                      <strong>저장 · 입출력</strong>
                       <span>MySQL · Files · Artifacts</span>
                       <small>분석 계산 제외</small>
                     </section>
@@ -510,7 +512,7 @@
                   <header class="architecture-view-heading">
                     <div>
                       <span>02</span>
-                      <h4 id="web-architecture-title">Web Request</h4>
+                      <h4 id="web-architecture-title">웹 요청</h4>
                     </div>
                     <p>HTTP 요청으로 시작되는 실행 경로</p>
                   </header>
@@ -524,7 +526,7 @@
                   <span class="architecture-down-arrow" aria-hidden="true">↓</span>
                   <div class="architecture-node architecture-orchestrator architecture-service">
                     <p>SERVICE</p>
-                    <strong>Web Use Cases</strong>
+                    <strong>웹 요청 기능 조합</strong>
                     <span>웹 요청에 필요한 내부 기능 조합</span>
                   </div>
 
@@ -542,7 +544,7 @@
                     </section>
                     <section class="responsibility-node">
                       <p>STORAGE</p>
-                      <strong>Persistence / I/O</strong>
+                      <strong>저장 · 입출력</strong>
                       <span>저장 결과 조회 · Artifact 로드</span>
                       <small>분석 계산 제외</small>
                     </section>
@@ -551,7 +553,7 @@
               </div>
 
               <aside class="dto-contract" aria-label="계층 사이의 데이터 계약">
-                <span>DTO / Data Contract</span>
+                <span>DTO / 데이터 계약</span>
                 <p>실행 계층이 아니라, 서로 다른 책임 사이에서 전달되는 데이터 구조입니다.</p>
               </aside>
 
@@ -746,14 +748,14 @@
                   </p>
                 </div>
                 <div class="training-only-note">
-                  <span>Training Only</span>
+                  <span>학습 전용</span>
                   <p>개인투자자 매수·매도 우세도 Y는 학습 시 정답으로만 연결되며 서비스 추론 입력이 아닙니다.</p>
                 </div>
               </div>
 
               <aside class="shared-input-contract" aria-labelledby="shared-contract-title">
                 <div>
-                  <p class="pipeline-message-label">Same Input Contract</p>
+                  <p class="pipeline-message-label">동일 입력 계약</p>
                   <h4 id="shared-contract-title">학습과 서비스 추론의 입력 기준을 동일하게 유지했습니다</h4>
                 </div>
                 <ol aria-label="학습과 서비스 추론이 공유하는 처리 계약">
@@ -774,7 +776,7 @@
           <div class="container">
             <header class="case-section-heading case-section-heading-wide">
               <span class="case-step">04</span>
-              <p class="section-label">Service Screens</p>
+              <p class="section-label">실제 서비스 화면</p>
               <h2 id="service-title">실제 서비스 화면</h2>
             </header>
             <div class="service-screen-grid case-screen-grid">
@@ -798,7 +800,7 @@
           <div class="container">
             <header class="case-section-heading case-section-heading-wide">
               <span class="case-step">05</span>
-              <p class="section-label">Development Challenges</p>
+              <p class="section-label">개발 과정의 문제 해결</p>
               <h2 id="development-challenges-title">라이브러리를 적용하는 데서 끝내지 않고 실제 중간 결과를 검수했습니다</h2>
               <p class="section-intro">댓글이 모델 입력으로 바뀌는 과정에서 의미 손실과 불필요한 메모리 사용을 발견하고 처리 기준을 수정했습니다.</p>
             </header>
@@ -859,7 +861,7 @@
 
             <section id="model-validation-challenge" class="validation-problem-story" aria-labelledby="model-validation-challenge-title">
               <div>
-                <p class="section-label">Model Validation Challenge</p>
+                <p class="section-label">모델 검증에서 확인한 문제</p>
                 <h4 id="model-validation-challenge-title">시간 순서를 강제하자 설명력이 크게 낮아졌습니다</h4>
                 <p>댓글량·어휘와 개인투자자 매수·매도 우세도 분포가 시점에 따라 달라져 Walk-forward 평균 R²가 낮았습니다. 이 결과를 숨기거나 미래 예측 성능으로 바꾸어 설명하지 않았습니다.</p>
               </div>
@@ -883,7 +885,7 @@
                 <header class="model-block-heading">
                   <span>01</span>
                   <div>
-                    <p>Candidate Selection</p>
+                    <p>후보 모델 비교</p>
                     <h4 id="candidate-selection-title">Ridge와 ElasticNet의 대표 후보를 비교했습니다</h4>
                   </div>
                 </header>
@@ -949,7 +951,7 @@
                 <header class="model-block-heading">
                   <span>02</span>
                   <div>
-                    <p>Validation Strategy</p>
+                    <p>검증 전략</p>
                     <h4 id="validation-strategy-title">두 검증은 서로 다른 질문에 답합니다</h4>
                   </div>
                 </header>
@@ -985,14 +987,14 @@
                 <header class="model-block-heading">
                   <span>03</span>
                   <div>
-                    <p>Decision</p>
+                    <p>선정 기준</p>
                     <h4 id="model-decision-title">성능과 입력 계약을 함께 보고 최종 구성을 정했습니다</h4>
                   </div>
                 </header>
 
                 <div class="model-decision-layout">
                   <article class="selected-model-card">
-                    <p>Final Service Model</p>
+                    <p>최종 서비스 모델</p>
                     <h5>Ridge Regression</h5>
                     <dl>
                       <div><dt>Input</dt><dd>TF-IDF text-only</dd></div>
@@ -1023,7 +1025,7 @@
                 <header class="model-block-heading">
                   <span>04</span>
                   <div>
-                    <p>Final Model Validation</p>
+                    <p>최종 모델 검증</p>
                     <h4 id="final-validation-title">최종 Ridge는 세 지표로 오차와 설명력을 함께 확인했습니다</h4>
                   </div>
                 </header>
@@ -1055,11 +1057,11 @@
 
                 <aside class="model-interpretation">
                   <div>
-                    <p class="pipeline-message-label">Interpretation</p>
+                    <p class="pipeline-message-label">해석</p>
                     <p>보유 Dataset 내부에서는 당일 댓글 표현과 당일 매수·매도 우세도 사이의 일부 통계적 연관성이 재현됐습니다.</p>
                   </div>
                   <div>
-                    <p class="pipeline-message-label">Limitations</p>
+                    <p class="pipeline-message-label">한계</p>
                     <p>시간 순서를 강제하면 설명력이 크게 낮아졌고, 학습-검증 R² 격차도 약 0.50이었습니다. 이를 미래 개인투자자 매매 예측 성능으로 확대 해석하지 않았습니다.</p>
                   </div>
                 </aside>
@@ -1072,7 +1074,7 @@
           <div class="container">
             <header class="case-section-heading case-section-heading-wide case-section-heading-light">
               <span class="case-step">06 · B</span>
-              <p class="section-label">Technical Deep Dive · From Model Output to Service Signal</p>
+              <p class="section-label">기술 상세 · 모델 출력에서 서비스 신호까지</p>
               <h2 id="service-signal-title">LLM을 더 강하게 제어하는 대신 입력과 역할을 다시 설계했습니다</h2>
               <p class="section-intro">모델 feature를 원댓글 문맥까지 추적하는 시도에서 출발해, LLM 이전 단계에서 해석 가능한 정형 결과를 만드는 구조로 전환했습니다.</p>
             </header>
@@ -1291,7 +1293,7 @@
             </header>
             <div class="pilos-automation-layout case-automation-layout">
               <div>
-                <p class="automation-layout-label">Service Pipeline</p>
+                <p class="automation-layout-label">서비스 파이프라인</p>
                 <ol class="pilos-service-pipeline case-pipeline" aria-label="PILOS 서비스 파이프라인 실행 순서">
                   <li><span>01</span><strong>댓글 수집</strong></li>
                   <li><span>02</span><strong>댓글 전처리</strong></li>
@@ -1305,7 +1307,7 @@
               </div>
 
               <aside class="pilos-failure-boundary case-reliability">
-                <p class="automation-layout-label">Failure Boundary</p>
+                <p class="automation-layout-label">실패 경계</p>
                 <h3>선행 결과가 유효할 때만 다음 단계로 이동</h3>
                 <ul>
                   <li><strong>단계 실패</strong><span>이후 downstream 실행 중단</span></li>
@@ -1327,7 +1329,7 @@
             </header>
             <div class="case-result-grid">
               <section aria-labelledby="engineering-outcomes-title">
-                <p class="section-label">What I Delivered</p>
+                <p class="section-label">구현 결과</p>
                 <h3 id="engineering-outcomes-title">문제 해결 뒤 서비스 기준으로 남긴 설계</h3>
                 <ul>
                   <li>Producer가 확정한 분석 결과를 서비스의 source of truth로 사용</li>
@@ -1337,7 +1339,7 @@
                 </ul>
               </section>
               <section>
-                <p class="section-label">Limitations</p>
+                <p class="section-label">한계</p>
                 <h3>검증 결과를 서비스 의미보다 크게 해석하지 않았습니다</h3>
                 <ul>
                   <li>시간 순서를 강제한 Walk-forward에서는 설명력이 크게 낮아졌습니다.</li>
@@ -1353,17 +1355,17 @@
           <div class="container case-section-grid">
             <header class="case-section-heading">
               <span class="case-step">09</span>
-              <p class="section-label">Retrospective</p>
+              <p class="section-label">회고</p>
               <h2 id="retrospective-title">성과와 기술적 한계를 함께 정리합니다</h2>
             </header>
             <div class="retrospective-grid project-growth-retrospective">
               <section>
-                <p class="section-label">From First Project</p>
+                <p class="section-label">첫 번째 프로젝트에서</p>
                 <h4>문제가 발생한 뒤 데이터와 실행 흐름을 따라 해결했습니다</h4>
                 <p>Stock Advisor에서는 여러 기능을 연결하면서 조회 성능, 부분 완료 데이터, 중복 코드와 실행 순서 문제를 경험했습니다.</p>
               </section>
               <section>
-                <p class="section-label">To PILOS</p>
+                <p class="section-label">PILOS에서는</p>
                 <h4>두 번째 프로젝트에서는 경계와 결과 의미를 먼저 정하려고 했습니다</h4>
                 <p>이 경험을 바탕으로 데이터 계약, 실패 경계, 모델 검증, 사용자 결과의 의미와 LLM의 책임 범위를 구현 전에 더 명확히 고민했습니다.</p>
               </section>
