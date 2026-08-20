@@ -9,9 +9,9 @@
     />
     <title>PILOS Stock Advisor | 이주광 프로젝트 Case Study</title>
     <link rel="icon" href="data:," />
-    <link rel="stylesheet" href="../../styles.css?v=20260819-1" />
-      <link rel="stylesheet" href="../../readability.css?v=20260819-readability-1" />
-      <link rel="stylesheet" href="../../readability-dark.css?v=20260819-dark-1" />
+    <link rel="stylesheet" href="../../styles.css?v=20260820-final" />
+    <link rel="stylesheet" href="../../readability.css?v=20260820-final" />
+    <link rel="stylesheet" href="../../readability-dark.css?v=20260820-final" />
   </head>
   <body class="project-detail-page stock-advisor-detail-page">
     <a class="skip-link" href="#main-content">본문으로 건너뛰기</a>
@@ -177,20 +177,33 @@
             <header class="case-section-heading case-section-heading-wide">
               <span class="case-step">04</span>
               <p class="section-label">실제 서비스 화면</p>
-              <h2 id="stock-service-screens-title">서비스의 전체 흐름을 보여줄 화면 영역</h2>
+              <h2 id="stock-service-screens-title">실제 서비스 화면</h2>
+              <p class="section-intro">대시보드에서 종목을 찾고, 상세 화면에서 가격·감성·예측 결과를 확인하는 흐름입니다.</p>
             </header>
             <div class="service-screen-grid case-screen-grid">
               <figure class="service-screen-slot service-screen-slot-image case-screen">
-                <a href="./assets/stock-dashboard.png" target="_blank" rel="noopener noreferrer" aria-label="Stock Advisor Main Dashboard 원본 이미지 새 탭에서 보기">
+                <a href="./assets/stock-dashboard.png" data-lightbox aria-haspopup="dialog" aria-label="Stock Advisor 서비스 대시보드 전체 화면 보기">
                   <img src="./assets/stock-dashboard.png" alt="Stock Advisor 메인 대시보드에서 테마별 감성 차트, 종목 목록과 AI 분석 카드를 보여주는 화면">
                 </a>
-                <figcaption><strong>Main Dashboard</strong><span>종목·테마·감성 정보와 AI 분석 결과를 한 화면에서 확인한 서비스 화면</span></figcaption>
+                <figcaption><small>01</small><strong>서비스 대시보드</strong><span>테마 감성, 100개 종목과 AI 분석 결과를 함께 확인합니다.</span><em>클릭하여 전체 화면 보기 ↗</em></figcaption>
               </figure>
               <figure class="service-screen-slot service-screen-slot-image case-screen">
-                <a href="./assets/stock-detail.png" target="_blank" rel="noopener noreferrer" aria-label="Stock Advisor Stock Detail 원본 이미지 새 탭에서 보기">
+                <a href="./assets/stock-analysis.png" data-lightbox aria-haspopup="dialog" aria-label="Stock Advisor 종목 목록과 AI 분석 화면 크게 보기">
+                  <img src="./assets/stock-analysis.png" alt="Stock Advisor 종목 목록과 AI 분석 카드가 나란히 배치된 화면">
+                </a>
+                <figcaption><small>02</small><strong>종목·AI 분석</strong><span>종목별 시장 데이터와 감성·Direction·RecentFlow 결과를 비교합니다.</span><em>클릭하여 전체 화면 보기 ↗</em></figcaption>
+              </figure>
+              <figure class="service-screen-slot service-screen-slot-image case-screen">
+                <a href="./assets/stock-news-analysis.png" data-lightbox aria-haspopup="dialog" aria-label="Stock Advisor 뉴스 감성 분석 화면 크게 보기">
+                  <img src="./assets/stock-news-analysis.png" alt="Stock Advisor 종목 상세의 긍정·부정 뉴스 TOP3와 감성 분포 화면">
+                </a>
+                <figcaption><small>03</small><strong>뉴스 감성 분석</strong><span>긍정·부정 대표 뉴스와 전체 감성 분포를 한 화면에서 확인합니다.</span><em>클릭하여 전체 화면 보기 ↗</em></figcaption>
+              </figure>
+              <figure class="service-screen-slot service-screen-slot-image case-screen">
+                <a href="./assets/stock-detail.png" data-lightbox aria-haspopup="dialog" aria-label="Stock Advisor 종목 상세 전체 화면 보기">
                   <img src="./assets/stock-detail.png" alt="Stock Advisor 종목 상세에서 가격과 거래량, 뉴스 감성, AI 분석 결과를 보여주는 화면">
                 </a>
-                <figcaption><strong>Stock Detail</strong><span>가격·거래량·뉴스 감성과 Direction·RecentFlow 분석 결과를 종목 단위로 확인한 화면</span></figcaption>
+                <figcaption><small>04</small><strong>종목 상세</strong><span>가격·거래량부터 Direction·RecentFlow와 뉴스 감성까지 이어지는 전체 화면입니다.</span><em>클릭하여 전체 화면 보기 ↗</em></figcaption>
               </figure>
             </div>
             <p class="service-screen-note">프로젝트 최종 UI를 기반으로 서버 의존성을 제거하고 정적 데이터로 재현한 화면입니다.</p>
@@ -370,5 +383,10 @@
         <a href="../../">← 이주광 포트폴리오로 돌아가기</a>
       </div>
     </footer>
+    <dialog class="image-lightbox" aria-label="서비스 화면 확대 보기">
+      <button class="image-lightbox-close" type="button" aria-label="확대 화면 닫기">×</button>
+      <div class="image-lightbox-scroll"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="" /><p></p></div>
+    </dialog>
+    <script src="../../gallery.js?v=20260820-final"></script>
   </body>
 </html>

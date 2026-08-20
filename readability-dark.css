@@ -695,6 +695,210 @@ a:focus-visible {
     min-height: auto;
   }
 }
+
+/* -------------------------------------------------------------
+   Employment portfolio final editorial pass
+   ------------------------------------------------------------- */
+.portfolio-home .problem-case-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 1px !important;
+}
+
+.portfolio-home .problem-case-grid > .problem-case,
+.portfolio-home .problem-case-grid > .problem-case:last-child {
+  grid-column: auto !important;
+  min-width: 0;
+}
+
+.portfolio-home .problem-case {
+  padding: clamp(1.5rem, 2.4vw, 2.25rem) !important;
+}
+
+.portfolio-home .problem-case h3 {
+  font-size: clamp(1.15rem, 1.45vw, 1.4rem) !important;
+  line-height: 1.35 !important;
+}
+
+.portfolio-home .problem-flow {
+  gap: 0 !important;
+}
+
+.portfolio-home .problem-flow li {
+  grid-template-columns: 3.5rem minmax(0, 1fr) !important;
+  min-height: 0 !important;
+  padding: 0.85rem 0 !important;
+}
+
+.portfolio-home .growth-direction {
+  grid-template-columns: minmax(10rem, 0.48fr) minmax(0, 1fr) !important;
+}
+
+.portfolio-home .growth-direction h3 {
+  font-size: clamp(1.75rem, 3vw, 2.8rem) !important;
+  line-height: 1.08 !important;
+}
+
+/* Full-page screenshots stay unaltered and are scaled into a two-column gallery. */
+.project-detail-page .service-screen-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 1.25rem !important;
+  align-items: start;
+}
+
+.project-detail-page .service-screen-slot {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line) !important;
+  border-radius: 0.9rem !important;
+  background: var(--surface) !important;
+}
+
+.project-detail-page .service-screen-slot > a {
+  display: block;
+  padding: 0.75rem;
+  background: #171b1e !important;
+  cursor: zoom-in;
+}
+
+.project-detail-page .service-screen-slot img {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  filter: none !important;
+}
+
+.project-detail-page .service-screen-slot figcaption {
+  display: grid !important;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: 0.35rem 0.75rem;
+  padding: 1.1rem 1.15rem 1.2rem !important;
+  background: var(--surface) !important;
+}
+
+.project-detail-page .service-screen-slot figcaption small {
+  grid-row: 1 / 4;
+  color: var(--accent-bright) !important;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.project-detail-page .service-screen-slot figcaption strong,
+.project-detail-page .service-screen-slot figcaption span,
+.project-detail-page .service-screen-slot figcaption em {
+  grid-column: 2;
+}
+
+.project-detail-page .service-screen-slot figcaption strong {
+  font-size: 1rem !important;
+}
+
+.project-detail-page .service-screen-slot figcaption span {
+  color: var(--ink-soft) !important;
+  font-size: 0.86rem !important;
+  line-height: 1.55 !important;
+}
+
+.project-detail-page .service-screen-slot figcaption em {
+  color: var(--accent-bright) !important;
+  font-size: 0.76rem;
+  font-style: normal;
+}
+
+.project-detail-page .service-screen-note {
+  margin-top: 1rem;
+  color: var(--ink-faint) !important;
+  font-size: 0.82rem;
+}
+
+.image-lightbox {
+  width: min(1180px, calc(100vw - 2rem));
+  height: min(92dvh, 980px);
+  max-width: none;
+  max-height: none;
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-radius: 1rem;
+  background: #14181b;
+  color: var(--ink);
+  box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.55);
+}
+
+.image-lightbox::backdrop {
+  background: rgba(7, 9, 11, 0.88);
+}
+
+.image-lightbox-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 2;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  background: rgba(20, 24, 27, 0.9);
+  color: var(--ink);
+  font-size: 1.7rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.image-lightbox-scroll {
+  height: 100%;
+  overflow: auto;
+  padding: 4rem 1rem 1rem;
+}
+
+.image-lightbox-scroll img {
+  display: block;
+  width: min(100%, 1080px);
+  height: auto;
+  margin: 0 auto;
+  filter: none !important;
+}
+
+.image-lightbox-scroll p {
+  width: min(100%, 1080px);
+  margin: 0.9rem auto 0;
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+}
+
+@media (max-width: 960px) {
+  .portfolio-home .problem-case-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .portfolio-home .growth-direction {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .project-detail-page .service-screen-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .project-detail-page .service-screen-slot > a {
+    padding: 0.45rem;
+  }
+
+  .image-lightbox {
+    width: calc(100vw - 0.75rem);
+    height: calc(100dvh - 0.75rem);
+    border-radius: 0.75rem;
+  }
+
+  .image-lightbox-scroll {
+    padding: 3.75rem 0.4rem 0.5rem;
+  }
+}
 /* =============================================================
    V2 CONTRAST + DIAGRAM HARMONIZATION
    User feedback pass:

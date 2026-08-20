@@ -9,9 +9,9 @@
     />
     <title>이주광 | Backend Developer Portfolio</title>
     <link rel="icon" href="data:," />
-    <link rel="stylesheet" href="./styles.css?v=20260819-1" />
-      <link rel="stylesheet" href="./readability.css?v=20260819-readability-1" />
-      <link rel="stylesheet" href="./readability-dark.css?v=20260819-dark-1" />
+    <link rel="stylesheet" href="./styles.css?v=20260820-final" />
+    <link rel="stylesheet" href="./readability.css?v=20260820-final" />
+    <link rel="stylesheet" href="./readability-dark.css?v=20260820-final" />
   </head>
   <body class="portfolio-home">
     <a class="skip-link" href="#main-content">본문으로 건너뛰기</a>
@@ -23,7 +23,6 @@
         </a>
         <nav class="primary-nav" aria-label="주요 메뉴">
           <a href="#about">소개</a>
-          <a href="#direction">개발 방향</a>
           <a href="#problem-solving">문제 해결</a>
           <a href="#projects">프로젝트</a>
           <a href="#skills">사용 기술</a>
@@ -70,7 +69,8 @@
         <div class="container home-section-grid">
           <header class="home-section-heading">
             <p class="section-label">소개</p>
-            <h2 id="about-title">문제를 고치는 일에서 서비스 흐름을 설계하는 일로 관심이 이어졌습니다</h2>
+            <h2 id="about-title">자동차 정비에서<br />백엔드 개발로</h2>
+            <p>도구는 바뀌었지만 문제의 원인을 추적하는 방식은 이어졌습니다.</p>
           </header>
 
           <div class="about-story">
@@ -92,49 +92,12 @@
         </div>
       </section>
 
-      <section id="direction" class="home-section section" aria-labelledby="direction-title">
-        <div class="container">
-          <header class="home-section-heading home-section-heading-wide">
-            <p class="section-label">개발 방향</p>
-            <h2 id="direction-title">현재 배우고 구현하며 성장하고 있는 세 가지 방향</h2>
-            <p>
-              모델 연구 자체보다 데이터 처리와 백엔드, 학습된 기능이 사용자 서비스에 연결되는 과정에
-              집중하고 있습니다.
-            </p>
-          </header>
-
-          <ol class="direction-list">
-            <li>
-              <span>01</span>
-              <div>
-                <h3>Backend</h3>
-                <p>Python과 Flask를 기반으로 요청, 데이터 처리, DB와 API가 연결되는 구조를 학습하고 구현했습니다.</p>
-              </div>
-            </li>
-            <li>
-              <span>02</span>
-              <div>
-                <h3>Data</h3>
-                <p>SQL과 MySQL을 사용하며 데이터가 생성되고 저장·조회·가공되는 흐름을 프로젝트에서 다뤘습니다.</p>
-              </div>
-            </li>
-            <li>
-              <span>03</span>
-              <div>
-                <h3>AI Service Integration</h3>
-                <p>학습된 모델과 데이터 처리 결과를 서비스 기능으로 연결하고, 실패 상태와 결과 의미를 관리하는 데 관심이 있습니다.</p>
-              </div>
-            </li>
-          </ol>
-        </div>
-      </section>
-
       <section id="problem-solving" class="home-section section section-dark" aria-labelledby="problem-title">
         <div class="container">
           <header class="home-section-heading home-section-heading-wide home-section-heading-light">
             <p class="section-label">문제 해결</p>
-            <h2 id="problem-title">현상만 고치기보다 데이터와 요청 흐름을 따라 원인을 찾았습니다</h2>
-            <p>두 팀 프로젝트에서 성능, 데이터 완성도와 AI 결과의 역할을 다시 정의한 대표 사례입니다.</p>
+            <h2 id="problem-title">문제의 원인을<br />데이터와 흐름에서 찾았습니다</h2>
+            <p>성능, 부분 완료 상태, AI 결과의 역할을 직접 개선한 세 사례입니다.</p>
           </header>
 
           <div class="problem-case-grid">
@@ -142,15 +105,13 @@
               <header>
                 <span class="problem-case-number">01</span>
                 <p class="problem-case-signal">11.775초 → 0.256초</p>
-                <h3>느린 API의 요청 흐름과 SQL을 함께 추적했습니다</h3>
+                <h3>SQL 조회 구조 개선</h3>
               </header>
               <ol class="problem-flow" aria-label="화면 응답 지연 문제 해결 흐름">
-                <li><span>문제</span><p><code>/api/stockTable</code> 응답이 동일 DB·로컬 Flask 기준 11.775초 걸렸습니다.</p></li>
-                <li><span>확인</span><p>전체 조회가 중복되고 약 17만 행에서 넓은 컬럼을 포함한 정렬이 실행됐습니다.</p></li>
-                <li><span>변경</span><p>최신 분석일과 필요한 종목을 SQL에서 먼저 좁히고, 중복 조회와 불필요한 컬럼을 제거했습니다.</p></li>
-                <li><span>결과</span><p>동일 측정 조건에서 응답을 0.256초 수준으로 줄였습니다.</p></li>
+                <li><span>문제</span><p>약 17만 행 정렬과 중복 전체 조회로 응답이 지연됐습니다.</p></li>
+                <li><span>변경</span><p>최신 분석일과 필요한 종목을 SQL에서 먼저 제한했습니다.</p></li>
+                <li><span>결과</span><p>동일 DB·로컬 Flask 조건에서 0.256초로 단축했습니다.</p></li>
               </ol>
-              <p class="problem-learning"><strong>배운 기준</strong> 느린 화면은 서버 사양보다 먼저 요청과 데이터 조회 구조를 확인합니다.</p>
               <a class="problem-detail-link" href="./projects/stock-advisor/#performance">상세 과정 보기 →</a>
             </article>
 
@@ -158,15 +119,13 @@
               <header>
                 <span class="problem-case-number">02</span>
                 <p class="problem-case-signal">부분 완료 상태 방어</p>
-                <h3>DB row의 존재와 사용자에게 제공 가능한 결과를 구분했습니다</h3>
+                <h3>완성된 결과만 제공</h3>
               </header>
               <ol class="problem-flow" aria-label="부분 데이터 저장 문제 해결 흐름">
-                <li><span>문제</span><p>선행 저장 후 감성분석 API가 실패하면 후속 분석값이 비어 있는 row가 남을 수 있었습니다.</p></li>
-                <li><span>확인</span><p>전체 파이프라인이 하나의 트랜잭션이 아니어서 중간 상태 자체는 발생 가능한 구조였습니다.</p></li>
-                <li><span>판단</span><p>막바지에 전체 구조를 바꾸기보다 서비스가 완성된 결과만 제공하도록 경계를 정했습니다.</p></li>
-                <li><span>결과</span><p>필수값 완성도를 확인하고 데이터 부재와 정상적인 0 값을 구분해 화면 장애를 방어했습니다.</p></li>
+                <li><span>문제</span><p>후속 분석 실패 시 일부 값이 비어 있는 DB row가 남을 수 있었습니다.</p></li>
+                <li><span>판단</span><p>DB row의 존재와 사용자에게 제공 가능한 결과를 구분했습니다.</p></li>
+                <li><span>결과</span><p>필수값 완성도를 확인해 불완전한 결과를 차단했습니다.</p></li>
               </ol>
-              <p class="problem-learning"><strong>배운 기준</strong> 부분 완료 DB 상태가 사용자 화면 장애로 번지지 않도록 제공 가능 상태를 검증합니다.</p>
               <a class="problem-detail-link" href="./projects/stock-advisor/#partial-state">상세 과정 보기 →</a>
             </article>
 
@@ -174,15 +133,13 @@
               <header>
                 <span class="problem-case-number">03</span>
                 <p class="problem-case-signal">LLM 역할 재설계</p>
-                <h3>LLM을 더 통제하기보다 먼저 해석 가능한 결과를 만들었습니다</h3>
+                <h3>판단과 문장화 책임 분리</h3>
               </header>
               <ol class="problem-flow" aria-label="LLM 역할 재설계 흐름">
-                <li><span>문제</span><p>원댓글 문맥을 직접 해석시키자 질문·반어·전망과 근거 밖 해석을 막는 규칙이 계속 늘었습니다.</p></li>
-                <li><span>확인</span><p>LLM에게 판단을 맡길수록 프롬프트와 결과 검증이 함께 복잡해졌습니다.</p></li>
+                <li><span>문제</span><p>LLM이 원댓글을 직접 판단하자 프롬프트 규칙이 계속 늘었습니다.</p></li>
                 <li><span>변경</span><p>모델 출력의 상대 위치와 방향·비교값을 코드에서 먼저 확정했습니다.</p></li>
                 <li><span>결과</span><p>LLM에는 정형 근거만 전달하고 사용자 문장으로 정리하는 역할만 맡겼습니다.</p></li>
               </ol>
-              <p class="problem-learning"><strong>배운 기준</strong> 생성 모델을 더 강하게 제어하기 전에 입력과 책임 범위를 다시 설계합니다.</p>
               <a class="problem-detail-link" href="./projects/pilos/#service-signal">상세 과정 보기 →</a>
             </article>
           </div>
@@ -193,7 +150,7 @@
         <div class="container">
           <header class="home-section-heading home-section-heading-wide">
             <p class="section-label">프로젝트</p>
-            <h2 id="projects-title">데이터와 AI 기능을 서비스 흐름으로 연결한 팀 프로젝트</h2>
+            <h2 id="projects-title">데이터·AI 기능을<br />서비스로 연결한 두 프로젝트</h2>
             <p>각 프로젝트의 역할과 핵심 기여를 요약하고, 구현 과정과 기술적 근거는 별도 Case Study에 정리했습니다.</p>
           </header>
 
@@ -274,37 +231,37 @@
         <div class="container">
           <header class="home-section-heading home-section-heading-wide">
             <p class="section-label">사용 기술</p>
-            <h2 id="skills-title">프로젝트에서 실제로 사용한 기술</h2>
+            <h2 id="skills-title">프로젝트에서 사용한 기술</h2>
             <p>숙련도 점수 대신 어떤 흐름을 구현하는 데 사용했는지 기준으로 정리했습니다.</p>
           </header>
 
           <div class="home-skill-grid">
             <article>
-              <span>01</span><h3>Backend</h3>
+              <span>01</span><h3>백엔드</h3>
               <p>요청 처리, 서비스 기능과 분석 결과 제공</p>
               <ul><li>Python</li><li>Flask</li><li>REST / API</li></ul>
             </article>
             <article>
-              <span>02</span><h3>Database</h3>
+              <span>02</span><h3>데이터베이스</h3>
               <p>데이터 조회·적재, 인덱스와 트랜잭션 관리</p>
               <ul><li>MySQL</li><li>SQL</li><li>RDBMS</li></ul>
             </article>
             <article>
-              <span>03</span><h3>Data / AI</h3>
+              <span>03</span><h3>데이터·AI</h3>
               <p>댓글·뉴스 처리와 모델 학습·서비스 결과 변환</p>
               <ul><li>pandas</li><li>scikit-learn</li><li>Kiwi</li><li>TF-IDF</li><li>Ridge Regression</li><li>LLM API</li></ul>
             </article>
             <article>
-              <span>04</span><h3>Development / Operation</h3>
+              <span>04</span><h3>개발·운영</h3>
               <p>협업 이력 관리와 주기적 실행 흐름 구성</p>
               <ul><li>Git</li><li>GitHub</li><li>Linux</li><li>Batch / Scheduler</li></ul>
             </article>
           </div>
 
           <aside class="growth-direction" aria-labelledby="growth-title">
-            <p class="section-label">Growth</p>
-            <h3 id="growth-title">데이터 수집부터 사용자 서비스까지 안정적으로 연결하는 개발자로 성장하고 있습니다</h3>
-            <p>데이터 수집 → DB 적재 → Backend → AI 모델 연동 → API와 사용자 서비스의 전체 흐름을 맡을 수 있도록 Python과 SQL 기반 역량을 쌓고 있습니다.</p>
+            <p class="section-label">성장 방향</p>
+            <h3 id="growth-title">데이터에서<br />사용자 서비스까지</h3>
+            <p>모델 연구 자체보다 데이터 수집 → DB 적재 → 백엔드 → AI 기능 연동 → API와 사용자 서비스의 전체 흐름을 안정적으로 연결할 수 있는 백엔드 개발자로 성장하고 있습니다.</p>
           </aside>
         </div>
       </section>
