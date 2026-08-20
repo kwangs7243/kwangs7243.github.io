@@ -14,6 +14,11 @@ qa-screenshots/
 # Planning and screenshot-production sources are not part of the published site
 docs/
 reproductions/
+/scripts/
+
+# Local QA captures and timestamped safety backups
+/[0-9].png
+/*_backup_*/
 
 # Unused source screenshots retained locally
 projects/pilos/assets/pilos-detail.jpeg
