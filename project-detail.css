@@ -6239,11 +6239,402 @@ padding: 0;
   }
 }
 
+/* Keep the decision hierarchy stronger than legacy case-specific selectors. */
+.project-detail-page .engineering-case .decision-reasoning {
+  background: rgba(57, 189, 232, 0.055);
+  border-left: 3px solid rgba(57, 189, 232, 0.68);
+}
+
+.project-detail-page .engineering-case .decision-choice {
+  background: rgba(57, 189, 232, 0.12);
+  border-color: rgba(57, 189, 232, 0.68);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.project-detail-page .engineering-case .decision-choice > p:last-child {
+  color: #e0e5e7;
+  opacity: 1;
+}
+
+.project-detail-page .engineering-case .decision-result {
+  background: #10171c;
+  border-color: #394751;
+  border-top: 3px solid var(--accent);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     scroll-behavior: auto;
     transition-duration: 0.01ms;
+  }
+}
+
+/* Final readability polish — preserve the established design and stabilize hierarchy. */
+.project-detail-page {
+  --detail-display: "Pretendard", "SUIT", "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+  --detail-mono: "Consolas", "SFMono-Regular", ui-monospace, monospace;
+  font-family: var(--detail-display);
+}
+
+.project-detail-page :is(h1, h2, h3, h4, h5, p, li, dt, dd, figcaption, a, button, small, span, strong, em) {
+  font-family: var(--detail-display);
+}
+
+.project-detail-page :is(code, pre, kbd, samp, .case-step, .case-hero .eyebrow, .stock-performance-highlight, .vector-values) {
+  font-family: var(--detail-mono);
+}
+
+.case-hero .container {
+  grid-template-areas:
+    "eyebrow meta"
+    "title meta"
+    "lead meta"
+    "actions meta"
+    "nav nav";
+}
+
+.case-project-index {
+  display: none;
+}
+
+.project-detail-page .case-step {
+  color: #62cdf0;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.35;
+}
+
+.project-detail-page .section-label,
+.project-detail-page .case-section-heading-light .section-label {
+  color: #a0abb2;
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.project-detail-page .case-section-heading h2,
+.project-detail-page .case-section-heading-light h2 {
+  max-width: 860px;
+  font-size: clamp(1.75rem, 2.55vw, 2.65rem);
+  line-height: 1.25;
+}
+
+.project-detail-page .case-subsection .case-section-heading h2 {
+  font-size: clamp(1.5rem, 2.15vw, 2.1rem);
+}
+
+.project-detail-page .section-intro {
+  color: #aeb7bd;
+}
+
+.diagram-placeholder,
+.architecture-view,
+.data-shape-pipeline,
+.decision-diagram {
+  background:
+    linear-gradient(rgba(57, 189, 232, 0.026) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(57, 189, 232, 0.026) 1px, transparent 1px),
+    #10161b;
+  background-size: 28px 28px;
+  border: 1px solid #3b4852;
+  box-shadow: inset 0 1px 0 rgba(240, 241, 236, 0.025);
+}
+
+.diagram-placeholder {
+  padding: clamp(26px, 3.2vw, 40px);
+}
+
+.data-shape-pipeline {
+  padding: clamp(20px, 2.7vw, 34px);
+}
+
+.diagram-title {
+  margin-bottom: 26px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #3b4852;
+}
+
+.diagram-title span {
+  width: 34px;
+  height: 34px;
+  color: #061116;
+  background: var(--accent);
+  border: 0;
+  font-size: 0.8rem;
+}
+
+.diagram-title h4 {
+  font-size: 1.08rem;
+}
+
+.project-detail-page :is(
+  .concept-source,
+  .pipeline-stage,
+  .architecture-node,
+  .dto-contract,
+  .diagram-risk-block,
+  .context-branch-grid > section,
+  .stock-contribution-node
+) {
+  background-color: #131a20;
+  border-color: #36434d;
+}
+
+.diagram-responsibility-legend,
+.stock-contribution-legend {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #b9c3c9;
+  font-size: 0.74rem;
+}
+
+.diagram-responsibility-legend i,
+.stock-contribution-legend i {
+  width: 34px;
+  height: 3px;
+  flex: 0 0 auto;
+  display: block;
+  background: var(--accent);
+  box-shadow: 0 0 0 1px rgba(57, 189, 232, 0.12);
+}
+
+.project-detail-page .responsibility-emphasis {
+  border-color: rgba(57, 189, 232, 0.72);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.architecture-responsibility-legend {
+  margin-bottom: 18px;
+}
+
+.pilos-challenge-list > article,
+.case-challenge-section .case-challenge,
+.case-challenge-section:not(.section-dark) .case-challenge {
+  border-color: #3c4a54;
+}
+
+.pilos-challenge-heading span,
+.case-challenge-header > span {
+  min-width: 30px;
+  min-height: 30px;
+  display: inline-grid;
+  place-items: center;
+  color: #061116;
+  background: var(--accent);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.pilos-challenge-result {
+  color: #d5dde1;
+  background: rgba(57, 189, 232, 0.085);
+  border-top: 2px solid rgba(57, 189, 232, 0.72);
+}
+
+.engineering-case {
+  background: #0e1419;
+  border-color: #3b4852;
+  border-radius: 0;
+}
+
+.engineering-case-heading {
+  background: #10171c;
+  border-color: #3b4852;
+}
+
+.engineering-case-body {
+  background: #0d1216;
+}
+
+.decision-story-part {
+  padding: 17px 18px;
+  background: #11181e;
+  border: 1px solid #303c45;
+}
+
+.decision-story-part > p:last-child {
+  color: #c5cdd2;
+  opacity: 1;
+}
+
+.decision-reasoning {
+  padding: 17px 18px 17px 20px;
+  background: rgba(57, 189, 232, 0.045);
+  border: 1px solid #34434d;
+  border-left: 3px solid rgba(57, 189, 232, 0.58);
+}
+
+.decision-choice {
+  padding: 21px 22px;
+  background: rgba(57, 189, 232, 0.12);
+  border: 1px solid rgba(57, 189, 232, 0.68);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.decision-choice > p:first-child {
+  color: var(--accent);
+}
+
+.decision-choice > p:last-child {
+  color: #e0e5e7;
+  opacity: 1;
+}
+
+.decision-result,
+.engineering-case.is-reversed .decision-result {
+  padding: 22px 24px;
+  background: #10171c;
+  border: 1px solid #394751;
+  border-top: 3px solid var(--accent);
+}
+
+.decision-result li {
+  color: #c9d1d5;
+}
+
+.decision-flow-arrow,
+.spine-arrow,
+.spine-section-arrow,
+.concept-down-arrow,
+.data-shape-arrow {
+  color: var(--accent);
+}
+
+.stock-problem-detail {
+  border-color: #42515c;
+}
+
+.case-progress-list li > span {
+  color: var(--accent);
+  font-weight: 800;
+}
+
+@media (min-width: 1200px) {
+  .pilos-detail-page #project-overview .case-section-grid {
+    grid-template-columns: minmax(220px, 0.25fr) minmax(0, 0.75fr);
+    gap: 68px;
+  }
+
+  .pilos-detail-page #project-overview .case-overview {
+    max-width: none;
+  }
+
+  .pilos-detail-page #project-overview .overview-project-name {
+    font-size: 1.1rem;
+    white-space: nowrap;
+  }
+}
+
+@media (min-width: 901px) {
+  .pilos-detail-page #my-contribution .case-section-grid {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+
+  .pilos-detail-page #my-contribution .case-section-heading {
+    max-width: 900px;
+  }
+
+  .pilos-detail-page #my-contribution .contribution-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(270px, 0.34fr);
+    gap: 28px 38px;
+  }
+
+  .pilos-detail-page #my-contribution .leadership-band {
+    grid-column: 1 / -1;
+  }
+
+  .pilos-detail-page #my-contribution .contribution-flow-heading,
+  .pilos-detail-page #my-contribution .contribution-flow {
+    grid-column: 1;
+  }
+
+  .pilos-detail-page #my-contribution .contribution-flow-heading {
+    margin-top: 0;
+  }
+
+  .pilos-detail-page #my-contribution .team-scope {
+    grid-column: 2;
+    grid-row: 2 / span 2;
+    align-self: start;
+    margin-top: 0;
+    position: sticky;
+    top: 94px;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .stock-contribution-layout {
+    display: block;
+  }
+
+  .stock-contribution-flow-map {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 30px minmax(220px, 0.72fr) 30px minmax(0, 1fr);
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .stock-contribution-arrow {
+    display: grid;
+    place-items: center;
+    color: var(--accent);
+    font-style: normal;
+  }
+}
+
+@media (max-width: 900px) {
+  .case-hero .container {
+    grid-template-areas:
+      "eyebrow"
+      "title"
+      "lead"
+      "meta"
+      "actions"
+      "nav";
+  }
+
+  .pilos-detail-page #my-contribution .contribution-layout,
+  .stock-contribution-flow-map {
+    grid-template-columns: 1fr;
+  }
+
+  .pilos-detail-page #my-contribution .team-scope {
+    position: static;
+  }
+}
+
+@media (max-width: 700px) {
+  .project-detail-page .case-step {
+    font-size: 0.76rem;
+  }
+
+  .project-detail-page .section-label,
+  .project-detail-page .case-section-heading-light .section-label {
+    font-size: 0.76rem;
+  }
+
+  .project-detail-page .case-section-heading h2,
+  .project-detail-page .case-section-heading-light h2 {
+    font-size: clamp(1.6rem, 7.5vw, 2.15rem);
+  }
+
+  .diagram-placeholder,
+  .data-shape-pipeline {
+    padding: 16px;
+  }
+
+  .decision-story-part,
+  .decision-reasoning,
+  .decision-choice,
+  .decision-result,
+  .engineering-case.is-reversed .decision-result {
+    padding: 17px;
   }
 }

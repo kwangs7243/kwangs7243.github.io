@@ -9,7 +9,7 @@
     />
     <title>PILOS Sentiment Index | 이주광 프로젝트 상세</title>
     <link rel="icon" href="data:," />
-    <link rel="stylesheet" href="../../project-detail.css?v=20260821-clean" />
+    <link rel="stylesheet" href="../../project-detail.css?v=20260821-polish" />
   </head>
   <body class="project-detail-page pilos-detail-page">
     <a class="skip-link" href="#main-content">본문으로 건너뛰기</a>
@@ -33,7 +33,6 @@
         <header class="case-study-header case-hero section">
           <div class="container">
             <p class="eyebrow">프로젝트 상세</p>
-            <p class="case-project-index">프로젝트 01 · 최신</p>
             <h1 id="case-study-title">PILOS Sentiment <span class="case-title-break">Index</span></h1>
             <p class="case-study-lead">
               종목 댓글과 같은 날 개인투자자 매수·매도 우세의 통계적 연관성을 분석하고,
@@ -845,14 +844,13 @@
                   <section><small>Sparse Row</small><del>toarray().flatten()</del><strong>row.indices + row.data</strong><p>0이 아닌 feature만 순회</p></section>
                   <section><small>Daily Document</small><del>전체 DataFrame 선구성</del><strong>iter_daily_documents() + yield</strong><p>종목·일자가 바뀔 때 현재 문서만 생성</p></section>
                 </div>
-                <p class="pilos-challenge-result">전체 중간 집계 데이터를 먼저 만들지 않고 종목·일자별 문서를 순차 생성하도록 바꿨습니다. 검증되지 않은 메모리 감소 수치는 사용하지 않았습니다.</p>
+                <p class="pilos-challenge-result">전체 중간 집계 데이터를 먼저 만들지 않고 종목·일자별 문서를 순차 생성하도록 바꿨습니다.</p>
               </article>
 
               <article class="compact-implementation-note case-challenge">
                 <div class="pilos-challenge-heading case-challenge-header"><span>03</span><p>Bulk Insert Policy</p></div>
                 <h5>예상 가능한 중복 한 건이 전체 댓글 적재를 실패시키지 않도록 처리</h5>
                 <p>대량 댓글 적재에서 중복 때문에 전체 작업이 중단되는 문제를 경험한 뒤, 예상 가능한 중복은 기존 데이터를 유지하고 건너뛰는 <code>INSERT IGNORE</code> 정책을 적용했습니다.</p>
-                <small>당시 전체 적재 규모와 최초 오류 로그가 Git에서 직접 확인되지 않아 정확한 건수는 공개 문구에 사용하지 않았습니다.</small>
               </article>
             </div>
           </div>
@@ -955,7 +953,6 @@
                   <p>
                     댓글 TF-IDF가 같은 날 매수·매도 우세도 변동을 어느 정도 설명하는지 비교하기 위해
                     R²를 중심으로 보되, 최저 R²·표준편차·학습 격차·희소성·입력 복잡도를 함께 판단했습니다.
-                    과거 후보 기록에는 후보별 MAE와 RMSE가 보존되어 있지 않아 이 비교에는 사용하지 않았습니다.
                   </p>
                 </aside>
               </section>
