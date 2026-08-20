@@ -25,6 +25,12 @@
   });
 
   closeButton.addEventListener('click', close);
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && dialog.open) {
+      event.preventDefault();
+      close();
+    }
+  });
   dialog.addEventListener('click', (event) => {
     if (event.target === dialog) close();
   });

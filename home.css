@@ -141,8 +141,6 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
 .supporting-copy { color: var(--muted); font-size: 0.91rem; }
 .supporting-copy .project-definition { margin: 0 0 20px; color: #d3d8db; font-size: 1rem; }
 .short-pipeline { margin-top: 28px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; color: #95a0a8; font-family: var(--display); font-size: 0.72rem; font-weight: 600; line-height: 1.5; }
-.short-pipeline span:nth-of-type(n + 2):nth-of-type(-n + 4) { font-family: var(--mono); }
-.short-pipeline strong { padding-bottom: 2px; border-bottom: 1px solid rgba(57, 189, 232, 0.55); color: var(--accent); font-weight: 600; }
 .short-pipeline i { color: #56636c; font-style: normal; }
 .supporting-meta { color: #c5ccd0; font-size: 0.8rem; }
 .supporting-meta p { margin: 0 0 28px; }
