@@ -11,7 +11,7 @@
     <link rel="icon" href="data:," />
     <link rel="stylesheet" href="../../styles.css?v=20260820-final" />
     <link rel="stylesheet" href="../../readability.css?v=20260820-final" />
-    <link rel="stylesheet" href="../../readability-dark.css?v=20260820-scenes" />
+    <link rel="stylesheet" href="../../readability-dark.css?v=20260820-layout" />
   </head>
   <body class="project-detail-page pilos-detail-page">
     <a class="skip-link" href="#main-content">본문으로 건너뛰기</a>
@@ -43,7 +43,7 @@
             </p>
 
             <dl class="case-hero-meta" aria-label="PILOS 핵심 프로젝트 정보">
-              <div><dt>기간</dt><dd>2026.07 – 2026.08</dd></div>
+              <div><dt>기간</dt><dd>3주 2일</dd></div>
               <div><dt>팀</dt><dd>4인 팀 프로젝트</dd></div>
               <div><dt>역할</dt><dd>팀장 · 분석 및 서비스 실행 흐름 통합</dd></div>
               <div><dt>주요 기술</dt><dd>Python · Flask · MySQL · scikit-learn · Kiwi · TF-IDF · Ridge · LLM API</dd></div>
@@ -146,7 +146,6 @@
                 <figcaption><small>04</small><strong>댓글 분석실</strong><span>입력한 댓글 표현에 대한 매수 우세일·매도 우세일 모델의 반응을 나란히 비교합니다.</span><em>클릭하여 크게 보기 ↗</em></figcaption>
               </figure>
             </div>
-            <p class="service-screen-note">실제 배포 서버의 2026년 8월 20일 화면을 1440×1000 뷰포트에서 원본 색상과 비율 그대로 캡처했습니다.</p>
           </div>
         </section>
 
@@ -391,6 +390,7 @@
               <div class="diagram-placeholder inference-panel">
                 <div class="diagram-title"><span>B</span><h4>서비스 추론 구조</h4></div>
                 <div class="inference-diagram" aria-label="신규 댓글이 서비스 결과로 제공되는 추론 구조">
+                  <p class="diagram-responsibility-legend"><i aria-hidden="true"></i><span>강조선 · 직접 구현 / 주요 책임 범위</span></p>
                   <div class="inference-spine">
                     <section class="spine-section" aria-labelledby="comment-analysis-title">
                       <header class="spine-section-heading">
@@ -403,13 +403,13 @@
                       </div>
                       <span class="spine-arrow" aria-hidden="true">↓</span>
 
-                      <div class="spine-support-step">
+                      <div class="spine-support-step responsibility-emphasis">
                         <strong>댓글 처리</strong>
                         <span>전처리 · Kiwi · 종목·일자별 댓글 분석 단위</span>
                       </div>
                       <span class="spine-arrow" aria-hidden="true">↓</span>
 
-                      <div class="spine-node trained-model-node">
+                      <div class="spine-node trained-model-node responsibility-emphasis">
                         <strong>학습된 TF-IDF + 두 댓글 분석 모델</strong>
                         <span>매수 우세일 댓글 분석 모델 · 매도 우세일 댓글 분석 모델</span>
                       </div>
@@ -440,7 +440,7 @@
                       </div>
                       <span class="spine-arrow" aria-hidden="true">↓</span>
 
-                      <div class="spine-support-step score-conversion-step">
+                      <div class="spine-support-step score-conversion-step responsibility-emphasis">
                         <strong>상대 점수 변환</strong>
                         <small>Calibration</small>
                         <span>같은 모델의 과거 출력분포와 비교</span>
@@ -453,14 +453,14 @@
                           <span>0~100 사용자용 상대 결과</span>
                         </div>
                         <span class="service-plus" aria-hidden="true">+</span>
-                        <div class="commentary-result">
+                        <div class="commentary-result responsibility-emphasis">
                           <strong>일별 댓글·매매 해설</strong>
                           <span>댓글·매매 연관 점수를 바탕으로 생성</span>
                         </div>
                       </div>
                       <span class="spine-arrow" aria-hidden="true">↓</span>
 
-                      <div class="flask-result">
+                      <div class="flask-result responsibility-emphasis">
                         <strong>Flask 웹 서비스</strong>
                         <span>댓글·매매 연관 점수 + 일별 댓글·매매 해설을 함께 제공</span>
                       </div>
@@ -490,6 +490,7 @@
               </p>
             </header>
 
+            <p class="diagram-responsibility-legend architecture-responsibility-legend"><i aria-hidden="true"></i><span>강조선 · 직접 구현 / 주요 책임 범위</span></p>
             <div class="architecture-layout">
               <div class="architecture-views">
                 <section class="architecture-view" aria-labelledby="batch-architecture-title">

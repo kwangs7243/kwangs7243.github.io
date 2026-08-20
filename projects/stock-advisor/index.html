@@ -11,7 +11,7 @@
     <link rel="icon" href="data:," />
     <link rel="stylesheet" href="../../styles.css?v=20260820-final" />
     <link rel="stylesheet" href="../../readability.css?v=20260820-final" />
-    <link rel="stylesheet" href="../../readability-dark.css?v=20260820-scenes" />
+    <link rel="stylesheet" href="../../readability-dark.css?v=20260820-layout" />
   </head>
   <body class="project-detail-page stock-advisor-detail-page">
     <a class="skip-link" href="#main-content">본문으로 건너뛰기</a>
@@ -95,7 +95,10 @@
               <span class="case-step">02</span>
               <p class="section-label">실제 서비스 화면</p>
               <h2 id="stock-service-screens-title">대시보드에서 종목별 분석까지 이어지는 화면</h2>
-              <p class="section-intro">서비스 전체를 길게 축소하지 않고 대시보드, 종목 목록, 상세 분석과 뉴스 감성 결과가 읽히는 장면으로 나눴습니다.</p>
+              <p class="section-intro">
+                프로젝트 최종 UI를 기반으로 서버 의존성을 제거하고 1440×1000 정적 화면으로 재현했습니다.
+                대시보드, 종목 목록, 상세 분석과 뉴스 감성 결과가 읽히는 장면으로 나눴습니다.
+              </p>
             </header>
             <div class="service-screen-grid case-screen-grid">
               <figure class="service-screen-slot service-screen-slot-image case-screen">
@@ -123,7 +126,6 @@
                 <figcaption><small>04</small><strong>뉴스 감성 분석</strong><span>긍정·부정 대표 뉴스와 전체 감성 분포를 종목 상세 화면 안에서 확인합니다.</span><em>클릭하여 크게 보기 ↗</em></figcaption>
               </figure>
             </div>
-            <p class="service-screen-note">프로젝트 최종 UI를 기반으로 서버 의존성을 제거하고 정적 데이터로 재현한 1440×1000 화면입니다.</p>
           </div>
         </section>
 
@@ -136,18 +138,42 @@
               <p class="section-intro">개별 기능 구현뿐 아니라 AI Pipeline과 Web이 공용 DB를 통해 연결되도록 입력·출력과 실행 흐름을 맞췄습니다.</p>
             </header>
 
-            <div class="stock-contribution-layout case-contribution-layout">
-              <section class="case-contribution-main">
-                <p class="contribution-scope-label">직접 구현·리팩터링</p>
-                <ul class="stock-contribution-list">
-                  <li><strong>금융 뉴스 감성분석</strong><span>KR-FinBERT 기반 분석 결과를 데이터 흐름에 연결</span></li>
-                  <li><strong>Flask Backend</strong><span>Route·Service·Repository와 DB 조회 흐름 구현</span></li>
-                  <li><strong>DB 연동</strong><span>공용 데이터 구조를 기준으로 AI 결과와 화면 연결</span></li>
-                  <li><strong>크롤링 구조 공통화</strong><span>테마별 중복 흐름을 공통 설정과 runner로 통합</span></li>
-                  <li><strong>자동 실행 통합</strong><span>독립 Job의 실행 순서·실패 경계·상태 기록 연결</span></li>
-                  <li><strong>Linux 실행</strong><span>서버에서 정해진 주기로 데이터 처리 흐름 실행</span></li>
-                </ul>
-              </section>
+            <div class="stock-contribution-layout stock-contribution-map">
+              <p class="stock-contribution-legend"><i aria-hidden="true"></i><span>강조선 · 직접 구현 / 리팩터링 범위</span></p>
+
+              <div class="stock-contribution-flow-map" aria-label="Stock Advisor 개인 기여 흐름">
+                <section class="stock-contribution-node">
+                  <span>01 · 데이터·AI 처리</span>
+                  <h3>수집 구조와 감성분석</h3>
+                  <ul>
+                    <li><strong>금융 뉴스 감성분석</strong><small>KR-FinBERT 결과를 데이터 흐름에 연결</small></li>
+                    <li><strong>크롤링 구조 공통화</strong><small>테마별 중복 흐름을 공통 설정과 runner로 통합</small></li>
+                  </ul>
+                </section>
+
+                <i class="stock-contribution-arrow" aria-hidden="true">→</i>
+
+                <section class="stock-contribution-node">
+                  <span>02 · 데이터 연결</span>
+                  <h3>공용 MySQL 연동</h3>
+                  <ul>
+                    <li><strong>DB 연동</strong><small>공용 데이터 구조를 기준으로 AI 결과와 화면 연결</small></li>
+                  </ul>
+                </section>
+
+                <i class="stock-contribution-arrow" aria-hidden="true">→</i>
+
+                <section class="stock-contribution-node">
+                  <span>03 · 서비스·실행</span>
+                  <h3>Backend와 실행 흐름</h3>
+                  <ul>
+                    <li><strong>Flask Backend</strong><small>Route·Service·Repository와 DB 조회 흐름 구현</small></li>
+                    <li><strong>자동 실행 통합</strong><small>Job 순서·실패 경계·상태 기록 연결</small></li>
+                    <li><strong>Linux 실행</strong><small>서버의 정해진 주기로 데이터 처리 흐름 실행</small></li>
+                  </ul>
+                </section>
+              </div>
+
               <aside class="team-integration-boundary case-contribution-boundary">
                 <p class="contribution-scope-label">팀 기능과의 경계</p>
                 <h3>팀원이 만든 모델은 서비스 흐름에 통합했습니다</h3>
@@ -312,7 +338,12 @@
             </header>
 
             <ol class="stock-job-flow case-pipeline" aria-label="Stock Advisor 자동 실행 순서">
-              <li>수집</li><li>요약</li><li>그룹화</li><li>감성</li><li>Features</li><li>Direction / RecentFlow</li>
+              <li><span>01</span><strong>수집</strong></li>
+              <li><span>02</span><strong>요약</strong></li>
+              <li><span>03</span><strong>그룹화</strong></li>
+              <li><span>04</span><strong>감성</strong></li>
+              <li><span>05</span><strong>Features</strong></li>
+              <li><span>06</span><strong>Direction /<br />RecentFlow</strong></li>
             </ol>
             <div class="automation-principles case-reliability">
               <div><strong>실행 경계</strong><p>stage별 별도 실행과 return code 확인, 실패 시 downstream 중단</p></div>
@@ -347,7 +378,7 @@
                   <li>운영 수준 CI/CD·모니터링 환경까지는 구성하지 못함</li>
                   <li>실제 금융 투자 서비스가 아니며 모델 결과는 참고 정보</li>
                 </ul>
-                <p class="stock-limit-detail">WSGI 기반 Web 배포와 health check·metrics 같은 운영 환경은 별도로 구성하지 않았습니다. 모델 성능과 서비스 실행 성공은 서로 다른 평가 대상입니다.</p>
+                <p class="stock-limit-detail">WSGI 기반 Web 배포와 health check·metrics 같은 운영 환경은 별도로 구성하지 않았습니다.<br />모델 성능과 서비스 실행 성공은 서로 다른 평가 대상입니다.</p>
               </section>
             </div>
           </div>

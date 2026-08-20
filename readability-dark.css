@@ -696,6 +696,268 @@ a:focus-visible {
   }
 }
 
+/* =============================================================
+   Final alignment and component-consistency pass
+   Scoped to the portfolio home and PILOS detail page.
+   ============================================================= */
+
+/* Home: editorial alignment and readable hierarchy. */
+.portfolio-home .site-name {
+  font-size: 0.98rem;
+  letter-spacing: -0.025em;
+}
+
+@media (min-width: 981px) {
+  .portfolio-home #about .home-section-grid {
+    grid-template-columns: minmax(460px, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(56px, 6vw, 88px);
+  }
+
+  .portfolio-home #about .home-section-heading {
+    max-width: none;
+  }
+
+  .portfolio-home #about .home-section-heading h2 {
+    max-width: 520px;
+    font-size: clamp(2.7rem, 3.65vw, 3.35rem);
+    line-height: 1.12;
+  }
+
+  .portfolio-home #about .home-section-heading > p:last-child {
+    max-width: none;
+    white-space: nowrap;
+  }
+}
+
+.portfolio-home #skills .home-section-heading h2 {
+  font-size: clamp(2.2rem, 3.4vw, 3.15rem);
+}
+
+.portfolio-home #skills .home-section-heading > p:last-child {
+  font-size: 0.98rem;
+}
+
+.portfolio-home .home-skill-grid h3 {
+  font-size: 1.3rem;
+}
+
+.portfolio-home .home-skill-grid p {
+  font-size: 0.86rem;
+  line-height: 1.65;
+}
+
+.portfolio-home .home-skill-grid li {
+  padding: 5px 8px;
+  font-size: 0.78rem;
+}
+
+.portfolio-home .contact-message {
+  max-width: 520px;
+  margin: 1.5rem 0 0 0.75rem !important;
+  padding-left: 1rem;
+  border-left: 2px solid var(--line-strong);
+}
+
+.portfolio-home .contact-links {
+  overflow: hidden;
+  background: #242a2f;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.portfolio-home .contact-link {
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: center;
+  min-height: 72px;
+  padding: 1rem 1.25rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.portfolio-home .contact-link + .contact-link {
+  border-top: 1px solid var(--line);
+}
+
+.portfolio-home .contact-link:hover {
+  background: #2a3035;
+}
+
+.portfolio-home .contact-link span,
+.portfolio-home .contact-link i {
+  color: var(--accent-bright);
+}
+
+.portfolio-home .contact-link span {
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.portfolio-home .contact-link strong {
+  min-width: 0;
+  font-size: 0.92rem;
+  overflow-wrap: anywhere;
+}
+
+.portfolio-home .contact-link i {
+  font-style: normal;
+}
+
+.portfolio-home .contact-link:hover strong {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+/* PILOS overview: wider heading column and balanced reading width. */
+@media (min-width: 981px) {
+  .pilos-detail-page #project-overview .case-section-grid {
+    grid-template-columns: minmax(360px, 400px) minmax(0, 1fr);
+    gap: clamp(64px, 7vw, 104px);
+  }
+
+  .pilos-detail-page #project-overview .case-section-heading {
+    max-width: 400px;
+  }
+
+  .pilos-detail-page #project-overview .case-section-heading h2 {
+    font-size: clamp(2.1rem, 3vw, 2.55rem);
+    line-height: 1.24;
+  }
+
+  .pilos-detail-page #project-overview .case-overview {
+    width: 100%;
+    max-width: 820px;
+  }
+
+  .pilos-detail-page #project-overview .overview-definition {
+    max-width: 760px;
+  }
+}
+
+/* Explained responsibility accents for inference and architecture diagrams. */
+.pilos-detail-page .diagram-responsibility-legend {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.55rem;
+  align-items: center;
+  margin: 0 0 1rem;
+  color: var(--ink-faint) !important;
+  font-size: 0.76rem !important;
+}
+
+.pilos-detail-page .diagram-responsibility-legend i {
+  width: 3px;
+  height: 1.1rem;
+  background: var(--accent);
+  border-radius: 999px;
+}
+
+.pilos-detail-page .architecture-responsibility-legend {
+  margin-bottom: 1.25rem;
+}
+
+.pilos-detail-page .responsibility-emphasis {
+  border-left: 3px solid var(--accent) !important;
+  box-shadow: none !important;
+}
+
+/* Model bundle and LLM diagrams share one restrained graphite system. */
+.pilos-detail-page :where(
+  .model-bundle-node,
+  .calculated-result-node,
+  .shared-model-node,
+  .llm-editor-node,
+  .configuration-check-node,
+  .evidence-limit-node,
+  .generated-text-check-node,
+  .user-explanation-node,
+  .diagram-risk-block,
+  .context-branch-grid section,
+  .model-result-link span,
+  .rule-based-branch
+) {
+  color: var(--ink) !important;
+  background: #272d32 !important;
+  border: 1px solid #465058 !important;
+  box-shadow: none !important;
+}
+
+.pilos-detail-page :where(
+  .model-bundle-node,
+  .calculated-result-node,
+  .llm-editor-node
+) {
+  border-left: 3px solid var(--accent) !important;
+}
+
+.pilos-detail-page .model-bundle-node span,
+.pilos-detail-page .calculated-result-node b {
+  color: var(--ink) !important;
+  background: #23282d !important;
+  border: 1px solid #3c454c;
+}
+
+.pilos-detail-page :where(
+  .model-bundle-node > p,
+  .calculated-result-node > span,
+  .llm-editor-node > span
+) {
+  color: var(--accent-bright) !important;
+}
+
+.pilos-detail-page .decision-flow-arrow {
+  color: var(--accent) !important;
+}
+
+/* Every problem / judgment / solution block uses the same card grammar. */
+.pilos-detail-page .decision-story {
+  gap: 0.85rem;
+}
+
+.pilos-detail-page .decision-story-part,
+.pilos-detail-page .decision-choice,
+.pilos-detail-page .decision-reasoning {
+  width: 100%;
+  padding: 1.15rem 1.25rem !important;
+  color: var(--ink) !important;
+  background: #242a2f !important;
+  border: 1px solid #424b52 !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+}
+
+.pilos-detail-page .decision-story-part > p:first-child {
+  margin-bottom: 0.65rem;
+  color: var(--accent) !important;
+}
+
+.pilos-detail-page .decision-story-part h5 {
+  margin-bottom: 0.65rem;
+}
+
+@media (max-width: 720px) {
+  .portfolio-home .contact-message {
+    margin-left: 0 !important;
+  }
+
+  .portfolio-home .contact-link {
+    grid-template-columns: 4.25rem minmax(0, 1fr) auto;
+    gap: 0.7rem;
+    padding-inline: 1rem;
+  }
+
+  .portfolio-home .contact-link strong {
+    font-size: 0.84rem;
+  }
+
+  .pilos-detail-page .diagram-responsibility-legend {
+    justify-content: flex-start;
+  }
+}
+
 /* -------------------------------------------------------------
    Employment portfolio final editorial pass
    ------------------------------------------------------------- */
@@ -1562,5 +1824,530 @@ a:focus-visible {
   .project-detail-page .candidate-result-row b,
   .project-detail-page .candidate-result-row em {
     font-size: 0.82rem !important;
+  }
+}
+
+/* =============================================================
+   2026-08-20 final polish overrides
+   Keep this block last: it resolves earlier editorial passes.
+   ============================================================= */
+
+/* Home — problem-solving cards retain three distinct columns. */
+.portfolio-home .problem-case-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: clamp(20px, 1.8vw, 28px) !important;
+}
+
+.portfolio-home .problem-case {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.portfolio-home .problem-case header {
+  display: grid;
+  grid-template-rows: auto minmax(4.7rem, auto) minmax(3.8rem, auto);
+  align-content: start;
+}
+
+.portfolio-home .problem-case-number {
+  margin-bottom: 1.35rem;
+}
+
+.portfolio-home .problem-case-signal {
+  align-self: start;
+  margin-bottom: 0.55rem;
+  font-size: clamp(1.5rem, 1.85vw, 1.95rem) !important;
+  letter-spacing: -0.045em;
+  line-height: 1.18;
+}
+
+.portfolio-home .problem-flow {
+  flex: 1;
+}
+
+.portfolio-home .problem-detail-link {
+  margin-top: auto;
+}
+
+@media (min-width: 1200px) {
+  .portfolio-home .problem-case:first-child .problem-case-signal {
+    white-space: nowrap;
+  }
+}
+
+/* Home — editorial two-column growth statement. */
+.portfolio-home .growth-direction {
+  grid-template-columns: minmax(430px, 0.92fr) minmax(0, 1.08fr) !important;
+  grid-template-rows: auto 1fr;
+  gap: 0 clamp(56px, 7vw, 96px);
+  align-items: start;
+  padding-top: 30px;
+}
+
+.portfolio-home .growth-direction > .section-label {
+  grid-column: 1;
+  grid-row: 1;
+  margin-bottom: 1.1rem;
+}
+
+.portfolio-home .growth-direction h3 {
+  grid-column: 1;
+  grid-row: 2;
+  max-width: none;
+  font-size: clamp(2rem, 3vw, 2.65rem) !important;
+  line-height: 1.12 !important;
+  white-space: nowrap;
+}
+
+.portfolio-home .growth-direction > p:last-child {
+  grid-column: 2 !important;
+  grid-row: 1 / span 2;
+  max-width: 680px;
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.82;
+}
+
+/* PILOS — keep both screenshots on the same visual baseline without cropping. */
+.pilos-detail-page .service-screen-grid {
+  grid-auto-rows: 1fr;
+  gap: 1.5rem !important;
+  align-items: stretch !important;
+}
+
+.pilos-detail-page .service-screen-slot {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+}
+
+.pilos-detail-page .service-screen-slot > a {
+  display: grid !important;
+  place-items: center;
+  aspect-ratio: 36 / 25;
+}
+
+.pilos-detail-page .service-screen-slot img {
+  width: 100% !important;
+  height: auto !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+  filter: none !important;
+}
+
+.pilos-detail-page .service-screen-slot figcaption {
+  align-content: start;
+  min-height: 9.5rem;
+}
+
+@media (max-width: 960px) {
+  .portfolio-home .problem-case-grid,
+  .portfolio-home .growth-direction {
+    grid-template-columns: 1fr !important;
+  }
+
+  .portfolio-home .growth-direction {
+    grid-template-rows: auto;
+    gap: 0;
+  }
+
+  .portfolio-home .growth-direction > .section-label,
+  .portfolio-home .growth-direction h3,
+  .portfolio-home .growth-direction > p:last-child {
+    grid-column: 1 !important;
+    grid-row: auto;
+  }
+
+  .portfolio-home .growth-direction h3 {
+    margin-bottom: 1.25rem;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 820px) {
+  .pilos-detail-page .service-screen-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .pilos-detail-page .service-screen-slot figcaption {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .portfolio-home .problem-case header {
+    grid-template-rows: auto;
+  }
+
+  .portfolio-home .problem-case-signal {
+    min-height: 0;
+  }
+}
+
+/* =============================================================
+   2026-08-20 section-flow and Stock Advisor completion pass
+   ============================================================= */
+
+/* Project detail pages: read every chapter as title, then content. */
+.project-detail-page .case-section-grid {
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: clamp(2rem, 4vw, 3.5rem) !important;
+}
+
+.project-detail-page .case-section-grid > .case-section-heading,
+.project-detail-page .case-section-heading-wide {
+  width: 100%;
+  max-width: 1080px !important;
+}
+
+.project-detail-page .case-section-heading h2,
+.project-detail-page .case-section-heading h3 {
+  max-width: 1020px;
+  font-size: clamp(2.25rem, 3.7vw, 3.2rem) !important;
+  line-height: 1.16 !important;
+  text-wrap: balance;
+}
+
+.project-detail-page .case-section-grid > :not(.case-section-heading) {
+  width: 100%;
+  max-width: none;
+}
+
+.pilos-detail-page #project-overview .case-section-heading,
+.pilos-detail-page #project-overview .case-overview {
+  width: 100%;
+  max-width: 1080px !important;
+}
+
+.pilos-detail-page #project-overview .case-section-heading h2 {
+  max-width: 900px;
+}
+
+/* Main contact: supporting copy shares one visible inner alignment. */
+.portfolio-home .contact-section .home-contact-layout > div:first-child > p:not(.section-label) {
+  margin-left: 0.75rem;
+}
+
+.portfolio-home .contact-section .contact-message {
+  margin: 1.5rem 0 0 0.75rem !important;
+}
+
+/* Body copy must remain clearly above appendix / boundary notes. */
+.project-detail-page :where(
+  .section-intro,
+  .case-overview-copy > p,
+  .overview-role p,
+  .case-scope-note p,
+  .case-contribution-main p,
+  .case-contribution-boundary p,
+  .case-progress-list p,
+  .stock-refactoring-grid > article > p,
+  .stock-refactoring-grid li,
+  .article-state-rules dt,
+  .article-state-rules dd,
+  .automation-principles p,
+  .stock-result-layout li,
+  .stock-retrospective-copy p,
+  .service-screen-slot figcaption span,
+  .stock-feature-list p,
+  .stock-service-flow section > p
+) {
+  font-size: 1rem !important;
+  line-height: 1.75 !important;
+}
+
+.project-detail-page .section-intro {
+  max-width: 940px !important;
+}
+
+.project-detail-page .service-screen-slot figcaption strong,
+.stock-advisor-detail-page :where(
+  .stock-refactoring-grid h3,
+  .stock-result-layout h3,
+  .stock-feature-list h3,
+  .team-integration-boundary h3
+) {
+  font-size: 1.12rem !important;
+  line-height: 1.45 !important;
+}
+
+.project-detail-page .service-screen-slot figcaption span {
+  font-size: 0.95rem !important;
+  line-height: 1.68 !important;
+}
+
+/* Notes and measurement boundaries intentionally stay secondary. */
+.stock-advisor-detail-page :where(
+  .measurement-boundary,
+  .stock-flow-caption,
+  .automation-evidence,
+  .stock-limit-detail
+) {
+  font-size: 0.84rem !important;
+  line-height: 1.72 !important;
+}
+
+/* Stock Advisor contribution: direct work follows the service data flow. */
+.stock-advisor-detail-page .stock-contribution-map {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: 1.25rem !important;
+  width: 100%;
+}
+
+.stock-advisor-detail-page .stock-contribution-legend {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0;
+  color: var(--ink-faint);
+  font-size: 0.78rem;
+}
+
+.stock-advisor-detail-page .stock-contribution-legend i {
+  width: 3px;
+  height: 1.1rem;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+.stock-advisor-detail-page .stock-contribution-flow-map {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.stock-advisor-detail-page .stock-contribution-node {
+  min-width: 0;
+  padding: 1.5rem;
+  background: #242a2f;
+  border: 1px solid #465058;
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+}
+
+.stock-advisor-detail-page .stock-contribution-node > span {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: var(--accent-bright);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.stock-advisor-detail-page .stock-contribution-node h3 {
+  margin: 0 0 1.1rem;
+  font-size: 1.25rem !important;
+  line-height: 1.35;
+}
+
+.stock-advisor-detail-page .stock-contribution-node ul {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stock-advisor-detail-page .stock-contribution-node li {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.stock-advisor-detail-page .stock-contribution-node strong {
+  color: var(--ink);
+  font-size: 0.94rem;
+}
+
+.stock-advisor-detail-page .stock-contribution-node small {
+  color: var(--ink-soft);
+  font-size: 0.95rem !important;
+  line-height: 1.68;
+}
+
+.stock-advisor-detail-page .stock-contribution-arrow {
+  align-self: center;
+  color: var(--accent);
+  font-size: 1.2rem;
+  font-style: normal;
+}
+
+.stock-advisor-detail-page .team-integration-boundary {
+  display: grid !important;
+  grid-template-columns: minmax(9rem, 0.35fr) minmax(18rem, 0.8fr) minmax(0, 1.35fr);
+  gap: 1.5rem;
+  align-items: start;
+  width: 100%;
+  max-width: none !important;
+  padding: 1.35rem 1.5rem !important;
+  background: transparent !important;
+  border: 1px dashed #56616a !important;
+  border-radius: 8px;
+}
+
+.stock-advisor-detail-page .team-integration-boundary > * {
+  margin: 0 !important;
+}
+
+/* Reliability result uses the shared graphite system, not a blue panel. */
+.stock-advisor-detail-page .partial-state-contract {
+  color: var(--ink) !important;
+  background: #272d32 !important;
+  border: 1px solid #465058 !important;
+  border-left: 3px solid var(--accent) !important;
+  box-shadow: none !important;
+}
+
+.stock-advisor-detail-page .partial-state-contract span {
+  color: var(--ink-soft) !important;
+  background: #22282d !important;
+  border: 1px solid #3f484f !important;
+}
+
+.stock-advisor-detail-page .partial-state-contract p {
+  color: var(--ink-soft) !important;
+  font-size: 0.88rem !important;
+  line-height: 1.65 !important;
+}
+
+/* Stock automation: six equal nodes instead of a fragile arrow table. */
+.stock-advisor-detail-page .stock-job-flow {
+  display: grid !important;
+  grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+  gap: 0.75rem !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  counter-reset: none;
+}
+
+.stock-advisor-detail-page .stock-job-flow li {
+  position: relative;
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  align-content: center;
+  justify-items: start;
+  gap: 0.55rem;
+  min-width: 0;
+  min-height: 7.25rem;
+  padding: 1rem !important;
+  color: var(--ink);
+  background: #242a2f !important;
+  border: 1px solid #465058 !important;
+  border-top: 2px solid var(--accent) !important;
+  border-radius: 7px;
+}
+
+.stock-advisor-detail-page .stock-job-flow li > span {
+  color: var(--accent-bright);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.stock-advisor-detail-page .stock-job-flow li > strong {
+  color: var(--ink);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.stock-advisor-detail-page .stock-job-flow li:not(:last-child)::after {
+  content: "→" !important;
+  position: absolute !important;
+  top: 50% !important;
+  right: -0.66rem !important;
+  z-index: 2;
+  width: auto !important;
+  height: auto !important;
+  color: var(--accent) !important;
+  background: var(--bg) !important;
+  transform: translate(50%, -50%) !important;
+}
+
+.stock-advisor-detail-page .automation-principles {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 1rem !important;
+  margin-top: 1rem;
+}
+
+.stock-advisor-detail-page .automation-principles > div {
+  padding: 1.25rem !important;
+  background: #242a2f !important;
+  border: 1px solid #465058 !important;
+  border-radius: 7px;
+}
+
+.stock-advisor-detail-page .automation-evidence {
+  margin-top: 1rem !important;
+  padding: 1rem 1.25rem !important;
+  background: #272d32 !important;
+  border: 1px solid #465058 !important;
+  border-left: 3px solid var(--accent) !important;
+}
+
+@media (max-width: 1100px) {
+  .stock-advisor-detail-page .stock-contribution-flow-map {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .stock-advisor-detail-page .stock-contribution-arrow {
+    justify-self: center;
+    transform: rotate(90deg);
+  }
+
+  .stock-advisor-detail-page .team-integration-boundary {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+
+  .stock-advisor-detail-page .stock-job-flow {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  .stock-advisor-detail-page .stock-job-flow li::after {
+    display: none !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .project-detail-page .case-section-heading h2,
+  .project-detail-page .case-section-heading h3 {
+    font-size: clamp(1.8rem, 9vw, 2.35rem) !important;
+    line-height: 1.2 !important;
+    text-wrap: wrap;
+  }
+
+  .portfolio-home .contact-section .home-contact-layout > div:first-child > p:not(.section-label) {
+    margin-left: 0.5rem;
+  }
+
+  .portfolio-home .contact-section .contact-message {
+    margin-left: 0.5rem !important;
+  }
+
+  .stock-advisor-detail-page .stock-contribution-legend {
+    justify-content: flex-start;
+  }
+
+  .stock-advisor-detail-page .stock-job-flow,
+  .stock-advisor-detail-page .automation-principles {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .stock-advisor-detail-page .stock-job-flow li {
+    min-height: 5rem;
+  }
+
+  .stock-advisor-detail-page .stock-job-flow li:not(:last-child)::after {
+    display: block !important;
+    content: "↓" !important;
+    top: auto !important;
+    right: 50% !important;
+    bottom: -0.7rem !important;
+    transform: translate(50%, 50%) !important;
   }
 }
