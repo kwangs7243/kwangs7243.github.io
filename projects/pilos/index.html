@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="PILOS Sentiment Index의 데이터 처리, 모델 학습·추론과 서비스 통합 과정을 정리한 이주광의 프로젝트 Case Study"
+      content="PILOS Sentiment Index의 데이터 처리, 모델 학습·추론과 서비스 통합 과정을 정리한 이주광의 프로젝트 상세"
     />
-    <title>PILOS Sentiment Index | 이주광 프로젝트 Case Study</title>
+    <title>PILOS Sentiment Index | 이주광 프로젝트 상세</title>
     <link rel="icon" href="data:," />
     <link rel="stylesheet" href="../../styles.css?v=20260820-final" />
     <link rel="stylesheet" href="../../readability.css?v=20260820-final" />
@@ -35,7 +35,7 @@
         <header class="case-study-header case-hero section">
           <div class="container">
             <p class="eyebrow">프로젝트 상세</p>
-            <p class="case-project-index">Project 01 · Latest</p>
+            <p class="case-project-index">프로젝트 01 · 최신</p>
             <h1 id="case-study-title">PILOS Sentiment <span class="case-title-break">Index</span></h1>
             <p class="case-study-lead">
               종목 댓글과 같은 날 개인투자자 매수·매도 우세의 통계적 연관성을 분석하고,
@@ -43,18 +43,18 @@
             </p>
 
             <dl class="case-hero-meta" aria-label="PILOS 핵심 프로젝트 정보">
-              <div><dt>Period</dt><dd>2026.07 – 2026.08</dd></div>
-              <div><dt>Team</dt><dd>4인 팀 프로젝트</dd></div>
-              <div><dt>Role</dt><dd>팀장 · 분석 및 서비스 실행 흐름 통합</dd></div>
-              <div><dt>Core Stack</dt><dd>Python · Flask · MySQL · scikit-learn · Kiwi · TF-IDF · Ridge · LLM API</dd></div>
+              <div><dt>기간</dt><dd>2026.07 – 2026.08</dd></div>
+              <div><dt>팀</dt><dd>4인 팀 프로젝트</dd></div>
+              <div><dt>역할</dt><dd>팀장 · 분석 및 서비스 실행 흐름 통합</dd></div>
+              <div><dt>주요 기술</dt><dd>Python · Flask · MySQL · scikit-learn · Kiwi · TF-IDF · Ridge · LLM API</dd></div>
             </dl>
-            <a class="case-hero-repository" href="https://github.com/kwangs7243/pilos-sentiment-index" target="_blank" rel="noopener noreferrer">GitHub Repository <span aria-hidden="true">↗</span></a>
+            <a class="case-hero-repository" href="https://github.com/kwangs7243/pilos-sentiment-index" target="_blank" rel="noopener noreferrer">GitHub 저장소 <span aria-hidden="true">↗</span></a>
 
-            <nav class="case-study-nav case-nav" aria-label="PILOS Case Study 목차">
+            <nav class="case-study-nav case-nav" aria-label="PILOS 프로젝트 상세 목차">
               <a href="#project-overview">개요</a>
+              <a href="#service-result">서비스 화면</a>
               <a href="#my-contribution">내 역할</a>
               <a href="#how-it-works">구현 구조</a>
-              <a href="#service-result">서비스 화면</a>
               <a href="#development-challenges">문제 해결</a>
               <a href="#technical-deep-dive">기술 상세</a>
               <a href="#automation">자동화</a>
@@ -103,7 +103,7 @@
                 </aside>
                 <dl class="case-overview-facts" aria-label="PILOS 핵심 데이터">
                 <div>
-                  <dt>Data</dt>
+                  <dt>핵심 데이터</dt>
                   <dd>종목·일자별 온라인 댓글, 개인투자자 일별 매수량·매도량 및 매수·매도 우세도</dd>
                 </div>
                 </dl>
@@ -112,10 +112,48 @@
           </div>
         </section>
 
+        <section id="service-result" class="case-section case-screens section" aria-labelledby="service-title">
+          <div class="container">
+            <header class="case-section-heading case-section-heading-wide">
+              <span class="case-step">02</span>
+              <p class="section-label">실제 서비스 화면</p>
+              <h2 id="service-title">분석 결과가 사용자 화면으로 이어진 모습</h2>
+              <p class="section-intro">실제 배포 서버의 시장 개요, 종목 분석, 연구 소개와 댓글 분석실을 같은 화면 규격으로 기록했습니다.</p>
+            </header>
+            <div class="service-screen-grid case-screen-grid">
+              <figure class="service-screen-slot service-screen-slot-image case-screen">
+                <a href="./assets/pilos-market.png" data-lightbox aria-haspopup="dialog" aria-label="PILOS 시장 분위기 화면 크게 보기">
+                  <img src="./assets/pilos-market.png" alt="PILOS 시장 분위기에서 종목별 실제 수급과 댓글 신호를 비교하는 화면">
+                </a>
+                <figcaption><small>01</small><strong>시장 분위기</strong><span>종목별 실제 개인투자자 수급과 댓글 기반 연관 신호를 한 화면에서 비교합니다.</span><em>클릭하여 크게 보기 ↗</em></figcaption>
+              </figure>
+              <figure class="service-screen-slot service-screen-slot-image case-screen">
+                <a href="./assets/pilos-stock-detail.png" data-lightbox aria-haspopup="dialog" aria-label="PILOS 종목 분석 화면 크게 보기">
+                  <img src="./assets/pilos-stock-detail.png" alt="PILOS SK하이닉스 종목 분석에서 LLM 기반 수급 리포트와 근거 지표를 보여주는 화면">
+                </a>
+                <figcaption><small>02</small><strong>종목 분석 리포트</strong><span>댓글·매매 연관 점수와 실제 수급을 바탕으로 생성한 일별 해설과 근거 지표를 확인합니다.</span><em>클릭하여 크게 보기 ↗</em></figcaption>
+              </figure>
+              <figure class="service-screen-slot service-screen-slot-image case-screen">
+                <a href="./assets/pilos-research.png" data-lightbox aria-haspopup="dialog" aria-label="PILOS 연구 소개 화면 크게 보기">
+                  <img src="./assets/pilos-research.png" alt="PILOS 연구 소개에서 댓글과 실제 수급의 관계와 점수 해석 범위를 설명하는 화면">
+                </a>
+                <figcaption><small>03</small><strong>연구 소개</strong><span>프로젝트가 분석하는 관계와 0~100 신호의 해석 범위를 먼저 명확히 설명합니다.</span><em>클릭하여 크게 보기 ↗</em></figcaption>
+              </figure>
+              <figure class="service-screen-slot service-screen-slot-image case-screen">
+                <a href="./assets/pilos-comment-lab.png" data-lightbox aria-haspopup="dialog" aria-label="PILOS 댓글 분석실 화면 크게 보기">
+                  <img src="./assets/pilos-comment-lab.png" alt="PILOS 댓글 한 줄을 두 방향 모델로 분석하는 댓글 분석실 화면">
+                </a>
+                <figcaption><small>04</small><strong>댓글 분석실</strong><span>입력한 댓글 표현에 대한 매수 우세일·매도 우세일 모델의 반응을 나란히 비교합니다.</span><em>클릭하여 크게 보기 ↗</em></figcaption>
+              </figure>
+            </div>
+            <p class="service-screen-note">실제 배포 서버의 2026년 8월 20일 화면을 1440×1000 뷰포트에서 원본 색상과 비율 그대로 캡처했습니다.</p>
+          </div>
+        </section>
+
         <section id="my-contribution" class="case-section case-contribution section" aria-labelledby="contribution-title">
           <div class="container case-section-grid">
             <header class="case-section-heading">
-              <span class="case-step">02</span>
+              <span class="case-step">03</span>
               <p class="section-label">내가 맡은 역할</p>
               <h2 id="contribution-title">댓글 처리부터 모델 결과의 서비스 연결까지 담당했습니다</h2>
               <p class="section-intro">
@@ -267,11 +305,11 @@
           </div>
         </section>
 
-        <section id="how-it-works" class="case-chapter case-how-it-works-chapter" aria-label="How It Works">
+        <section id="how-it-works" class="case-chapter case-how-it-works-chapter" aria-label="구현 구조">
         <section id="system-concept" class="case-section case-flow case-how-it-works case-subsection section section-muted" aria-labelledby="concept-title">
           <div class="container">
             <header class="case-section-heading case-section-heading-wide">
-              <span class="case-step">03 · A</span>
+              <span class="case-step">04 · A</span>
               <p class="section-label">구현 구조 · 프로젝트 개념도</p>
               <h2 id="concept-title">학습 구조와 서비스 추론 구조를 분리합니다</h2>
               <p class="section-intro">두 흐름을 섞지 않고 각각의 개념도를 배치할 수 있는 구조입니다.</p>
@@ -439,49 +477,11 @@
           </div>
         </section>
 
-        <section id="service-result" class="case-section case-screens section" aria-labelledby="service-title">
-          <div class="container">
-            <header class="case-section-heading case-section-heading-wide">
-              <span class="case-step">03 · B</span>
-              <p class="section-label">실제 서비스 화면</p>
-              <h2 id="service-title">분석 결과가 사용자 화면으로 이어진 모습</h2>
-              <p class="section-intro">실제 배포 서버에서 시장 전체와 종목 상세, 연구 설명, 댓글 한 줄 체험 화면을 캡처했습니다.</p>
-            </header>
-            <div class="service-screen-grid case-screen-grid">
-              <figure class="service-screen-slot service-screen-slot-image case-screen">
-                <a href="./assets/pilos-market.png" data-lightbox aria-haspopup="dialog" aria-label="PILOS 시장 분위기 전체 화면 보기">
-                  <img src="./assets/pilos-market.png" alt="PILOS 시장 분위기 페이지에서 종목별 실제 수급과 댓글 신호를 비교하는 전체 화면">
-                </a>
-                <figcaption><small>01</small><strong>시장 분위기</strong><span>10개 종목의 실제 개인투자자 수급과 댓글 신호를 비교합니다.</span><em>클릭하여 전체 화면 보기 ↗</em></figcaption>
-              </figure>
-              <figure class="service-screen-slot service-screen-slot-image case-screen">
-                <a href="./assets/pilos-stock-detail.png" data-lightbox aria-haspopup="dialog" aria-label="PILOS 종목 분석 전체 화면 보기">
-                  <img src="./assets/pilos-stock-detail.png" alt="PILOS SK하이닉스 종목 분석에서 리포트, 모델 산출물과 원자료를 보여주는 전체 화면">
-                </a>
-                <figcaption><small>02</small><strong>종목 분석</strong><span>수급 리포트, 양방향 모델 산출물과 원자료를 함께 확인합니다.</span><em>클릭하여 전체 화면 보기 ↗</em></figcaption>
-              </figure>
-              <figure class="service-screen-slot service-screen-slot-image case-screen">
-                <a href="./assets/pilos-research.png" data-lightbox aria-haspopup="dialog" aria-label="PILOS 연구 소개 전체 화면 보기">
-                  <img src="./assets/pilos-research.png" alt="PILOS 연구 소개에서 댓글과 실제 수급의 관계와 점수 해석 범위를 설명하는 전체 화면">
-                </a>
-                <figcaption><small>03</small><strong>연구 소개</strong><span>프로젝트가 분석하는 관계와 0~100 신호의 해석 범위를 설명합니다.</span><em>클릭하여 전체 화면 보기 ↗</em></figcaption>
-              </figure>
-              <figure class="service-screen-slot service-screen-slot-image case-screen">
-                <a href="./assets/pilos-comment-lab.png" data-lightbox aria-haspopup="dialog" aria-label="PILOS 댓글 한 줄 분석 체험 화면 크게 보기">
-                  <img src="./assets/pilos-comment-lab.png" alt="PILOS 댓글 한 줄을 두 방향 모델로 분석하는 댓글 체험 영역">
-                </a>
-                <figcaption><small>04</small><strong>댓글 한 줄 체험</strong><span>입력한 표현에 대한 매수·매도 우위 모델의 반응을 비교합니다.</span><em>클릭하여 전체 화면 보기 ↗</em></figcaption>
-              </figure>
-            </div>
-            <p class="service-screen-note">실제 배포 서버의 2026년 8월 20일 화면을 원본 색상과 비율 그대로 캡처했습니다.</p>
-          </div>
-        </section>
-
         <section id="architecture" class="case-section case-flow case-how-it-works case-subsection section section-muted" aria-labelledby="architecture-title">
           <div class="container">
             <header class="case-section-heading case-section-heading-wide">
-              <span class="case-step">03 · B</span>
-              <p class="section-label">How It Works · Architecture &amp; Responsibility</p>
+              <span class="case-step">04 · B</span>
+              <p class="section-label">구현 구조 · 아키텍처와 책임</p>
               <h2 id="architecture-title">분석 로직, 데이터 접근, 실행 조합의 책임을 분리했습니다</h2>
               <p class="section-intro">
                 분석 계산과 DB 입출력, 실행 순서 조합, 웹 요청 처리를 서로 다른 책임으로
@@ -616,8 +616,8 @@
         <section id="data-pipeline" class="case-section case-flow case-how-it-works case-subsection section" aria-labelledby="pipeline-title">
           <div class="container">
             <header class="case-section-heading case-section-heading-wide">
-              <span class="case-step">03 · C</span>
-              <p class="section-label">How It Works · Data &amp; Model Pipeline</p>
+              <span class="case-step">04 · C</span>
+              <p class="section-label">구현 구조 · 데이터와 모델 파이프라인</p>
               <h2 id="pipeline-title">댓글 데이터를 종목·일자 단위의 모델 입력으로 변환했습니다</h2>
               <p class="section-intro">
                 댓글 한 건을 바로 모델에 넣지 않습니다. 같은 처리 계약으로 정제·토큰화한 댓글을
@@ -636,7 +636,7 @@
                 <article class="pipeline-stage raw-comment-stage">
                   <header class="pipeline-stage-heading">
                     <span>01</span>
-                    <div><small>Source Comments</small><h4>같은 종목·일자의 원천 댓글</h4></div>
+                    <div><small>원천 댓글</small><h4>같은 종목·일자의 원천 댓글</h4></div>
                   </header>
                   <div class="source-comment-context">
                     <span>예시 종목</span>
@@ -676,7 +676,7 @@
                 <article class="pipeline-stage preprocessed-stage">
                   <header class="pipeline-stage-heading">
                     <span>02</span>
-                    <div><small>Preprocessed Text</small><h4>댓글별 분석용 텍스트</h4></div>
+                    <div><small>전처리 결과</small><h4>댓글별 분석용 텍스트</h4></div>
                   </header>
                   <ol class="processed-comment-list" aria-label="A B C 댓글의 분석용 텍스트">
                     <li><b>A</b><p>실적 발표 매수 관심이 늘어나는 것 같아요</p></li>
@@ -697,7 +697,7 @@
                 <article class="pipeline-stage token-stage">
                   <header class="pipeline-stage-heading">
                     <span>03</span>
-                    <div><small>Kiwi Tokens</small><h4>댓글별 모델 토큰</h4></div>
+                    <div><small>Kiwi 토큰</small><h4>댓글별 모델 토큰</h4></div>
                   </header>
                   <ol class="tokenized-comment-list" aria-label="현재 Kiwi 계약으로 확인한 A B C 토큰">
                     <li><b>A</b><div><span>실적</span><span>발표</span><span>매수</span><span>관심</span><span>늘어나</span><span>같</span></div></li>
@@ -723,7 +723,7 @@
                 <article class="pipeline-stage analysis-unit-stage">
                   <header class="pipeline-stage-heading">
                     <span>04</span>
-                    <div><small>Comment Analysis Unit</small><h4>종목·일자별 댓글 분석 단위</h4></div>
+                    <div><small>댓글 분석 단위</small><h4>종목·일자별 댓글 분석 단위</h4></div>
                   </header>
                   <div class="analysis-unit-key">
                     <span>예시 종목</span>
@@ -749,7 +749,7 @@
                   </header>
                   <div class="tfidf-shape">
                     <div>
-                      <small>Step 04의 동일 댓글 분석 단위</small>
+                      <small>04단계의 동일 댓글 분석 단위</small>
                       <p>실적 발표 매수 관심 늘어나 같 외인 들어오 매수세 계속 붙 느낌 실적 기대 장마감 지켜보 어야 겠</p>
                     </div>
                     <span aria-hidden="true">↓</span>
@@ -766,13 +766,13 @@
                 <article class="pipeline-stage ridge-input-stage">
                   <header class="pipeline-stage-heading">
                     <span>06</span>
-                    <div><small>Model Input</small><h4>Ridge text-only 입력</h4></div>
+                    <div><small>모델 입력</small><h4>Ridge text-only 입력</h4></div>
                   </header>
                   <div class="ridge-input-shape">
-                    <span>Step 05의 동일 TF-IDF Sparse Vector</span>
+                    <span>05단계의 동일 TF-IDF Sparse Vector</span>
                     <code>[0, 0.18, 0, 0.42, 0, …]</code>
                     <strong>Ridge Regression</strong>
-                    <small>이 Pipeline은 모델 입력에서 끝납니다.</small>
+                    <small>이 파이프라인은 모델 입력에서 끝납니다.</small>
                   </div>
                 </article>
               </div>
@@ -840,7 +840,7 @@
               </article>
 
               <article class="case-challenge">
-                <div class="pilos-challenge-heading case-challenge-header"><span>02</span><p>Memory &amp; Data Structure</p></div>
+                <div class="pilos-challenge-heading case-challenge-header"><span>02</span><p>메모리와 데이터 구조</p></div>
                 <h5>필요한 값만 순회하고 일별 문서를 한 건씩 생성하도록 변경했습니다</h5>
                 <div class="implementation-change-pair">
                   <section><small>Sparse Row</small><del>toarray().flatten()</del><strong>row.indices + row.data</strong><p>0이 아닌 feature만 순회</p></section>
@@ -859,12 +859,12 @@
           </div>
         </section>
 
-        <section id="technical-deep-dive" class="case-chapter case-deep-dive-chapter" aria-label="Technical Deep Dive">
+        <section id="technical-deep-dive" class="case-chapter case-deep-dive-chapter" aria-label="기술 상세">
         <section id="model-selection" class="case-section case-deep-dive case-subsection section section-muted" aria-labelledby="model-title">
           <div class="container">
             <header class="case-section-heading case-section-heading-wide">
               <span class="case-step">06 · A</span>
-              <p class="section-label">Technical Deep Dive · Model Selection &amp; Validation</p>
+              <p class="section-label">기술 상세 · 모델 선택과 검증</p>
               <h2 id="model-title">연관성 재현과 시간 변화 검증을 분리해 모델을 선택했습니다</h2>
               <p class="section-intro">
                 Ridge와 ElasticNet 후보를 날짜 단위로 반복 검증했습니다. 후보 선정에서는 R²와
@@ -1115,7 +1115,7 @@
           <div class="container">
             <header class="case-section-heading case-section-heading-wide">
               <span class="case-step">06 · C</span>
-              <p class="section-label">Technical Deep Dive · 문제 해결과 설계 판단</p>
+              <p class="section-label">기술 상세 · 문제 해결과 설계 판단</p>
               <h2 id="decisions-title">서비스로 연결하면서 생긴 세 가지 문제를 이렇게 해결했습니다</h2>
               <p class="section-intro">
                 각 기능이 따로 동작하는 것과 하나의 서비스로 안전하게 연결되는 것은 달랐습니다.
@@ -1302,7 +1302,7 @@
           <div class="container case-section-grid">
             <header class="case-section-heading case-section-heading-light">
               <span class="case-step">07</span>
-              <p class="section-label">Automation &amp; Reliability</p>
+              <p class="section-label">자동화와 신뢰성</p>
               <h2 id="automation-title">단계를 연결하는 것보다 실패했을 때 멈출 경계를 먼저 정했습니다</h2>
             </header>
             <div class="pilos-automation-layout case-automation-layout">
@@ -1338,7 +1338,7 @@
           <div class="container">
             <header class="case-section-heading case-section-heading-wide case-section-heading-light">
               <span class="case-step">08</span>
-              <p class="section-label">Result &amp; Limitations</p>
+              <p class="section-label">결과와 한계</p>
               <h2 id="result-limitations-title">구현 결과와 해석 범위를 함께 남겼습니다</h2>
             </header>
             <div class="case-result-grid">
@@ -1391,7 +1391,7 @@
 
     <footer class="site-footer detail-footer">
       <div class="container">
-        <p>PILOS Sentiment Index · Project Case Study</p>
+        <p>PILOS Sentiment Index · 프로젝트 상세</p>
         <a href="../../">← 이주광 포트폴리오로 돌아가기</a>
       </div>
     </footer>
