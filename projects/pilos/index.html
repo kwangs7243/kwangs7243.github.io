@@ -8,7 +8,7 @@
     <link rel="icon" href="data:," />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css" />
-    <link rel="stylesheet" href="../../project-detail.css?v=20260821-ownership-final2" />
+    <link rel="stylesheet" href="../../project-detail.css?v=20260821-scope-final" />
   </head>
   <body class="project-detail-page">
     <a class="skip-link" href="#main-content">본문으로 건너뛰기</a>
@@ -116,35 +116,43 @@
               <p class="section-marker"><span>03 /</span> 프로젝트 개념도</p>
               <h2 id="architecture-title">학습 구조와 서비스 추론 구조를 분리해 이해합니다.</h2>
             </header>
-            <ul class="ownership-legend" aria-label="구현 범위 범례">
-              <li><span class="legend-swatch legend-swatch--direct" aria-hidden="true"></span><strong>직접 구현</strong></li>
-              <li><span class="legend-swatch legend-swatch--integration" aria-hidden="true"></span><strong>직접 통합</strong></li>
-              <li><span class="legend-swatch legend-swatch--team" aria-hidden="true"></span><strong>팀 / 공용</strong></li>
-            </ul>
             <div class="architecture-list">
               <section class="architecture-block" aria-labelledby="training-title">
                 <div class="diagram-heading"><p class="subsection-marker">A. 모델 학습 구조</p></div>
                 <h3 id="training-title">댓글 표현과 같은 날의 개인투자자 매수·매도 우세도를 하나의 학습 구조로 연결했습니다.</h3>
-                <div class="training-diagram">
-                  <div class="diagram-branch">
-                    <p class="branch-kicker">댓글 입력 X</p>
-                    <div class="diagram-node diagram-node--team"><span>종목·일자별 댓글</span><small class="ownership-tag ownership-tag--team">팀 / 공용</small></div>
-                    <div class="diagram-connector" aria-hidden="true">↓</div>
-                    <div class="diagram-node diagram-node--direct">전처리 · Kiwi · 댓글 분석 단위<small class="ownership-tag ownership-tag--direct">직접 구현</small></div>
-                    <div class="diagram-connector" aria-hidden="true">↓</div>
-                    <div class="diagram-node diagram-node--direct">TF-IDF · 학습 입력 X<small class="ownership-tag ownership-tag--direct">직접 구현</small></div>
+                <div class="sentiment-training-diagram" aria-label="팀 공용 원천 데이터가 내 작업 범위의 학습 입력 X와 학습 목표 Y로 구성되어 Ridge 학습으로 합쳐지는 구조">
+                  <p class="source-group-label">원천 데이터 · 팀 / 공용</p>
+                  <div class="sentiment-source-grid">
+                    <div class="diagram-node">종목·일자별 댓글 데이터</div>
+                    <div class="diagram-node">같은 종목·일자의 개인투자자 매매 데이터</div>
                   </div>
-                  <div class="diagram-branch">
-                    <p class="branch-kicker">개인투자자 매매 Y</p>
-                    <div class="diagram-node diagram-node--team"><span>같은 종목·일자의 개인투자자 매매</span><small class="ownership-tag ownership-tag--team">팀 / 공용</small></div>
-                    <div class="diagram-connector" aria-hidden="true">↓</div>
-                    <div class="diagram-node diagram-node--team">매수·매도 우세도 · 학습 정답 Y<small class="ownership-tag ownership-tag--team">팀 / 공용</small></div>
-                  </div>
-                  <div class="diagram-join" aria-hidden="true"><span class="join-left"></span><span class="join-arrow">↓</span><span class="join-right"></span></div>
-                  <div class="training-output">
-                    <div class="diagram-node diagram-node--direct">매수 우세일·매도 우세일 Ridge 후보 학습·검증<small class="ownership-tag ownership-tag--direct">직접 구현</small></div>
-                    <div class="diagram-node diagram-node--direct">최종 Ridge text-only 두 모델 선정<small class="ownership-tag ownership-tag--direct">직접 구현</small></div>
-                    <div class="diagram-node diagram-node--direct">Vectorizer + Ridge Artifact<small class="ownership-tag ownership-tag--direct">직접 구현</small></div>
+                  <div class="sentiment-source-arrows" aria-hidden="true"><span>↓</span><span>↓</span></div>
+                  <div class="work-scope sentiment-training-scope">
+                    <p class="work-scope-label">내 작업 범위</p>
+                    <div class="sentiment-input-grid">
+                      <div class="diagram-branch">
+                        <p class="branch-kicker">댓글 입력 X</p>
+                        <div class="diagram-node">전처리 · Kiwi</div>
+                        <div class="diagram-connector" aria-hidden="true">↓</div>
+                        <div class="diagram-node">종목·일자별 댓글 분석 단위</div>
+                        <div class="diagram-connector" aria-hidden="true">↓</div>
+                        <div class="diagram-node">TF-IDF · 학습 입력 X</div>
+                      </div>
+                      <div class="diagram-branch">
+                        <p class="branch-kicker">매매 목표 Y</p>
+                        <div class="diagram-node">개인투자자 매매 우세도 구성</div>
+                        <div class="diagram-connector" aria-hidden="true">↓</div>
+                        <div class="diagram-node">학습 목표 Y</div>
+                      </div>
+                    </div>
+                    <div class="diagram-join" aria-hidden="true"><span class="join-left"></span><span class="join-arrow">↓</span><span class="join-right"></span></div>
+                    <div class="sentiment-model-output">
+                      <div class="diagram-node">Ridge 후보 학습·검증</div>
+                      <div class="diagram-connector" aria-hidden="true">↓</div>
+                      <div class="diagram-node">최종 Ridge text-only 두 모델</div>
+                      <div class="diagram-connector" aria-hidden="true">↓</div>
+                      <div class="diagram-node">Vectorizer + Ridge Artifact</div>
+                    </div>
                   </div>
                 </div>
                 <p class="architecture-note">댓글 TF-IDF가 Ridge의 입력이고, 개인투자자 매수·매도 우세도는 학습 정답입니다. 두 데이터는 같은 종목·일자를 기준으로 연결됩니다. 모델은 댓글이 미래 매매를 만든다고 학습하는 것이 아니라, 보유 데이터셋에서 댓글 표현과 같은 날의 개인투자자 매매 우세가 함께 나타난 통계적 관계를 학습합니다.</p>
@@ -153,11 +161,18 @@
               <section class="architecture-block" aria-labelledby="inference-title">
                 <div class="diagram-heading"><p class="subsection-marker">B. 서비스 추론 구조</p></div>
                 <h3 id="inference-title">서비스에서는 신규 댓글을 검증된 모델과 상태 계약을 거쳐 사용자 결과로 바꿉니다.</h3>
-                <div class="inference-diagram" aria-label="서비스 추론 구조">
-                  <article class="diagram-stage diagram-stage--direct"><p class="stage-label"><span>입력 처리</span><span class="ownership-tag ownership-tag--direct">직접 구현</span></p><ul><li>신규 댓글</li><li>전처리 · Kiwi</li><li>종목·일자별 댓글 분석 단위</li></ul></article>
-                  <article class="diagram-stage diagram-stage--direct"><p class="stage-label"><span>두 모델 계산</span><span class="ownership-tag ownership-tag--direct">직접 구현</span></p><ul><li>학습된 TF-IDF</li><li>매수 우세일·매도 우세일 모델</li><li>모델 원출력값 · 주요 영향 단어</li></ul></article>
-                  <article id="service-signal" class="diagram-stage diagram-stage--direct"><p class="stage-label"><span>결과 관리</span><span class="ownership-tag ownership-tag--direct">직접 구현</span></p><ul><li>관측된 개인투자자 매매 우세로 결과 선택</li><li>결과 제공 상태 · DB 저장</li><li>Calibration · 댓글·매매 연관 점수</li></ul></article>
-                  <article class="diagram-stage"><p class="stage-label"><span>서비스 제공</span></p><ul class="ownership-node-list"><li><span class="ownership-tag ownership-tag--direct">직접 구현</span> 정형 근거와 일별 댓글·매매 해설 생성 계약</li><li><span class="ownership-tag ownership-tag--integration">직접 통합</span> 저장 해설과 Flask 데이터 계약 연결</li><li><span class="ownership-tag ownership-tag--team">팀 / 공용</span> Flask 화면 전체</li></ul></article>
+                <div class="sentiment-service-diagram" aria-label="내 작업 범위의 입력 처리, 모델 분석, 결과 관리, 일별 해설이 팀 공용 Flask 화면으로 이어지는 구조">
+                  <div class="work-scope sentiment-service-scope">
+                    <p class="work-scope-label">내 작업 범위</p>
+                    <ol class="service-analysis-flow">
+                      <li><span class="step-number">01</span><strong>입력 처리</strong><p>댓글 → 전처리 · Kiwi → 댓글 분석 단위</p></li>
+                      <li><span class="step-number">02</span><strong>모델 분석</strong><p>TF-IDF → 매수 우세일·매도 우세일 Ridge 모델</p></li>
+                      <li id="service-signal"><span class="step-number">03</span><strong>결과 관리</strong><p>결과 제공 상태 · DB · Calibration 기반 댓글·매매 연관 점수</p></li>
+                      <li><span class="step-number">04</span><strong>일별 댓글·매매 해설</strong><p>검증된 정형 근거를 해설 계약으로 연결</p></li>
+                    </ol>
+                  </div>
+                  <div class="service-output-connector" aria-hidden="true">↓</div>
+                  <div class="service-output"><strong>Flask 화면</strong><span>팀 / 공용</span></div>
                 </div>
                 <p class="architecture-note">같은 댓글 분석 단위를 두 모델이 각각 계산한 뒤, 관측된 개인투자자 매매 우세에 해당하는 모델 결과를 선택합니다. 개인투자자 매매 정보는 Ridge의 텍스트 입력이 아니며, 선택된 원출력값을 같은 방향·모델 버전의 기준분포에 상대화해 댓글·매매 연관 점수로 변환합니다. 이 점수는 확률·정확도·미래 개인투자자 매매 예측이 아닙니다.</p>
               </section>
@@ -174,11 +189,10 @@
             <div class="contribution-content prose">
               <div class="direct-label">직접 담당 범위</div>
               <div class="responsibility-list">
-                <article><h3>1. 모델 입력과 데이터 품질</h3><ul><li>댓글 전처리</li><li>Kiwi 토큰화와 도메인 표현 보완</li><li>종목·일자별 댓글 분석 단위</li><li>TF-IDF 벡터화와 입력 검수</li></ul></article>
-                <article><h3>2. 모델 개발과 검증</h3><ul><li>Ridge / ElasticNet 후보 비교</li><li>날짜 그룹 랜덤 검증과 워크포워드 검증</li><li>최종 Ridge text-only 선정</li><li>전체 데이터셋 재학습</li></ul></article>
-                <article><h3>3. 서비스 추론 계약</h3><ul><li>Vectorizer + Ridge artifact</li><li>매수 우세일·매도 우세일 모델 추론</li><li>주요 영향 단어와 영향값 산출</li><li><code>ready / insufficient_features</code>에 대응하는 결과 제공 상태</li><li>결과 저장과 calibration 기반 댓글·매매 연관 점수</li></ul></article>
-                <article><h3>4. 분석 결과 설명과 Backend 연결</h3><ul><li>정형 근거 생성</li><li>일별 댓글·매매 해설 생성 계약</li><li>저장 해설과 Flask 데이터 계약 연결</li></ul></article>
-                <article><h3>5. 자동화와 전체 기술 흐름</h3><ul><li>개별 Job을 최상위 실행 흐름으로 통합</li><li>단계별 실패 경계</li><li>중복 실행 방지</li><li>실행 상태·실패 단계 기록</li><li>팀장으로 데이터 규칙과 완료 조건 조정</li></ul></article>
+                <article><h3>1. 분석 모델</h3><ul><li>댓글 전처리와 Kiwi 토큰화·도메인 표현 보완</li><li>종목·일자별 댓글 분석 단위와 TF-IDF 벡터화·입력 검수</li><li>Ridge / ElasticNet 후보 비교</li><li>날짜 그룹 랜덤 검증과 워크포워드 검증</li><li>최종 Ridge text-only 선정과 전체 데이터셋 재학습</li></ul></article>
+                <article><h3>2. 서비스 추론</h3><ul><li>Vectorizer + Ridge artifact</li><li>매수 우세일·매도 우세일 모델 추론</li><li>주요 영향 단어와 영향값 산출</li><li><code>ready / insufficient_features</code>에 대응하는 결과 제공 상태</li><li>결과 저장과 calibration 기반 댓글·매매 연관 점수</li></ul></article>
+                <article><h3>3. 서비스 통합</h3><ul><li>정형 근거 생성과 일별 댓글·매매 해설 생성 계약</li><li>저장 해설과 Flask 데이터 계약 연결</li><li>개별 Job을 최상위 실행 흐름으로 통합</li><li>단계별 실패 경계와 중복 실행 방지</li><li>실행 상태·실패 단계 기록</li></ul></article>
+                <article><h3>4. 팀장 / 공통 기준</h3><ul><li>4인 팀의 팀장으로 전체 기술 흐름 관리</li><li>데이터 규칙과 완료 조건 조정</li></ul></article>
               </div>
               <div class="team-boundary">
                 <h3>팀 / 공용 영역</h3>
