@@ -9,7 +9,7 @@
     />
     <title>PILOS Sentiment Index | 이주광 프로젝트 상세</title>
     <link rel="icon" href="data:," />
-    <link rel="stylesheet" href="../../project-detail.css?v=20260821-polish" />
+    <link rel="stylesheet" href="../../project-detail.css?v=20260821-final-ui5" />
   </head>
   <body class="project-detail-page pilos-detail-page">
     <a class="skip-link" href="#main-content">본문으로 건너뛰기</a>
@@ -312,7 +312,7 @@
             </header>
             <div class="concept-grid">
               <div class="diagram-placeholder training-panel">
-                <div class="diagram-title"><span>A</span><h4>학습 구조</h4></div>
+                <div class="diagram-title"><h4>학습 구조</h4></div>
                 <div class="training-diagram" aria-label="PILOS 매매 우세별 댓글 분석 모델 학습 구조">
                   <div class="concept-sources">
                     <section class="concept-source" aria-labelledby="comment-path-title">
@@ -385,7 +385,7 @@
                 </div>
               </div>
               <div class="diagram-placeholder inference-panel">
-                <div class="diagram-title"><span>B</span><h4>서비스 추론 구조</h4></div>
+                <div class="diagram-title"><h4>서비스 추론 구조</h4></div>
                 <div class="inference-diagram" aria-label="신규 댓글이 서비스 결과로 제공되는 추론 구조">
                   <p class="diagram-responsibility-legend"><i aria-hidden="true"></i><span>강조선 · 직접 구현 / 주요 책임 범위</span></p>
                   <div class="inference-spine">
@@ -426,13 +426,13 @@
                         <h5 id="result-transform-title">서비스 결과 변환과 제공</h5>
                       </header>
 
-                      <div class="spine-support-step result-status-step">
+                      <div class="spine-support-step result-status-step responsibility-emphasis">
                         <strong>결과 제공 상태</strong>
                         <span>제공 가능 · 입력 기준 미충족</span>
                       </div>
                       <span class="spine-arrow" aria-hidden="true">↓</span>
 
-                      <div class="spine-support-step result-save-step">
+                      <div class="spine-support-step result-save-step responsibility-emphasis">
                         <strong>결과 저장</strong>
                       </div>
                       <span class="spine-arrow" aria-hidden="true">↓</span>
@@ -445,7 +445,7 @@
                       <span class="spine-arrow" aria-hidden="true">↓</span>
 
                       <div class="service-result-group">
-                        <div class="spine-node association-score-node">
+                        <div class="spine-node association-score-node responsibility-emphasis">
                           <strong>댓글·매매 연관 점수</strong>
                           <span>0~100 사용자용 상대 결과</span>
                         </div>
@@ -457,7 +457,7 @@
                       </div>
                       <span class="spine-arrow" aria-hidden="true">↓</span>
 
-                      <div class="flask-result responsibility-emphasis">
+                      <div class="flask-result">
                         <strong>Flask 웹 서비스</strong>
                         <span>댓글·매매 연관 점수 + 일별 댓글·매매 해설을 함께 제공</span>
                       </div>
@@ -499,7 +499,7 @@
                     <p>명령·스케줄로 시작되는 실행 경로</p>
                   </header>
 
-                  <div class="architecture-node architecture-orchestrator">
+                  <div class="architecture-node architecture-orchestrator responsibility-emphasis">
                     <p>JOBS</p>
                     <strong>배치 실행 조합</strong>
                     <span>분리된 기능의 실행 순서를 조합</span>
@@ -511,19 +511,19 @@
                   </div>
 
                   <div class="responsibility-grid responsibility-grid-batch">
-                    <section class="responsibility-node">
+                    <section class="responsibility-node architecture-layer-collection">
                       <p>COLLECTION</p>
                       <strong>외부 데이터 접근</strong>
                       <span>외부 통신 · 데이터 수집</span>
                       <small>분석 계산 제외</small>
                     </section>
-                    <section class="responsibility-node responsibility-node-core">
+                    <section class="responsibility-node responsibility-node-core architecture-layer-analysis responsibility-emphasis">
                       <p>ANALYSIS</p>
                       <strong>Processing &amp; Calculation</strong>
                       <span>전처리 · 모델 · Calibration</span>
                       <small>DB 입출력 제외</small>
                     </section>
-                    <section class="responsibility-node">
+                    <section class="responsibility-node architecture-layer-storage responsibility-emphasis">
                       <p>STORAGE</p>
                       <strong>저장 · 입출력</strong>
                       <span>MySQL · Files · Artifacts</span>
@@ -560,7 +560,7 @@
                     <small>분석·DB 로직 제외</small>
                   </div>
                   <span class="architecture-down-arrow" aria-hidden="true">↓</span>
-                  <div class="architecture-node architecture-orchestrator architecture-service">
+                  <div class="architecture-node architecture-orchestrator architecture-service responsibility-emphasis">
                     <p>SERVICE</p>
                     <strong>웹 요청 기능 조합</strong>
                     <span>웹 요청에 필요한 내부 기능 조합</span>
@@ -572,13 +572,13 @@
                   </div>
 
                   <div class="responsibility-grid responsibility-grid-web">
-                    <section class="responsibility-node responsibility-node-core">
+                    <section class="responsibility-node responsibility-node-core architecture-layer-analysis responsibility-emphasis">
                       <p>ANALYSIS</p>
                       <strong>Processing &amp; Calculation</strong>
                       <span>요청에 필요한 분석 계산</span>
                       <small>DB 입출력 제외</small>
                     </section>
-                    <section class="responsibility-node">
+                    <section class="responsibility-node architecture-layer-storage responsibility-emphasis">
                       <p>STORAGE</p>
                       <strong>저장 · 입출력</strong>
                       <span>저장 결과 조회 · Artifact 로드</span>
@@ -819,7 +819,7 @@
 
             <div class="pilos-challenge-list">
               <article class="tokenizer-quality-case case-challenge">
-                <div class="pilos-challenge-heading case-challenge-header"><span>01</span><p>Tokenizer Quality</p></div>
+                <div class="pilos-challenge-heading case-challenge-header"><span>01 /</span><p>토크나이저 품질</p><small>TOKENIZER QUALITY</small></div>
                 <h5>약 78,422개 댓글의 실제 토큰 결과에서 의미가 깨지는 사례를 찾았습니다</h5>
                 <div class="tokenizer-problem-example">
                   <div><small>원문</small><strong>안 팔아</strong></div>
@@ -838,17 +838,17 @@
               </article>
 
               <article class="case-challenge">
-                <div class="pilos-challenge-heading case-challenge-header"><span>02</span><p>메모리와 데이터 구조</p></div>
+                <div class="pilos-challenge-heading case-challenge-header"><span>02 /</span><p>메모리와 데이터 구조</p><small>MEMORY &amp; DATA STRUCTURE</small></div>
                 <h5>필요한 값만 순회하고 일별 문서를 한 건씩 생성하도록 변경했습니다</h5>
                 <div class="implementation-change-pair">
                   <section><small>Sparse Row</small><del>toarray().flatten()</del><strong>row.indices + row.data</strong><p>0이 아닌 feature만 순회</p></section>
                   <section><small>Daily Document</small><del>전체 DataFrame 선구성</del><strong>iter_daily_documents() + yield</strong><p>종목·일자가 바뀔 때 현재 문서만 생성</p></section>
                 </div>
-                <p class="pilos-challenge-result">전체 중간 집계 데이터를 먼저 만들지 않고 종목·일자별 문서를 순차 생성하도록 바꿨습니다.</p>
+                <div class="pilos-challenge-result"><strong>결과</strong><p>전체 중간 집계 데이터를 먼저 만들지 않고 종목·일자별 문서를 순차 생성하도록 변경했습니다.</p></div>
               </article>
 
               <article class="compact-implementation-note case-challenge">
-                <div class="pilos-challenge-heading case-challenge-header"><span>03</span><p>Bulk Insert Policy</p></div>
+                <div class="pilos-challenge-heading case-challenge-header"><span>03 /</span><p>대량 적재 정책</p><small>BULK INSERT POLICY</small></div>
                 <h5>예상 가능한 중복 한 건이 전체 댓글 적재를 실패시키지 않도록 처리</h5>
                 <p>대량 댓글 적재에서 중복 때문에 전체 작업이 중단되는 문제를 경험한 뒤, 예상 가능한 중복은 기존 데이터를 유지하고 건너뛰는 <code>INSERT IGNORE</code> 정책을 적용했습니다.</p>
               </article>
@@ -1100,9 +1100,9 @@
             </ol>
 
             <aside class="service-signal-boundary">
-              <strong>0~100 댓글·매매 연관 점수의 의미</strong>
-              <p>동일 Ridge 모델의 과거 출력분포에서 현재 값이 위치한 상대적 결과입니다.</p>
-              <ul><li>확률 아님</li><li>정확도 아님</li><li>미래 개인투자자 매수·매도 예측 아님</li></ul>
+              <div><small>서비스 결과 해석 기준</small><strong>0~100 댓글·매매 연관 점수의 의미</strong></div>
+              <div><p>동일 Ridge 모델의 과거 출력분포에서 현재 값이 위치한 상대적 결과입니다.</p>
+              <ul><li>확률 아님</li><li>정확도 아님</li><li>미래 개인투자자 매수·매도 예측 아님</li></ul></div>
             </aside>
           </div>
         </section>
