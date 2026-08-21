@@ -495,8 +495,7 @@ strong {
   padding-left: 22px;
 }
 
-.direct-label,
-.ownership-label {
+.direct-label {
   display: inline-block;
   color: var(--accent);
   font-size: 13px;
@@ -546,12 +545,6 @@ strong {
 
 .team-model-note {
   margin-top: 20px !important;
-}
-
-.neutral-label {
-  color: var(--text-muted);
-  font-size: 13px;
-  font-weight: 650;
 }
 
 .case-number {
@@ -783,6 +776,42 @@ th {
   background: var(--surface-soft);
 }
 
+.ownership-tag {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 22px;
+  padding: 2px 7px;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+.ownership-tag--direct {
+  border-left: 3px solid var(--accent);
+  color: var(--accent);
+}
+
+.ownership-tag--integration {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.ownership-tag--team {
+  background: var(--surface-soft);
+  color: var(--text-muted);
+}
+
+.scope-detail {
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
 .diagram-stage {
   min-width: 0;
   padding: 24px 24px 26px;
@@ -797,10 +826,6 @@ th {
 
 .diagram-stage--direct {
   border-left: 3px solid var(--accent);
-}
-
-.diagram-stage--mixed {
-  border-left: 3px solid var(--border);
 }
 
 .training-diagram {
@@ -839,21 +864,22 @@ th {
   border-left: 3px solid var(--accent);
 }
 
+.diagram-node--integration {
+  background: var(--accent-soft);
+}
+
 .diagram-node--team {
   border-left: 3px solid var(--border);
   color: var(--text-muted);
 }
 
 .diagram-node small {
-  display: block;
   margin-top: 4px;
-  color: var(--accent);
-  font-size: 12px;
-  font-weight: 700;
 }
 
-.diagram-node--team small {
-  color: var(--text-muted);
+.diagram-node .ownership-tag {
+  display: flex;
+  margin: 6px auto 0;
 }
 
 .diagram-connector {
@@ -937,6 +963,10 @@ th {
 }
 
 .stage-label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
   margin: 0 0 13px;
   color: var(--text-muted);
   font-size: 13px;
@@ -950,6 +980,11 @@ th {
 
 .diagram-stage li + li {
   margin-top: 6px;
+}
+
+.ownership-node-list .ownership-tag {
+  margin-right: 5px;
+  vertical-align: middle;
 }
 
 .stage-note {
@@ -1080,14 +1115,6 @@ th {
   background: var(--surface);
 }
 
-.system-column--direct {
-  border-left: 3px solid var(--accent);
-}
-
-.system-column--backend {
-  border-left: 3px solid var(--accent);
-}
-
 .system-column h3 {
   max-width: none;
   margin: 0 0 8px;
@@ -1101,26 +1128,6 @@ th {
 
 .system-column li + li {
   margin-top: 6px;
-}
-
-.system-column small {
-  color: var(--accent);
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.system-column li > .ownership-label,
-.system-column li > .neutral-label {
-  margin-right: 5px;
-  padding: 1px 6px;
-  border: 1px solid var(--border);
-  background: var(--surface-soft);
-  white-space: nowrap;
-}
-
-.system-column li > .ownership-label {
-  border-color: var(--accent);
-  background: var(--accent-soft);
 }
 
 .system-database {
@@ -1167,6 +1174,11 @@ th {
   font-size: 13px;
 }
 
+.system-interface .ownership-tag {
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .system-connector {
   position: relative;
   height: 46px;
@@ -1207,8 +1219,9 @@ th {
 
 .operation-flow {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
+  grid-template-columns: minmax(0, 1fr) 26px minmax(0, 1fr) 26px minmax(0, 1fr) 26px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
 }
 
 .operation-flow .diagram-node {
@@ -1218,6 +1231,32 @@ th {
 .operation-flow .diagram-node strong,
 .operation-flow .diagram-node span {
   display: block;
+}
+
+.operation-connector {
+  position: relative;
+  height: 34px;
+}
+
+.operation-connector::before {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: var(--border);
+  content: "";
+}
+
+.operation-connector span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 0 6px;
+  background: var(--bg);
+  color: var(--accent);
+  font-size: 18px;
+  transform: translate(-50%, -50%);
 }
 
 .operation-flow .diagram-node span {
@@ -1370,9 +1409,13 @@ th {
     grid-template-columns: 1fr;
   }
 
-  .automation-contract-grid,
-  .operation-flow {
+  .automation-contract-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .operation-flow {
+    grid-template-columns: minmax(0, 1fr) 18px minmax(0, 1fr) 18px minmax(0, 1fr) 18px minmax(0, 1fr);
+    gap: 6px;
   }
 
   .stock-system-diagram {
@@ -1514,7 +1557,6 @@ th {
 
   .inference-diagram,
   .automation-contract-grid,
-  .operation-flow,
   .training-output,
   .state-list {
     display: block;
@@ -1522,9 +1564,36 @@ th {
 
   .diagram-stage + .diagram-stage,
   .training-output .diagram-node + .diagram-node,
-  .operation-flow .diagram-node + .diagram-node,
   .state-list li + li {
     margin-top: 16px;
+  }
+
+  .operation-flow {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .operation-connector {
+    height: 32px;
+  }
+
+  .operation-connector::before {
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    height: auto;
+  }
+
+  .operation-connector span {
+    top: 50%;
+    font-size: 0;
+  }
+
+  .operation-connector span::after {
+    content: "↓";
+    font-size: 20px;
   }
 
   .training-diagram {

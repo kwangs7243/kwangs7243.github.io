@@ -8,7 +8,7 @@
     <link rel="icon" href="data:," />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css" />
-    <link rel="stylesheet" href="../../project-detail.css?v=20260821-step3-final3" />
+    <link rel="stylesheet" href="../../project-detail.css?v=20260821-ownership-final2" />
   </head>
   <body class="project-detail-page stock-advisor-page">
     <a class="skip-link" href="#main-content">본문으로 건너뛰기</a>
@@ -118,31 +118,32 @@
               <li><span class="legend-swatch legend-swatch--team" aria-hidden="true"></span><strong>팀 / 공용</strong></li>
             </ul>
             <div class="architecture-block stock-architecture-block">
-              <div class="diagram-heading"><p class="subsection-marker">A. 시스템 구조</p><span class="ownership-label">구현 범위는 노드별 표기</span></div>
+              <div class="diagram-heading"><p class="subsection-marker">A. 시스템 구조</p></div>
               <div class="stock-system-diagram" aria-label="AI와 Data에서 Shared MySQL, Flask Backend, 사용자 화면으로 이어지는 시스템 구조">
                 <section class="system-column" aria-labelledby="ai-data-title">
                   <h3 id="ai-data-title">AI / Data</h3>
-                  <small>팀 기능 + 직접 구현·통합</small>
-                  <ul><li><span class="neutral-label">팀 / 공용</span> 뉴스·주가 수집</li><li><span class="ownership-label">직접 개선</span> 뉴스 본문 처리·재실행 구조</li><li><span class="neutral-label">팀 기능</span> 뉴스 요약·유사도 그룹화</li><li><span class="ownership-label">직접 구현</span> KR-FinBERT 감성분석</li><li class="team-model-node"><span class="neutral-label">팀 모델</span> Direction / RecentFlow</li></ul>
+                  <ul class="ownership-node-list"><li><span class="ownership-tag ownership-tag--team">팀 / 공용</span> 뉴스·주가 수집</li><li><span class="ownership-tag ownership-tag--direct">직접 구현</span> 뉴스 본문 처리·재실행 구조</li><li><span class="ownership-tag ownership-tag--team">팀 / 공용</span> 뉴스 요약·유사도 그룹화</li><li><span class="ownership-tag ownership-tag--direct">직접 구현</span> KR-FinBERT 감성분석</li><li><span class="ownership-tag ownership-tag--team">팀 / 공용</span><span class="scope-detail">· 팀 모델</span> Direction</li><li><span class="ownership-tag ownership-tag--team">팀 / 공용</span><span class="scope-detail">· 팀 모델</span> RecentFlow</li></ul>
                 </section>
                 <div class="system-connector" aria-hidden="true"><span>→</span></div>
                 <div class="system-database"><strong>Shared MySQL</strong><span>AI/Data와 Web이 함께 사용하는 데이터 기준</span></div>
                 <div class="system-connector" aria-hidden="true"><span>→</span></div>
-                <section class="system-column system-column--backend" aria-labelledby="flask-backend-title">
+                <section class="system-column" aria-labelledby="flask-backend-title">
                   <h3 id="flask-backend-title">Flask Backend</h3>
-                  <small>직접 구현·통합</small>
-                  <ul><li>Repository</li><li>Service</li><li>Route</li></ul>
+                  <ul class="ownership-node-list"><li><span class="ownership-tag ownership-tag--direct">직접 구현</span> Repository</li><li><span class="ownership-tag ownership-tag--direct">직접 구현</span> Service</li><li><span class="ownership-tag ownership-tag--direct">직접 구현</span> Route</li></ul>
                 </section>
                 <div class="system-connector" aria-hidden="true"><span>→</span></div>
-                <div class="system-interface"><strong>사용자 화면</strong><span>대시보드·종목 상세·JSON API</span><small>팀 / 공용 Flask 화면 결과</small></div>
+                <div class="system-interface"><strong>사용자 화면</strong><span>대시보드·종목 상세·JSON API</span><small class="ownership-tag ownership-tag--team">팀 / 공용</small></div>
               </div>
               <div class="operation-layer">
                 <h3>운영 계층</h3>
-                <div class="operation-flow" aria-label="운영 계층의 실행과 상태 관리 역할">
-                  <div class="diagram-node diagram-node--direct"><strong><code>systemd</code></strong><span>주기 실행 담당</span><small>직접 구현</small></div>
-                  <div class="diagram-node diagram-node--direct"><strong>Jobs</strong><span>실행 대상과 순서 통합</span><small>직접 통합</small></div>
-                  <div class="diagram-node diagram-node--direct"><strong><code>pipeline_run</code></strong><span>실행·예측 상태 기록</span><small>직접 연결</small></div>
-                  <div class="diagram-node"><strong>Web 상태 표시</strong><span>저장된 상태 조회·표시</span><small>팀 / 공용</small></div>
+                <div class="operation-flow" aria-label="systemd에서 Jobs 실행, pipeline_run 상태 기록, Web 상태 사용으로 이어지는 운영 관계">
+                  <div class="diagram-node diagram-node--direct"><strong><code>systemd</code></strong><span>주기 실행 담당</span><small class="ownership-tag ownership-tag--direct">직접 구현</small></div>
+                  <div class="operation-connector" aria-hidden="true"><span>→</span></div>
+                  <div class="diagram-node diagram-node--integration"><strong>Jobs 실행</strong><span>실행 대상과 순서 통합</span><small class="ownership-tag ownership-tag--integration">직접 통합</small></div>
+                  <div class="operation-connector" aria-hidden="true"><span>→</span></div>
+                  <div class="diagram-node diagram-node--direct"><strong><code>pipeline_run</code> 상태 기록</strong><span>실행·예측 상태 저장</span><small class="ownership-tag ownership-tag--direct">직접 구현</small></div>
+                  <div class="operation-connector" aria-hidden="true"><span>→</span></div>
+                  <div class="diagram-node diagram-node--integration"><strong>Web 상태 사용</strong><span>저장된 상태 조회·표시</span><small class="ownership-tag ownership-tag--integration">직접 통합</small></div>
                 </div>
               </div>
               <p class="architecture-note">AI 저장소와 Web 저장소는 서로 HTTP로 직접 호출하지 않습니다. Shared MySQL이 두 애플리케이션 사이의 데이터 계약입니다. Direction·RecentFlow 모델 자체는 팀원이 구현했고, 개인 기여는 감성분석·Backend·Jobs를 이 구조에 연결한 범위입니다.</p>
@@ -154,10 +155,10 @@
           <div class="shell document-layout">
             <header class="section-heading">
               <p class="section-marker"><span>04 /</span> 내가 맡은 역할</p>
-              <h2 id="contribution-title">금융 뉴스 감성분석과 Flask Backend를 구현하고, 팀 기능이 같은 DB와 실행 흐름을 사용하도록 통합했습니다.</h2>
+              <h2 id="contribution-title">금융 뉴스 감성분석과 Flask Backend를 구현하고, 팀 결과가 같은 DB와 실행 흐름을 사용하도록 통합했습니다.</h2>
             </header>
             <div class="prose contribution-content">
-              <div class="direct-label">직접 구현</div>
+              <div class="direct-label">직접 담당 범위</div>
               <div class="responsibility-list stock-role-list">
                 <article><h3>1. 금융 뉴스 감성분석 DB pipeline</h3><ul><li>KR-FinBERT 기반 감성분석 batch</li><li>뉴스 제목+요약 입력</li><li>감성 확률/파생 지표 저장</li><li>분석 대상 조회와 저장 Repository 분리</li><li><code>news_id + model_id</code> 기준 중복 방어</li></ul></article>
                 <article><h3>2. 뉴스 처리·재실행 구조 개선</h3><ul><li>뉴스 처리 상태의 기준을 실행 CSV에서 DB로 전환</li><li>완료·본문만 존재·신규 상태별 재실행 범위 분리</li><li>테마별 중복 수집 흐름을 공통 runner로 정리</li></ul></article>
@@ -165,7 +166,7 @@
                 <article><h3>4. Jobs와 Linux 실행 통합</h3><ul><li>여러 개별 Job을 전체 실행 흐름으로 연결</li><li>모델/DB 조건 preflight</li><li>실행 상태와 예측 상태 기록</li><li>systemd service/timer 구성</li></ul></article>
                 <article><h3>5. 사용자 Backend 기능</h3><ul><li>회원가입/로그인 DB 연동</li><li>password hash / session</li><li>이메일 인증 흐름</li><li>관심 종목 DB 저장</li></ul></article>
               </div>
-                <div class="team-boundary"><h3>팀 / 공용 영역</h3><p>뉴스 요약 모델과 Direction·RecentFlow 예측 모델 자체는 팀 구현으로 구분합니다. 저는 해당 기능의 입력과 결과를 공용 DB·실행 순서·Flask 화면에 맞춰 통합했습니다.</p><p class="team-model-note"><span class="neutral-label">팀 모델</span> Direction / RecentFlow 모델 자체</p></div>
+                <div class="team-boundary"><h3>팀 / 공용 영역</h3><p>뉴스 요약 모델과 Direction·RecentFlow 예측 모델 자체는 팀 구현으로 구분합니다. 저는 해당 기능의 입력과 결과를 공용 DB·실행 순서·Flask 화면에 맞춰 통합했습니다.</p><p class="team-model-note"><span class="ownership-tag ownership-tag--team">팀 / 공용</span><span class="scope-detail">· 팀 모델</span> Direction / RecentFlow 모델 자체</p></div>
             </div>
           </div>
         </section>
