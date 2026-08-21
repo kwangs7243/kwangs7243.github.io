@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="PILOS Sentiment Index의 데이터 처리, 모델 학습·추론과 서비스 통합 과정을 정리한 프로젝트 상세" />
+    <meta name="description" content="같은 날의 종목 댓글과 개인투자자 매매 사이에서 관측된 통계적 연관성을 분석하고 설명하는 PILOS 프로젝트 상세" />
     <title>PILOS Sentiment Index | 프로젝트 상세</title>
     <link rel="icon" href="data:," />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css" />
-    <link rel="stylesheet" href="../../project-detail.css?v=20260821-sentiment" />
+    <link rel="stylesheet" href="../../project-detail.css?v=20260821-step3-final3" />
   </head>
   <body class="project-detail-page">
     <a class="skip-link" href="#main-content">본문으로 건너뛰기</a>
@@ -26,7 +26,7 @@
           <div class="shell hero-inner">
             <p class="eyebrow">PROJECT DETAIL</p>
             <h1 id="case-title">PILOS Sentiment Index</h1>
-            <p class="hero-definition">종목별 커뮤니티 댓글 표현과 같은 날 개인투자자 매수·매도 수급의 통계적 연관성을 학습하고, 최근 댓글에서 나타나는 수급 방향별 언어 경향을 서비스 결과로 제공한 4인 팀 프로젝트입니다.</p>
+            <p class="hero-definition">같은 날의 종목 댓글과 개인투자자 매매를 함께 보고, 두 데이터 사이에서 관측된 통계적 연관성을 종목별로 분석하고 설명하는 4인 팀 서비스입니다.</p>
             <dl class="hero-meta">
               <div><dt>기간</dt><dd>3주 2일</dd></div>
               <div><dt>팀</dt><dd>4인 팀</dd></div>
@@ -53,25 +53,31 @@
           <div class="shell document-layout">
             <header class="section-heading">
               <p class="section-marker"><span>01 /</span> 프로젝트 개요</p>
-              <h2 id="overview-title">댓글이 긍정적인지가 아니라, 실제 개인투자자 수급과 어떤 표현이 함께 나타났는지 분석했습니다.</h2>
+              <h2 id="overview-title">많은 종목 댓글과 관측된 개인투자자 매매를 같은 날짜 기준으로 함께 이해할 수 있게 했습니다.</h2>
             </header>
             <div class="prose overview-content">
-              <h3>프로젝트 질문</h3>
-              <p>같은 종목·거래일에 작성된 댓글 표현과 그날의 개인투자자 매수·매도 우세 사이에는 어떤 통계적 연관성이 있을까?</p>
-              <h3>접근</h3>
-              <p>종목·거래일별 댓글을 전처리하고 Kiwi로 토큰화한 뒤 하나의 일별문서로 합쳐 TF-IDF 벡터를 만들었습니다. 같은 종목·거래일의 개인투자자 매수·매도 수급 기준값을 정답값으로 연결하고, 방향별 Ridge Regression으로 댓글 표현과 수급 우세 사이의 연관 가중치를 학습했습니다.</p>
-              <h3>서비스 결과</h3>
-              <p>학습된 Vectorizer와 Ridge를 신규 일별 댓글 문서에 적용해 다음 결과를 제공합니다.</p>
+              <h3>서비스 문제</h3>
+              <p>많은 종목 댓글을 일일이 읽는 것만으로는 그날의 댓글 표현과 관측된 개인투자자 매매가 어떤 관계로 함께 나타났는지 쉽게 파악하기 어려웠습니다.</p>
+              <h3>만든 서비스</h3>
+              <p>같은 종목·일자의 댓글과 개인투자자 매매를 함께 보고, 두 데이터 사이에서 관측된 통계적 연관성을 종목별 분석 결과와 설명으로 제공했습니다.</p>
+              <h3>사용자가 확인할 수 있는 정보</h3>
               <ul>
-                <li>수급 방향별 댓글 표현 연관 점수</li>
-                <li>결과에 크게 기여한 주요 표현</li>
-                <li>과거 동일 모델 결과분포에서의 0~100 상대 신호</li>
-                <li>실제 개인투자자 수급 상태와 일별 LLM 설명</li>
-                <li>단일 댓글에 대한 두 방향 모델 반응 비교</li>
+                <li>개인투자자 매수·매도 우세도와 개인투자자 매매 우세</li>
+                <li>관측된 매매 우세에 해당하는 댓글·매매 연관 점수와 수준</li>
+                <li>댓글 분석 모델 원출력값과 주요 영향 단어</li>
+                <li>직전 비교 가능일·최근 비교 가능일 평균과 일별 댓글·매매 해설</li>
+                <li>단일 댓글에 대한 매수 우세일·매도 우세일 모델 반응 확인</li>
               </ul>
+              <h3>기획 변화</h3>
+              <ol>
+                <li>교육과정의 ‘댓글 심리 점수’ 주제에서 출발해 수동 감정·방향 라벨 방식을 검토했습니다.</li>
+                <li>주관적인 라벨 기준과 수작업 부담을 확인한 뒤, 실제 시장 데이터를 학습 목표로 사용하는 방향을 검토했습니다.</li>
+                <li>미래 방향 예측 구조도 검토했지만 제한된 데이터로 검증·해석할 수 있는 범위를 넘어설 수 있다고 판단했습니다.</li>
+                <li>미래 예측을 과장하지 않고, 같은 날 관측된 댓글 표현과 개인투자자 매매 우세의 통계적 연관성을 분석하는 현재 문제로 구체화했습니다.</li>
+              </ol>
               <h3>분석 범위</h3>
-              <p>이 프로젝트는 일반적인 긍정·부정 감성분류가 아닙니다. 미래 주가·수급을 예측하거나 실제 매수·매도 확률을 계산하지 않으며, 투자 종목이나 매매 시점을 추천하지 않습니다. 댓글이 실제 매매 행동을 일으켰다는 인과관계도 주장하지 않습니다.</p>
-              <p class="data-line"><span>핵심 데이터</span>종목·거래일별 온라인 댓글 + 같은 종목·거래일의 개인투자자 일별 매수·매도 수급</p>
+              <p>이 프로젝트는 일반적인 긍정·부정 감성분류가 아닙니다. 미래 주가나 개인투자자 매매를 예측하거나 실제 매수·매도 확률을 계산하지 않으며, 투자 종목이나 매매 시점을 추천하지 않습니다. 댓글이 실제 매매 행동을 일으켰다는 인과관계도 주장하지 않습니다.</p>
+              <p class="data-line"><span>분석 데이터</span>종목·일자별 온라인 댓글 + 같은 종목·일자의 개인투자자 매수·매도 정보</p>
             </div>
           </div>
         </section>
@@ -85,20 +91,20 @@
             </header>
             <div class="screen-list">
               <figure class="screen-item">
-                <a class="screen-image" href="./assets/pilos-market.png" data-lightbox aria-haspopup="dialog" aria-label="PILOS 시장 분위기 화면 크게 보기"><img src="./assets/pilos-market.png" alt="PILOS 시장 분위기 화면" /></a>
-                <figcaption><p class="screen-number"><strong>01 / 시장 분위기</strong></p><p>여러 종목의 실제 개인투자자 수급과 댓글 기반 연관 신호를 같은 화면에서 비교합니다. 시장 전체를 하나의 매수·매도 추천으로 요약하지 않고 종목별 분석 상태와 실제 수급을 함께 확인할 수 있게 했습니다.</p></figcaption>
+                <a class="screen-image" href="./assets/pilos-market.png" data-lightbox aria-haspopup="dialog" aria-label="PILOS 종목별 분석 현황 화면 크게 보기"><img src="./assets/pilos-market.png" alt="PILOS 종목별 분석 현황 화면" /></a>
+                <figcaption><p class="screen-number"><strong>01 / 종목별 분석 현황</strong></p><p>분석 대상 종목별로 최근 저장된 댓글·매매 분석 결과와 결과 제공 상태를 확인합니다. 시장 전체를 하나의 지표나 추천 순위로 요약하지 않습니다.</p></figcaption>
               </figure>
               <figure class="screen-item">
-                <a class="screen-image" href="./assets/pilos-stock-detail.png" data-lightbox aria-haspopup="dialog" aria-label="PILOS 종목 분석 리포트 화면 크게 보기"><img src="./assets/pilos-stock-detail.png" alt="PILOS 종목 분석 리포트 화면" /></a>
-                <figcaption><p class="screen-number"><strong>02 / 종목 분석 리포트</strong></p><p>선택한 종목의 댓글·매매 연관 결과, 실제 개인투자자 수급, 주요 근거 지표와 저장된 일별 설명을 확인하는 화면입니다. LLM 설명은 모델 결과를 새로 판단하지 않고 앞 단계에서 확정한 정형 근거를 문장으로 정리합니다.</p></figcaption>
+                <a class="screen-image" href="./assets/pilos-stock-detail.png" data-lightbox aria-haspopup="dialog" aria-label="PILOS 종목별 댓글·매매 분석 화면 크게 보기"><img src="./assets/pilos-stock-detail.png" alt="PILOS 종목별 댓글·매매 분석 화면" /></a>
+                <figcaption><p class="screen-number"><strong>02 / 종목별 댓글·매매 분석</strong></p><p>선택한 종목의 개인투자자 매매 우세, 댓글·매매 연관 점수, 주요 영향 단어와 저장된 일별 댓글·매매 해설을 확인합니다. 해설은 앞 단계에서 확정한 정형 근거를 문장으로 정리합니다.</p></figcaption>
               </figure>
               <figure class="screen-item">
-                <a class="screen-image" href="./assets/pilos-research.png" data-lightbox aria-haspopup="dialog" aria-label="PILOS 연구 소개 화면 크게 보기"><img src="./assets/pilos-research.png" alt="PILOS 연구 소개 화면" /></a>
-                <figcaption><p class="screen-number"><strong>03 / 연구 소개</strong></p><p>프로젝트가 어떤 관계를 분석하는지와 0~100 상대 신호가 확률·정확도·미래 예측값이 아니라는 해석 범위를 서비스 안에서 직접 설명합니다.</p></figcaption>
+                <a class="screen-image" href="./assets/pilos-research.png" data-lightbox aria-haspopup="dialog" aria-label="PILOS 서비스 분석 기준 화면 크게 보기"><img src="./assets/pilos-research.png" alt="PILOS 서비스 분석 기준 화면" /></a>
+                <figcaption><p class="screen-number"><strong>03 / 서비스 분석 기준</strong></p><p>프로젝트가 어떤 관계를 분석하는지와 댓글·매매 연관 점수가 확률·정확도·미래 예측값이 아니라는 해석 범위를 서비스 안에서 설명합니다.</p></figcaption>
               </figure>
               <figure class="screen-item">
-                <a class="screen-image" href="./assets/pilos-comment-lab.png" data-lightbox aria-haspopup="dialog" aria-label="PILOS 댓글 분석실 화면 크게 보기"><img src="./assets/pilos-comment-lab.png" alt="PILOS 댓글 분석실 화면" /></a>
-                <figcaption><p class="screen-number"><strong>04 / 댓글 분석실</strong></p><p>사용자가 입력한 한 줄 댓글을 학습된 두 방향 모델에 적용해 어떤 표현이 각 모델 계산에 반영되는지 비교하는 체험 화면입니다. 일별 집계 분석과 동일한 의미의 시장 예측 기능으로 설명하지 않습니다.</p></figcaption>
+                <a class="screen-image" href="./assets/pilos-comment-lab.png" data-lightbox aria-haspopup="dialog" aria-label="PILOS 댓글 한 줄 모델 체험 화면 크게 보기"><img src="./assets/pilos-comment-lab.png" alt="PILOS 댓글 한 줄 모델 체험 화면" /></a>
+                <figcaption><p class="screen-number"><strong>04 / 댓글 한 줄 모델 체험</strong></p><p>사용자가 입력한 한 줄 댓글에서 매수 우세일 모델과 매도 우세일 모델이 인식한 표현의 반응값을 각각 확인합니다. 공식 일별 댓글·매매 연관 점수와는 별개의 모델 반응 체험입니다.</p></figcaption>
               </figure>
             </div>
           </div>
@@ -110,43 +116,50 @@
               <p class="section-marker"><span>03 /</span> 프로젝트 개념도</p>
               <h2 id="architecture-title">학습 구조와 서비스 추론 구조를 분리해 이해합니다.</h2>
             </header>
+            <ul class="ownership-legend" aria-label="구현 범위 범례">
+              <li><span class="legend-swatch legend-swatch--direct" aria-hidden="true"></span><strong>직접 구현</strong></li>
+              <li><span class="legend-swatch legend-swatch--integration" aria-hidden="true"></span><strong>직접 통합</strong></li>
+              <li><span class="legend-swatch legend-swatch--team" aria-hidden="true"></span><strong>팀 / 공용</strong></li>
+            </ul>
             <div class="architecture-list">
               <section class="architecture-block" aria-labelledby="training-title">
-                <div class="diagram-heading"><p class="subsection-marker">03-A / 모델 학습 구조</p><span class="ownership-label">직접 구현·통합</span></div>
-                <h3 id="training-title">댓글 표현과 같은 날의 개인투자자 수급을 하나의 학습 구조로 연결했습니다.</h3>
+                <div class="diagram-heading"><p class="subsection-marker">A. 모델 학습 구조</p><span class="ownership-label">직접 구현·통합</span></div>
+                <h3 id="training-title">댓글 표현과 같은 날의 개인투자자 매수·매도 우세도를 하나의 학습 구조로 연결했습니다.</h3>
                 <div class="training-diagram">
                   <div class="diagram-branch">
-                    <div class="diagram-node"><span>종목·거래일별 댓글</span><small>팀 / 공용 데이터</small></div>
+                    <p class="branch-kicker">댓글 입력 X</p>
+                    <div class="diagram-node"><span>종목·일자별 댓글</span><small>팀 / 공용 데이터</small></div>
                     <div class="diagram-connector" aria-hidden="true">↓</div>
-                    <div class="diagram-node diagram-node--direct">전처리 · Kiwi · 일별문서<small>직접 구현</small></div>
+                    <div class="diagram-node diagram-node--direct">전처리 · Kiwi · 댓글 분석 단위<small>직접 구현</small></div>
                     <div class="diagram-connector" aria-hidden="true">↓</div>
                     <div class="diagram-node diagram-node--direct">TF-IDF · 학습 입력 X<small>직접 구현</small></div>
                   </div>
                   <div class="diagram-branch">
-                    <div class="diagram-node diagram-node--team"><span>같은 종목·거래일의 개인투자자 수급</span><small>팀 / 공용 데이터</small></div>
+                    <p class="branch-kicker">개인투자자 매매 Y</p>
+                    <div class="diagram-node diagram-node--team"><span>같은 종목·일자의 개인투자자 매매</span><small>팀 / 공용 데이터</small></div>
                     <div class="diagram-connector" aria-hidden="true">↓</div>
-                    <div class="diagram-node diagram-node--team">수급 기준값 · 학습 정답 Y<small>팀 / 공용 데이터</small></div>
+                    <div class="diagram-node diagram-node--team">매수·매도 우세도 · 학습 정답 Y<small>팀 / 공용 데이터</small></div>
                   </div>
                   <div class="diagram-join" aria-hidden="true"><span class="join-left"></span><span class="join-arrow">↓</span><span class="join-right"></span></div>
                   <div class="training-output">
-                    <div class="diagram-node diagram-node--direct">방향별 Ridge 후보 학습·검증<small>직접 구현·검증</small></div>
-                    <div class="diagram-node diagram-node--direct">최종 Ridge text-only<small>직접 구현·선정</small></div>
+                    <div class="diagram-node diagram-node--direct">매수 우세일·매도 우세일 Ridge 후보<small>직접 구현·검증</small></div>
+                    <div class="diagram-node diagram-node--direct">최종 Ridge text-only 두 모델<small>직접 구현·선정</small></div>
                     <div class="diagram-node diagram-node--direct">Vectorizer + Ridge Artifact<small>직접 구현</small></div>
                   </div>
                 </div>
-                <p class="architecture-note">댓글 TF-IDF가 Ridge의 입력이고, 개인투자자 수급 기준값은 학습 정답입니다. 두 데이터는 같은 종목·거래일을 기준으로 연결됩니다. 모델은 댓글이 미래 수급을 만든다고 학습하는 것이 아니라, 보유 데이터셋에서 댓글 표현과 당일 수급 우세가 함께 나타난 통계적 관계를 학습합니다.</p>
+                <p class="architecture-note">댓글 TF-IDF가 Ridge의 입력이고, 개인투자자 매수·매도 우세도는 학습 정답입니다. 두 데이터는 같은 종목·일자를 기준으로 연결됩니다. 모델은 댓글이 미래 매매를 만든다고 학습하는 것이 아니라, 보유 데이터셋에서 댓글 표현과 같은 날의 개인투자자 매매 우세가 함께 나타난 통계적 관계를 학습합니다.</p>
               </section>
 
               <section class="architecture-block" aria-labelledby="inference-title">
-                <div class="diagram-heading"><p class="subsection-marker">03-B / 서비스 추론 구조</p><span class="ownership-label">직접 구현·통합</span></div>
+                <div class="diagram-heading"><p class="subsection-marker">B. 서비스 추론 구조</p><span class="ownership-label">직접 구현·통합</span></div>
                 <h3 id="inference-title">서비스에서는 신규 댓글을 검증된 모델과 상태 계약을 거쳐 사용자 결과로 바꿉니다.</h3>
                 <div class="inference-diagram" aria-label="서비스 추론 구조">
-                  <article class="diagram-stage diagram-stage--direct"><p class="stage-label">입력 처리 · 직접 구현</p><ul><li>신규 댓글</li><li>전처리 · Kiwi</li><li>종목·거래일별 일별문서</li></ul></article>
-                  <article class="diagram-stage diagram-stage--direct"><p class="stage-label">모델 추론 · 직접 구현</p><ul><li>학습된 TF-IDF</li><li>방향별 Ridge</li><li>원출력 · 주요 단어 기여도</li></ul></article>
-                  <article id="service-signal" class="diagram-stage diagram-stage--direct"><p class="stage-label">결과 관리 · 직접 구현</p><ul><li>입력 품질·제공 상태</li><li>DB 저장</li><li>Calibration</li><li>0~100 상대 신호</li></ul></article>
-                  <article class="diagram-stage diagram-stage--mixed"><p class="stage-label">서비스 제공</p><ul><li>검증된 정형 근거</li><li>LLM 일별 설명</li><li>Flask 서비스</li></ul><p class="stage-note">LLM 설명: 직접 구현·통합<br />Flask 화면: 팀 / 공용</p></article>
+                  <article class="diagram-stage diagram-stage--direct"><p class="stage-label">입력 처리 · 직접 구현</p><ul><li>신규 댓글</li><li>전처리 · Kiwi</li><li>종목·일자별 댓글 분석 단위</li></ul></article>
+                  <article class="diagram-stage diagram-stage--direct"><p class="stage-label">두 모델 계산 · 직접 구현</p><ul><li>학습된 TF-IDF</li><li>매수 우세일·매도 우세일 모델</li><li>모델 원출력값 · 주요 영향 단어</li></ul></article>
+                  <article id="service-signal" class="diagram-stage diagram-stage--direct"><p class="stage-label">결과 관리 · 직접 구현</p><ul><li>관측된 개인투자자 매매 우세로 결과 선택</li><li>결과 제공 상태 · DB 저장</li><li>Calibration · 댓글·매매 연관 점수</li></ul></article>
+                  <article class="diagram-stage diagram-stage--mixed"><p class="stage-label">서비스 제공</p><ul><li>검증된 정형 근거</li><li>일별 댓글·매매 해설</li><li>Flask 서비스</li></ul><p class="stage-note">해설 생성: 직접 구현·통합<br />Flask 화면: 팀 / 공용</p></article>
                 </div>
-                <p class="architecture-note">서비스 시점의 개인투자자 수급 데이터는 Ridge의 텍스트 추론 입력으로 들어가지 않습니다. 실제 수급은 서비스 화면과 일별 설명의 관측 상태로 함께 사용되지만, 신규 댓글의 Ridge 계산은 학습된 Vectorizer와 댓글 문서를 기준으로 수행됩니다. 0~100 값은 과거 출력분포에서 현재 출력이 차지하는 상대 위치이며 확률·정확도·미래 수급 예측이 아닙니다.</p>
+                <p class="architecture-note">같은 댓글 분석 단위를 두 모델이 각각 계산한 뒤, 관측된 개인투자자 매매 우세에 해당하는 모델 결과를 선택합니다. 개인투자자 매매 정보는 Ridge의 텍스트 입력이 아니며, 선택된 원출력값을 같은 방향·모델 버전의 기준분포에 상대화해 댓글·매매 연관 점수로 변환합니다. 이 점수는 확률·정확도·미래 개인투자자 매매 예측이 아닙니다.</p>
               </section>
             </div>
           </div>
@@ -159,19 +172,19 @@
               <h2 id="contribution-title">분석 파이프라인을 직접 구현하고, 결과가 서비스까지 이어지는 실행 흐름을 통합했습니다.</h2>
             </header>
             <div class="contribution-content prose">
-              <p>4인 팀의 팀장으로 전체 기술 흐름을 관리했습니다. 개인 구현 범위는 댓글이 모델 입력으로 바뀌는 과정부터 모델 검증·학습·추론, 결과 상태와 사용자용 변환, LLM 일별 설명, 최상위 자동화까지 이어집니다.</p>
+              <p>4인 팀의 팀장으로 전체 기술 흐름을 관리했습니다. 개인 구현 범위는 댓글이 모델 입력으로 바뀌는 과정부터 모델 검증·학습·추론, 결과 제공 상태와 사용자용 변환, 일별 댓글·매매 해설, 최상위 자동화까지 이어집니다.</p>
               <div class="direct-label">직접 구현</div>
               <div class="responsibility-list">
-                <article><h3>1. 모델 입력과 데이터 품질</h3><ul><li>댓글 전처리</li><li>Kiwi 토큰화와 도메인 표현 보완</li><li>종목·거래일별 일별문서</li><li>TF-IDF 벡터화와 입력 검수</li></ul></article>
+                <article><h3>1. 모델 입력과 데이터 품질</h3><ul><li>댓글 전처리</li><li>Kiwi 토큰화와 도메인 표현 보완</li><li>종목·일자별 댓글 분석 단위</li><li>TF-IDF 벡터화와 입력 검수</li></ul></article>
                 <article><h3>2. 모델 개발과 검증</h3><ul><li>Ridge / ElasticNet 후보 비교</li><li>날짜 그룹 랜덤 검증과 워크포워드 검증</li><li>최종 Ridge text-only 선정</li><li>전체 데이터셋 재학습</li></ul></article>
-                <article><h3>3. 서비스 추론 계약</h3><ul><li>Vectorizer + Ridge artifact</li><li>방향별 서비스 추론</li><li>주요 단어 contribution</li><li><code>ready / insufficient_features</code> 결과 상태</li><li>결과 저장과 calibration 기반 상대 신호</li></ul></article>
-                <article><h3>4. AI 결과 설명과 Backend 연결</h3><ul><li>정형 evidence 생성</li><li>LLM 일별 설명 계약</li><li>저장 보고서와 Flask 데이터 계약 연결</li></ul></article>
+                <article><h3>3. 서비스 추론 계약</h3><ul><li>Vectorizer + Ridge artifact</li><li>매수 우세일·매도 우세일 모델 추론</li><li>주요 영향 단어와 영향값 산출</li><li><code>ready / insufficient_features</code>에 대응하는 결과 제공 상태</li><li>결과 저장과 calibration 기반 댓글·매매 연관 점수</li></ul></article>
+                <article><h3>4. 분석 결과 설명과 Backend 연결</h3><ul><li>정형 근거 생성</li><li>일별 댓글·매매 해설 생성 계약</li><li>저장 해설과 Flask 데이터 계약 연결</li></ul></article>
                 <article><h3>5. 자동화와 전체 기술 흐름</h3><ul><li>개별 Job을 최상위 실행 흐름으로 통합</li><li>단계별 실패 경계</li><li>중복 실행 방지</li><li>실행 상태·실패 단계 기록</li><li>팀장으로 데이터 규칙과 완료 조건 조정</li></ul></article>
               </div>
               <div class="team-boundary">
                 <h3>팀 / 공용 영역</h3>
                 <p>프로젝트 전체 결과에 포함되지만 개인 단독 구현으로 구분하지 않은 영역입니다.</p>
-                <ul><li>댓글 수집 자체</li><li>개인투자자 매수·매도 데이터 수집 자체</li><li>Flask 웹 UI 전체 구현</li><li>근거 기반 답변 도우미 전체</li></ul>
+                <ul><li>댓글 수집 자체</li><li>개인투자자 매수·매도 정보 수집 자체</li><li>Flask 웹 UI 전체 구현</li><li>근거 기반 답변 도우미 전체</li></ul>
               </div>
             </div>
           </div>
@@ -182,14 +195,14 @@
             <header class="section-heading section-heading-wide">
               <p class="section-marker"><span>05 /</span> 데이터와 모델을 만드는 과정</p>
               <h2 id="model-process-title">모델을 고르기 전에, 실제 댓글이 어떤 입력으로 바뀌는지부터 확인했습니다.</h2>
-              <p class="section-intro">이 프로젝트의 모델 입력은 종목·거래일별 댓글입니다. 따라서 모델 종류보다 먼저 댓글이 전처리·토큰화·벡터화되는 과정에서 의미가 깨지지 않는지 확인하고, 이후 같은 날짜의 수급 기준값과 연결해 모델 후보를 검증했습니다.</p>
+              <p class="section-intro">이 프로젝트의 모델 입력은 종목·일자별 댓글 분석 단위입니다. 따라서 모델 종류보다 먼저 댓글이 전처리·토큰화·벡터화되는 과정에서 의미가 깨지지 않는지 확인하고, 이후 같은 날짜의 개인투자자 매수·매도 우세도와 연결해 모델 후보를 검증했습니다.</p>
             </header>
 
             <div class="process-list">
               <section id="tokenizer-quality" class="process-block" aria-labelledby="tokenizer-title">
-                <p class="subsection-marker">05-A / 실제 댓글 입력 검수</p>
+                <p class="subsection-marker">A. 실제 댓글 입력 검수</p>
                 <h3 id="tokenizer-title">형태소 분석 결과를 실제 원문과 다시 대조했습니다.</h3>
-                <ol class="flow flow-compact" aria-label="댓글 입력 검수 흐름"><li>댓글 원문</li><li>기본 전처리</li><li>Kiwi 형태소 분석</li><li>POS/불용어 필터</li><li>실제 token 검수</li><li>종목·거래일별 일별문서</li></ol>
+                <ol class="flow flow-compact" aria-label="댓글 입력 검수 흐름"><li>댓글 원문</li><li>기본 전처리</li><li>Kiwi 형태소 분석</li><li>POS/불용어 필터</li><li>실제 token 검수</li><li>종목·일자별 댓글 분석 단위</li></ol>
                 <h4>발견한 문제</h4>
                 <p>삼성전자 실제 댓글을 벡터화해 상위 TF-IDF 표현을 확인하던 중, 확인·강조 어미 <code>-잖-</code>이 일부 문장에서 <code>않/VX</code>로 분석되는 사례를 발견했습니다. POS만 보면 정상적인 보조용언처럼 보이기 때문에 단순 품사 필터로는 오분석 여부를 구분하기 어려웠습니다.</p>
                 <h4>대응</h4>
@@ -199,39 +212,39 @@
               </section>
 
               <section class="process-block" aria-labelledby="tfidf-title">
-                <p class="subsection-marker">05-B / TF-IDF와 sparse 입력</p>
-                <h3 id="tfidf-title">일별 댓글 문서를 TF-IDF 희소 벡터로 변환했습니다.</h3>
-                <ol class="flow flow-compact" aria-label="일별 댓글 문서 변환 흐름"><li>같은 종목·거래일 댓글 token</li><li>하나의 일별문서</li><li>TF-IDF</li><li>Ridge 입력 X</li></ol>
+                <p class="subsection-marker">B. TF-IDF와 sparse 입력</p>
+                <h3 id="tfidf-title">종목·일자별 댓글 분석 단위를 TF-IDF 희소 벡터로 변환했습니다.</h3>
+                <ol class="flow flow-compact" aria-label="종목·일자별 댓글 분석 단위 변환 흐름"><li>같은 종목·일자 댓글 token</li><li>댓글 분석 단위</li><li>TF-IDF</li><li>Ridge 입력 X</li></ol>
                 <h4>구현 포인트</h4>
-                <ul><li>학습 데이터셋의 일별문서를 기준으로 TF-IDF vocabulary와 IDF 학습</li><li>서비스 추론에서도 학습 때 저장한 동일 Vectorizer 사용</li><li>검수 코드에서는 sparse row를 매번 dense 배열로 풀지 않고 <code>row.indices</code>, <code>row.data</code>의 non-zero 값만 확인</li></ul>
+                <ul><li>학습 데이터셋의 댓글 분석 단위를 기준으로 TF-IDF vocabulary와 IDF 학습</li><li>서비스 추론에서도 학습 때 저장한 동일 Vectorizer 사용</li><li>검수 코드에서는 sparse row를 매번 dense 배열로 풀지 않고 <code>row.indices</code>, <code>row.data</code>의 non-zero 값만 확인</li></ul>
                 <p class="note-line">댓글별 TF-IDF 상위 표현을 검수하던 코드가 sparse row를 <code>toarray().flatten()</code>으로 전체 dense 배열로 변환하고 있었습니다. 이를 실제 값이 존재하는 feature만 읽도록 수정했습니다. 별도 성능 수치는 측정하지 않았습니다.</p>
               </section>
 
               <section class="process-block" aria-labelledby="validation-title">
-                <p class="subsection-marker">05-C / 모델 후보와 두 가지 검증</p>
+                <p class="subsection-marker">C. 모델 후보와 두 가지 검증</p>
                 <h3 id="validation-title">미래 예측 성능과 당일 연관성 재현을 같은 검증으로 설명하지 않았습니다.</h3>
                 <h4>비교 후보</h4>
                 <ul><li>Ridge</li><li>ElasticNet</li><li>text-only</li><li>댓글 수 feature를 추가한 후보</li></ul>
                 <h4>1) 워크포워드 검증</h4>
-                <p>과거 구간으로 학습하고 이후 월을 검증해 <strong>시간이 지나며 댓글량·어휘·수급 분포가 달라졌을 때 성능이 얼마나 흔들리는지</strong> 확인했습니다.</p>
-                <ul><li>검증 구간: 2026년 4월, 5월, 6월, 7월 1~24일</li><li><code>40개 후보 × 2개 방향 × 4개 Fold = 320회</code> 평가</li><li>최종 text-only Ridge alpha=1 평균 R² — Positive: <strong>0.0481</strong>, Negative: <strong>0.0503</strong></li></ul>
+                <p>과거 구간으로 학습하고 이후 월을 검증해 <strong>시간이 지나며 댓글량·어휘·개인투자자 매수·매도 우세도 분포가 달라졌을 때 성능이 얼마나 흔들리는지</strong> 확인했습니다.</p>
+                <ul><li>검증 구간: 2026년 4월, 5월, 6월, 7월 1~24일</li><li><code>40개 후보 × 2개 모델 × 4개 Fold = 320회</code> 평가</li><li>최종 text-only Ridge alpha=1 평균 R² — 매수 우세일 모델: <strong>0.0481</strong>, 매도 우세일 모델: <strong>0.0503</strong></li></ul>
                 <h4>2) 날짜 그룹 랜덤 검증</h4>
-                <p>보유 데이터셋 내부에서 같은 시기의 댓글 표현과 당일 수급 관계가 어느 정도 재현되는지 별도로 확인했습니다.</p>
-                <ul><li>각 월의 고유 날짜 약 20%를 validation 날짜로 선택</li><li>같은 날짜의 모든 종목을 train 또는 validation 한쪽에만 배치</li><li>Positive/Negative가 같은 날짜 split 사용</li><li>5개 seed 반복</li><li>TF-IDF vocabulary와 IDF도 각 fold의 train 데이터로만 fit</li></ul>
-                <p>최종 text-only Ridge alpha=1 평균 validation R² — Positive: <strong>0.206797</strong>, Negative: <strong>0.221247</strong></p>
+                <p>보유 데이터셋 내부에서 같은 시기의 댓글 표현과 당일 개인투자자 매수·매도 우세도의 관계가 어느 정도 재현되는지 별도로 확인했습니다.</p>
+                <ul><li>각 월의 고유 날짜 약 20%를 validation 날짜로 선택</li><li>같은 날짜의 모든 종목을 train 또는 validation 한쪽에만 배치</li><li>매수 우세일·매도 우세일 모델에 같은 날짜 split 사용</li><li>5개 seed 반복</li><li>TF-IDF vocabulary와 IDF도 각 fold의 train 데이터로만 fit</li></ul>
+                <p>최종 text-only Ridge alpha=1 평균 validation R² — 매수 우세일 모델: <strong>0.206797</strong>, 매도 우세일 모델: <strong>0.221247</strong></p>
                 <h4>해석</h4>
                 <p>날짜 그룹 랜덤 검증에서 수치가 더 높았다는 사실을 모델이 새로 좋아졌다고 해석하지 않았습니다. 시간 순서를 강제한 워크포워드에서 성능이 크게 낮아진 결과와 함께 보면서 <strong>동시점 연관성은 일부 재현되지만 시간 분포 변화에는 민감하다</strong>고 해석했습니다.</p>
               </section>
 
               <section class="process-block" aria-labelledby="ridge-choice-title">
-                <p class="subsection-marker">05-D / 최종 Ridge text-only 선택</p>
+                <p class="subsection-marker">D. 최종 Ridge text-only 선택</p>
                 <h3 id="ridge-choice-title">조금 높은 점수보다 단순하고 일관된 서비스 입력 계약을 선택했습니다.</h3>
                 <h4>판단 근거</h4>
-                <p>Negative 방향에서 댓글 수 feature를 추가한 Ridge의 날짜 그룹 랜덤 평균 R²가 text-only보다 약간 높았습니다.</p>
+                <p>매도 우세일 모델에서 댓글 수 feature를 추가한 Ridge의 날짜 그룹 랜덤 평균 R²가 text-only보다 약간 높았습니다.</p>
                 <ul><li>text + 댓글 수: 약 <strong>0.2215</strong></li><li>text-only: 약 <strong>0.2212</strong></li><li>평균 이득: <strong>0.000227</strong></li><li>5개 seed 중 1개에서는 text-only보다 악화</li></ul>
                 <p>워크포워드에서도 댓글 수 feature의 견고한 추가 효용을 확인하기 어려웠습니다.</p>
                 <h4>최종 선택</h4>
-                <p><strong>Positive / Negative 모두 Ridge text-only, alpha=1</strong></p>
+                <p><strong>매수 우세일 모델과 매도 우세일 모델 모두 Ridge text-only, alpha=1</strong></p>
                 <h4>이유</h4>
                 <p>현재 데이터셋에서 댓글 수 feature의 추가 이득이 오차 수준에 가까웠고 방향별 입력 구조를 다르게 유지해야 할 근거가 부족했습니다. 따라서 두 방향의 입력 계약을 단순하게 통일했습니다.</p>
                 <p class="note-line">댓글 수가 일반적으로 쓸모없는 feature라는 뜻이 아닙니다. <strong>이번 데이터셋과 검증 조건에서 견고한 추가 효용을 확인하지 못했다</strong>는 판단입니다.</p>
@@ -245,11 +258,11 @@
             <header class="section-heading section-heading-wide">
               <p class="section-marker"><span>06 /</span> 실험 모델을 서비스 계약으로 만드는 과정</p>
               <h2 id="service-contract-title">모델이 계산되는 것과, 서비스가 그 결과를 신뢰하고 제공하는 것은 다른 문제였습니다.</h2>
-              <p class="section-intro">노트북에서 Ridge를 학습하는 것만으로 서비스가 완성되지는 않았습니다. 어떤 Vectorizer와 데이터로 학습된 모델인지 식별하고, 입력 품질이 부족한 결과를 구분하고, Backend와 LLM이 같은 모델 결과를 바라보도록 서비스 계약을 만들었습니다.</p>
+              <p class="section-intro">노트북에서 Ridge를 학습하는 것만으로 서비스가 완성되지는 않았습니다. 어떤 Vectorizer와 데이터로 학습된 모델인지 식별하고, 입력 품질이 부족한 결과를 구분하고, Backend와 일별 댓글·매매 해설이 같은 모델 결과를 바라보도록 서비스 계약을 만들었습니다.</p>
             </header>
             <div class="contract-list">
               <section id="model-artifact" class="contract-block" aria-labelledby="artifact-title">
-                <p class="subsection-marker">06-A / 재현 가능한 model artifact</p>
+                <p class="subsection-marker">A. 재현 가능한 model artifact</p>
                 <h3 id="artifact-title">모델 식별 정보와 입력 계약을 함께 저장했습니다.</h3>
                 <p>Ridge <code>.pkl</code>만 남아 있으면 어떤 TF-IDF vocabulary, tokenizer 설정, 데이터셋 기간으로 학습했는지 파일만 보고 확인하기 어렵습니다. 서로 다른 조건의 객체가 섞이면 같은 모델 이름이어도 동일한 추론 구성이라고 보기 어렵습니다.</p>
                 <p>하나의 versioned artifact에 다음을 같이 저장했습니다.</p>
@@ -260,39 +273,41 @@
               </section>
 
               <section class="contract-block" aria-labelledby="state-title">
-                <p class="subsection-marker">06-B / 계산 가능과 제공 가능을 분리</p>
-                <h3 id="state-title">숫자가 계산됐다고 정상 서비스 결과로 보지는 않았습니다.</h3>
-                <p>입력 문서에 모델 vocabulary와 겹치는 단어가 거의 없어도 Ridge는 숫자를 반환할 수 있습니다. 이 값을 다른 정상 결과와 같은 상태로 노출하면 계산 성공과 분석 근거 충분성을 혼동하게 됩니다.</p>
+                <p class="subsection-marker">B. 계산 가능과 제공 가능을 분리</p>
+                <h3 id="state-title">숫자가 계산됐다고 곧바로 제공 가능한 결과로 보지는 않았습니다.</h3>
+                <p>댓글 분석 단위에 모델 vocabulary와 겹치는 단어가 거의 없어도 Ridge는 숫자를 반환할 수 있습니다. 이 값을 다른 제공 가능한 결과와 같은 상태로 노출하면 계산 성공과 입력 기준 충족 여부를 혼동하게 됩니다.</p>
                 <ul><li><code>recognized_feature_count</code></li><li><code>unique_token_count</code></li><li><code>vocabulary_coverage</code></li><li><code>inference_status</code> — <code>ready</code> / <code>insufficient_features</code></li></ul>
                 <p>활성 artifact 기준 미완료 대상만 조회하고, 같은 <code>daily_document + artifact</code> 조합의 결과 중복을 방어했습니다. 추론 대상이 0건이면 실패가 아니라 정상 no-op 종료로 처리하고, 자동 추론 허용 시작일 이전의 과거 데이터 무제한 backfill을 방지했습니다.</p>
-                <p>DB row의 존재 여부와 <strong>사용자에게 제공 가능한 분석 상태</strong>를 분리했습니다.</p>
+                <p>DB row의 존재 여부와 <strong>결과 제공 상태인 제공 가능·제공 보류</strong>를 분리했습니다.</p>
               </section>
 
               <section class="contract-block" aria-labelledby="identity-title">
-                <p class="subsection-marker">06-C / active model identity와 Flask 조회 계약</p>
+                <p class="subsection-marker">C. active model identity와 Flask 조회 계약</p>
                 <h3 id="identity-title">생산자와 소비자가 같은 모델 식별 정보와 상태 계약을 사용하게 했습니다.</h3>
                 <p>Flask가 특정 artifact ID를 고정해서 조회하면 서비스 모델이 바뀐 뒤에도 과거 artifact 결과를 최신 결과처럼 읽을 수 있습니다.</p>
-                <ul><li>목록·상세·보고서·단일 댓글이 공통 active model identity 사용</li><li>최신 일별문서 + 활성 artifact 기준으로 조회</li><li>공개 응답에서 내부 <code>artifact_id</code>를 서비스 의미로 노출하지 않음</li><li>추론 대기 / 보고서 생성 대기 / 수급 갱신 대기 / 제공 가능 상태 구분</li></ul>
+                <ul><li>목록·상세·일별 해설·단일 댓글이 공통 active model identity 사용</li><li>최신 종목·일자별 댓글 분석 단위 + 활성 artifact 기준으로 조회</li><li>공개 응답에서 내부 <code>artifact_id</code>를 서비스 의미로 노출하지 않음</li><li>분석 결과 생성 대기 / 해설 생성 대기 / 데이터 갱신 대기 / 제공 가능 상태 구분</li></ul>
                 <p>결과를 만드는 생산자와 화면에서 읽는 소비자가 <strong>같은 모델 식별 정보와 상태 계약</strong>을 사용하게 했습니다.</p>
               </section>
 
               <section class="contract-block" aria-labelledby="signal-title">
-                <p class="subsection-marker">06-D / Calibration과 사용자용 상대 신호</p>
+                <p class="subsection-marker">D. Calibration과 댓글·매매 연관 점수</p>
                 <h3 id="signal-title">모델 원출력을 같은 모델의 과거 분포 안에서 상대화했습니다.</h3>
-                <ol class="flow flow-compact" aria-label="Calibration 상대 신호 변환 흐름"><li>Ridge 원출력</li><li>동일 모델의 과거 기준분포</li><li>현재 값의 상대 위치 계산</li><li>0~100 서비스 신호</li></ol>
-                <p>0~100 값은 같은 모델 조건으로 생성된 과거 결과분포에서 현재 출력이 어느 위치에 있는지를 표현한 상대 결과입니다.</p>
-                <ul><li>매수 확률 / 매도 확률 아님</li><li>모델 정확도 아님</li><li>투자 점수 아님</li><li>미래 개인투자자 수급 예측 아님</li></ul>
+                <ol class="flow flow-compact" aria-label="댓글·매매 연관 점수 변환 흐름"><li>선택된 Ridge 원출력값</li><li>같은 방향·모델 버전의 기준분포</li><li>현재 값의 상대 위치 계산</li><li>댓글·매매 연관 점수</li></ol>
+                <p>댓글·매매 연관 점수는 관측된 개인투자자 매매 우세에 해당하는 모델 원출력값을 같은 방향·모델 버전의 과거 기준분포와 비교해 0~100으로 표현한 상대 점수입니다.</p>
+                <ul><li>매수 확률 / 매도 확률 아님</li><li>모델 정확도 아님</li><li>투자 점수 아님</li><li>미래 개인투자자 매매 예측 아님</li></ul>
               </section>
 
               <section class="contract-block" aria-labelledby="llm-title">
-                <p class="subsection-marker">06-E / LLM의 역할을 문장화로 제한</p>
-                <h3 id="llm-title">LLM이 모델 결과를 다시 판단하지 못하게 했습니다.</h3>
-                <p>모델 수치와 keyword를 자유롭게 설명하게 두면 모델이 계산하지 않은 미래 전망, 투자 행동, 점수 우열이나 일부 keyword를 전체 근거처럼 확대하는 표현이 추가될 수 있었습니다.</p>
-                <h4>LLM 이전 애플리케이션 코드</h4>
-                <ul><li>keyword contribution 방향 검증</li><li>수치 자료형과 유효성 검증</li><li>전달 evidence 개수 제한</li><li>Unicode와 key 순서 정규화</li><li>deterministic JSON 생성</li><li>input hash 생성</li></ul>
-                <h4>LLM 계약</h4>
-                <ul><li>미래 주가·수급 전망 금지</li><li>투자 권고 금지</li><li>Positive/Negative 점수 직접 우열 비교 금지</li><li>상위 keyword만으로 전체 결과 단정 금지</li><li>제공된 evidence 밖의 의미 추가 금지</li><li>정해진 JSON schema로 응답</li></ul>
-                <p>애플리케이션이 결과의 의미와 근거를 먼저 확정하고, LLM은 <strong>검증된 정형 evidence를 사용자 문장으로 정리하는 계층</strong>으로 제한했습니다.</p>
+                <p class="subsection-marker">E. 일별 댓글·매매 해설의 책임 경계</p>
+                <h3 id="llm-title">LLM은 계산된 정형 근거를 문장으로 편집하는 역할만 맡았습니다.</h3>
+                <p>LLM이 점수 관계를 다시 계산하거나 의미를 독립적으로 판단하면 미래 전망, 투자 행동이나 입력에 없는 해석을 덧붙일 수 있었습니다. 그래서 결과 의미와 비교 관계를 애플리케이션 코드에서 먼저 확정했습니다.</p>
+                <h4>LLM에 전달하는 정보</h4>
+                <ul><li>개인투자자 매매 우세</li><li>댓글·매매 연관 점수와 수준</li><li>직전 비교 가능일 점수와 변화</li><li>최근 비교 가능일 평균</li></ul>
+                <h4>LLM에 전달하지 않는 정보</h4>
+                <ul><li>댓글 원문과 대표 댓글</li><li>주요 영향 단어와 단어별 영향값</li><li>미래 주가 정보</li><li>투자 판단 정보</li></ul>
+                <h4>생성·검증 계약</h4>
+                <ul><li>정형 근거를 deterministic JSON과 input hash로 고정</li><li>비교 가능한 과거 점수가 있을 때만 LLM 생성 해설 요청</li><li>그 밖의 조건에서는 정형 근거 기반 자동 요약 사용</li><li>입력과 모순되는 숫자·방향·전망·권유·인과 표현 차단</li><li>정해진 JSON schema로 응답</li></ul>
+                <p>애플리케이션이 결과의 의미와 근거를 먼저 확정하고, LLM은 <strong>검증된 정형 근거를 사용자 문장으로 정리하는 편집 계층</strong>으로 제한했습니다.</p>
                 <p class="note-line">LLM 오류 가능성을 완전히 제거했다고 표현하지 않습니다. 입력·출력 범위를 제한하고 검증 가능한 계약으로 좁힌 구조입니다.</p>
               </section>
             </div>
@@ -304,33 +319,33 @@
             <header class="section-heading section-heading-wide">
               <p class="section-marker"><span>07 /</span> 핵심 Engineering Cases</p>
               <h2 id="engineering-title">구현 과정에서 반복해서 확인한 것은 “정상 경로”보다 경계 조건이었습니다.</h2>
-              <p class="section-intro">앞 절에서는 프로젝트가 만들어지는 흐름을 설명했습니다. 이 절에서는 채용 관점에서 중요한 판단만 문제 → 판단 → 구현/검증 → 결과로 압축합니다.</p>
+              <p class="section-intro">앞 절의 구현 설명을 반복하지 않고, 문제마다 검토한 선택지와 판단 근거, 검증 방법을 중심으로 정리합니다.</p>
             </header>
             <div class="engineering-list">
               <article class="engineering-case">
                 <p class="case-number">01 / 실제 NLP 입력 품질</p>
                 <h3><code>-잖-</code>이 <code>않/VX</code>로 분석돼 원문과 다른 의미가 모델 입력에 들어갈 수 있었습니다.</h3>
-                <div class="case-story"><section><h4>문제</h4><p><code>-잖-</code>이 <code>않/VX</code>로 분석돼 원문과 다른 의미가 모델 입력에 들어갈 수 있었습니다.</p></section><section><h4>판단</h4><p>POS 결과만으로 삭제하지 않고 token의 원문 위치를 대조해야 실제 오분석만 선택적으로 제거할 수 있다고 판단했습니다.</p></section><section><h4>구현 / 검증</h4><p>원문 substring 검사를 추가하고 실제 삼성전자 댓글의 token/TF-IDF 결과를 다시 확인했습니다. 주식 커뮤니티 도메인 표현도 사용자 사전에 보완했습니다.</p></section><section><h4>결과</h4><p>라이브러리 출력 이후에 <strong>실제 모델 입력을 검수하는 단계</strong>가 생겼습니다.</p></section></div>
+                <div class="case-story"><section><h4>문제</h4><p>정상적인 <code>않/VX</code>와 관찰된 <code>-잖-</code> 오분석을 POS 정보만으로 구분할 수 없었습니다.</p></section><section><h4>검토한 선택지</h4><p><code>않/VX</code>를 모두 제거하는 방법, 사용자 사전만 보완하는 방법, token 위치를 원문과 다시 대조하는 방법을 검토했습니다.</p></section><section><h4>판단</h4><p>정상 표현을 함께 지우지 않도록 원문 substring이 <code>잖</code>인 관찰 사례만 선택적으로 제외했습니다.</p></section><section><h4>검증</h4><p>실제 삼성전자 댓글의 token과 TF-IDF 입력을 다시 확인하고, 반복되는 주식 커뮤니티 표현은 사용자 사전에 보완했습니다.</p></section></div>
               </article>
               <article class="engineering-case">
                 <p class="case-number">02 / 날짜를 검증 단위로 사용</p>
                 <h3>한 행이 종목×거래일 단위이기 때문에 행을 무작위로 나누면 같은 거래일의 여러 종목이 train과 validation에 동시에 들어갈 수 있었습니다.</h3>
-                <div class="case-story"><section><h4>문제</h4><p>한 행이 종목×거래일 단위이기 때문에 행을 무작위로 나누면 같은 거래일의 여러 종목이 train과 validation에 동시에 들어갈 수 있었습니다.</p></section><section><h4>판단</h4><p>같은 날의 시장 조건이 양쪽에 겹치지 않도록 날짜 자체를 split 단위로 사용했습니다.</p></section><section><h4>구현 / 검증</h4><p>월별 고유 날짜의 약 20%를 validation으로 선택하고, 같은 날짜의 모든 종목을 한쪽에만 배치했습니다. TF-IDF도 fold별 train 데이터에서 다시 fit했습니다.</p></section><section><h4>결과</h4><p>보유 데이터셋 내부의 당일 연관성 재현과 시간 순서에 따른 분포 변화 스트레스를 서로 다른 검증으로 설명할 수 있게 됐습니다.</p></section></div>
+                <div class="case-story"><section><h4>문제</h4><p>행 단위 random split은 같은 날의 공통 조건을 train과 validation 양쪽에 섞을 수 있었습니다.</p></section><section><h4>검토한 선택지</h4><p>행 단위 random split, 날짜 그룹 random split, 과거에서 이후 월로 이동하는 walk-forward를 각각 검토했습니다.</p></section><section><h4>판단</h4><p>당일 관계의 재현은 날짜 그룹 split으로, 시간 분포 변화에 대한 스트레스는 walk-forward로 분리해 확인했습니다.</p></section><section><h4>검증</h4><p>같은 날짜의 모든 종목을 한쪽에만 배치하고 TF-IDF도 fold별 train 데이터에서 다시 fit했습니다. 두 검증의 결과 수치는 05-C에 분리해 제시했습니다.</p></section></div>
               </article>
               <article class="engineering-case">
                 <p class="case-number">03 / model artifact 계약</p>
                 <h3>Ridge 파일만으로는 어떤 Vectorizer와 tokenizer, 데이터셋으로 학습됐는지 서비스가 검증할 수 없었습니다.</h3>
-                <div class="case-story"><section><h4>문제</h4><p>Ridge 파일만으로는 어떤 Vectorizer와 tokenizer, 데이터셋으로 학습됐는지 서비스가 검증할 수 없었습니다.</p></section><section><h4>판단</h4><p>모델 객체보다 <strong>추론 전체 조건</strong>을 하나의 서비스 artifact로 관리해야 했습니다.</p></section><section><h4>구현 / 검증</h4><p>Vectorizer·Ridge·모델/토큰화 버전·데이터셋 기간을 한 bundle로 저장하고 feature 차원과 객체 상태를 load 단계에서 검사했습니다.</p></section><section><h4>결과</h4><p>서비스 모델을 파일 이름이 아니라 검증 가능한 식별 정보로 다룰 수 있게 됐습니다.</p></section></div>
+                <div class="case-story"><section><h4>문제</h4><p>모델 파일 경로만 맞아도 서로 다른 vocabulary·tokenizer·데이터셋 조건이 섞일 수 있었습니다.</p></section><section><h4>검토한 선택지</h4><p>Ridge와 Vectorizer를 개별 파일명 규칙으로 관리하는 방법과, 추론 조건 전체를 하나의 versioned artifact로 묶는 방법을 비교했습니다.</p></section><section><h4>판단</h4><p>파일 이름이 아니라 모델 identity와 입력 계약을 함께 검증할 수 있는 artifact를 선택했습니다.</p></section><section><h4>검증</h4><p>로드 시 Vectorizer·Ridge 객체 상태, feature 차원, coefficient·intercept, 데이터셋 기간과 메타데이터 계약을 검사했습니다.</p></section></div>
               </article>
               <article class="engineering-case">
                 <p class="case-number">04 / 계산 상태와 사용자 제공 상태 분리</p>
-                <h3>모델이 숫자를 반환했다는 이유만으로 입력 근거가 부족한 결과까지 정상 결과처럼 노출될 수 있었습니다.</h3>
-                <div class="case-story"><section><h4>문제</h4><p>모델이 숫자를 반환했다는 이유만으로 입력 근거가 부족한 결과까지 정상 결과처럼 노출될 수 있었습니다.</p></section><section><h4>판단</h4><p>계산 성공과 서비스 제공 가능 여부를 별도 상태로 관리했습니다.</p></section><section><h4>구현 / 검증</h4><p>vocabulary coverage와 인식 feature 수를 저장하고 <code>ready / insufficient_features</code>를 구분했습니다. 미완료 대상만 다시 추론하고 대상 0건은 정상 종료하도록 했습니다.</p></section><section><h4>결과</h4><p><strong>결과 row 존재 = 정상 서비스 결과</strong>라는 암묵적 가정을 제거했습니다.</p></section></div>
+                <h3>모델이 숫자를 반환했다는 이유만으로 입력 기준을 충족하지 못한 결과까지 제공할 수 있었습니다.</h3>
+                <div class="case-story"><section><h4>문제</h4><p>Ridge는 모델이 인식한 단어가 거의 없어도 숫자를 반환하므로 DB row 존재만으로 제공 가능 여부를 판단할 수 없었습니다.</p></section><section><h4>검토한 선택지</h4><p>계산값을 모두 노출하는 방법과, 댓글 입력 인식 정보를 저장해 결과 제공 상태를 별도로 판정하는 방법을 비교했습니다.</p></section><section><h4>판단</h4><p><code>ready / insufficient_features</code>를 내부 상태로 저장하고 외부에서는 제공 가능·제공 보류로 구분했습니다.</p></section><section><h4>검증</h4><p>인식 단어 수·비율과 상태의 일관성을 검사하고, 미완료 대상만 재추론하며 대상 0건은 정상 종료하도록 확인했습니다.</p></section></div>
               </article>
               <article class="engineering-case">
                 <p class="case-number">05 / LLM의 책임 경계</p>
                 <h3>LLM이 모델 출력의 의미까지 다시 해석하면 애플리케이션 계산과 자연어 생성의 책임이 섞였습니다.</h3>
-                <div class="case-story"><section><h4>문제</h4><p>LLM이 모델 출력의 의미까지 다시 해석하면 애플리케이션 계산과 자연어 생성의 책임이 섞였습니다.</p></section><section><h4>판단</h4><p>수치·방향·근거의 의미는 코드에서 확정하고 LLM은 문장화만 담당하게 했습니다.</p></section><section><h4>구현 / 검증</h4><p>미래 전망과 투자 권고, 직접 점수 비교를 금지하고 정형 근거 범위 안에서만 일별 설명을 생성하도록 제한했습니다.</p></section><section><h4>결과</h4><p>모델이 계산한 의미와 생성 문장의 책임 경계를 분리했습니다.</p></section></div>
+                <div class="case-story"><section><h4>문제</h4><p>LLM이 수치 관계를 직접 계산하거나 자유롭게 해석하면 입력에 없는 전망·권유·인과 표현을 만들 수 있었습니다.</p></section><section><h4>검토한 선택지</h4><p>댓글·주요 영향 단어까지 전달해 자유롭게 설명하는 방법과, 코드가 확정한 정형 수치 관계만 전달하는 방법을 비교했습니다.</p></section><section><h4>판단</h4><p>댓글 원문과 주요 영향 단어를 제외하고 개인투자자 매매 우세·댓글·매매 연관 점수·비교 정보만 전달했습니다.</p></section><section><h4>검증</h4><p>최종 프롬프트와 조회 쿼리에서 댓글·키워드 필드를 제외하고, 응답의 숫자·방향·전망·권유·인과 표현을 검증했습니다. LLM을 호출하지 않는 조건에는 정형 근거 기반 자동 요약을 사용했습니다.</p></section></div>
               </article>
             </div>
           </div>
@@ -344,7 +359,7 @@
             </header>
             <div class="automation-layout">
               <div>
-                <ol class="flow flow-inference" aria-label="PILOS 최상위 서비스 흐름"><li>댓글 수집</li><li>댓글 전처리</li><li>Kiwi 토큰화</li><li>종목·거래일별 일별문서 생성</li><li>개인투자자 수급 수집</li><li>모델 추론 / 결과 저장</li><li>calibration·보고서 입력 구성</li><li>v13 LLM 일별 설명 생성</li></ol>
+                <ol class="flow flow-inference" aria-label="PILOS 최상위 서비스 흐름"><li>댓글 수집</li><li>댓글 전처리</li><li>Kiwi 토큰화</li><li>종목·일자별 댓글 분석 단위 생성</li><li>개인투자자 매매 정보 수집</li><li>모델 추론 / 결과 저장</li><li>댓글·매매 연관 점수·해설 입력 구성</li><li>일별 댓글·매매 해설 생성</li></ol>
                 <p>앞 단계가 실패하면 해당 결과를 전제로 하는 다음 단계를 실행하지 않습니다.</p>
               </div>
               <div class="operation-contract">
@@ -352,12 +367,12 @@
                 <h4>단계별 성공/실패 확인</h4><p>앞 단계가 실패하면 해당 결과를 전제로 하는 다음 단계를 실행하지 않습니다.</p>
                 <h4>중복 실행 방지</h4><p>non-blocking file lock으로 이전 pipeline이 실행 중일 때 새 실행이 겹치지 않게 했습니다.</p>
                 <h4>실행 상태 저장</h4><ul><li><code>running / completed / failed</code></li><li>시작/종료/소요시간</li><li>중단 단계</li><li>failure type / message</li><li>단계별 처리 요약</li></ul>
-                <h4>대상 0건을 정상 상태로 처리</h4><p>새로운 추론·보고서 대상이 없는 경우 불필요한 실패로 만들지 않습니다.</p>
+                <h4>대상 0건을 정상 상태로 처리</h4><p>새로운 모델 추론·일별 해설 생성 대상이 없는 경우 불필요한 실패로 만들지 않습니다.</p>
               </div>
             </div>
             <div class="partial-failure">
               <h3>부분 외부 데이터 장애 격리</h3>
-              <p>장중 수급 API에서 한 종목의 필수 투자자 분류가 누락됐을 때, 해당 종목 하나 때문에 전체 대상 수집을 실패시키지 않도록 범위를 나눴습니다.</p>
+              <p>장중 개인투자자 매매 정보 API에서 한 종목의 필수 투자자 분류가 누락됐을 때, 해당 종목 하나 때문에 전체 대상 수집을 실패시키지 않도록 범위를 나눴습니다.</p>
               <ol class="flow flow-compact" aria-label="부분 외부 데이터 장애 처리"><li>완전한 종목 → 계속 처리</li><li>불완전한 종목 → warning + skip</li><li>모든 대상 불완전 → 전체 실패</li></ol>
               <p>skip 수는 Job 결과에 남겨 부분 성공을 숨기지 않습니다.</p>
             </div>
@@ -377,12 +392,12 @@
               <h2 id="results-title">서비스까지 연결했지만, 모델의 해석 범위와 검증 한계도 함께 남겼습니다.</h2>
             </header>
             <div class="result-layout">
-              <section><p class="subsection-marker">구현 결과</p><ul><li>댓글 전처리 → Kiwi → 일별문서 → TF-IDF → Ridge 학습/추론 연결</li><li>Positive / Negative 방향별 <code>Ridge text-only, alpha=1</code> 최종 모델 선정</li><li><code>2025-01-02 ~ 2026-07-24</code> 데이터셋으로 서비스 모델 v4 재학습</li><li>Vectorizer + Ridge versioned artifact 저장과 DB 메타데이터 연결</li><li>방향별 추론 결과·주요 contribution·품질 상태 DB 저장</li><li>calibration 기반 0~100 상대 신호</li><li>v13 일별 LLM 설명 저장</li><li>Flask 목록/상세/보고서/단일 댓글 서비스 계약 연결</li><li>댓글 수집부터 v13 보고서까지 최상위 자동화 실행 흐름 통합</li></ul></section>
-              <section><p class="subsection-marker">모델 검증 결과</p><div class="table-wrap"><table><caption>날짜 그룹 랜덤 검증</caption><thead><tr><th>방향</th><th>최종 모델</th><th>평균 validation R²</th></tr></thead><tbody><tr><td>Positive</td><td>Ridge text-only, alpha=1</td><td>0.206797</td></tr><tr><td>Negative</td><td>Ridge text-only, alpha=1</td><td>0.221247</td></tr></tbody></table></div><div class="table-wrap"><table><caption>워크포워드 검증</caption><thead><tr><th>방향</th><th>평균 validation R²</th></tr></thead><tbody><tr><td>Positive</td><td>0.0481</td></tr><tr><td>Negative</td><td>0.0503</td></tr></tbody></table></div></section>
-              <section class="result-interpretation"><p class="subsection-marker">해석</p><p>같은 전체 기간에서 날짜를 그룹 단위로 나눈 검증에서는 당일 연관성이 일부 재현됐지만, 과거에서 이후 월로 이동하는 워크포워드에서는 성능이 크게 낮았습니다. 댓글량·어휘·수급 분포 변화에 민감하다는 한계로 해석했습니다.</p><p>또한 날짜 그룹 랜덤 검증의 Ridge는 학습 R²와 validation R²의 격차가 두 방향 모두 약 0.50 수준이므로 과적합 위험이 사라졌다고 보지 않습니다.</p></section>
-              <section class="validation-evidence"><p class="subsection-marker">서비스/데이터 검증 근거</p><ul><li>모델 추론·v13 보고서 운영 계약 PR에서 전체 테스트와 실제 DB 품질값/보고서 적재 상태를 재검증</li><li>Flask 서비스 계약 PR에서 비DB 테스트와 실제 DB 읽기 요청 확인</li><li>최상위 자동화 PR에서 pipeline 상태·로그 계약과 DB/외부 API 경계 확인</li></ul><p>정량 테스트 개수는 각 PR 시점의 검증 이력으로만 사용하고 프로젝트 전체의 현재 품질 점수처럼 표현하지 않습니다.</p></section>
+              <section><h3 class="subsection-marker">구현 결과</h3><ul><li>댓글 전처리 → Kiwi → 종목·일자별 댓글 분석 단위 → TF-IDF → Ridge 학습/추론 연결</li><li>매수 우세일·매도 우세일 <code>Ridge text-only, alpha=1</code> 최종 모델 선정</li><li><code>2025-01-02 ~ 2026-07-24</code> 데이터셋으로 서비스 모델 v4 재학습</li><li>Vectorizer + Ridge versioned artifact 저장과 DB 메타데이터 연결</li><li>두 모델의 원출력값·주요 영향 단어·댓글 입력 인식 정보·결과 제공 상태 DB 저장</li><li>calibration 기반 댓글·매매 연관 점수</li><li>일별 댓글·매매 해설 저장</li><li>Flask 목록·상세·일별 해설·단일 댓글 서비스 계약 연결</li><li>댓글 수집부터 일별 해설까지 최상위 자동화 실행 흐름 통합</li></ul></section>
+              <section><h3 class="subsection-marker">모델 검증 결과</h3><div class="table-wrap"><table><caption>날짜 그룹 랜덤 검증</caption><thead><tr><th>모델</th><th>최종 구성</th><th>평균 validation R²</th></tr></thead><tbody><tr><td>매수 우세일 모델</td><td>Ridge text-only, alpha=1</td><td>0.206797</td></tr><tr><td>매도 우세일 모델</td><td>Ridge text-only, alpha=1</td><td>0.221247</td></tr></tbody></table></div><div class="table-wrap"><table><caption>워크포워드 검증</caption><thead><tr><th>모델</th><th>평균 validation R²</th></tr></thead><tbody><tr><td>매수 우세일 모델</td><td>0.0481</td></tr><tr><td>매도 우세일 모델</td><td>0.0503</td></tr></tbody></table></div></section>
+              <section class="result-interpretation"><h3 class="subsection-marker">해석</h3><p>같은 전체 기간에서 날짜를 그룹 단위로 나눈 검증에서는 당일 연관성이 일부 재현됐지만, 과거에서 이후 월로 이동하는 워크포워드에서는 성능이 크게 낮았습니다. 댓글량·어휘·개인투자자 매수·매도 우세도 분포 변화에 민감하다는 한계로 해석했습니다.</p><p>또한 날짜 그룹 랜덤 검증의 Ridge는 학습 R²와 validation R²의 격차가 두 모델 모두 약 0.50 수준이므로 과적합 위험이 사라졌다고 보지 않습니다.</p></section>
+              <section class="validation-evidence"><h3 class="subsection-marker">서비스/데이터 검증 근거</h3><ul><li>모델 추론·일별 해설 운영 계약 PR에서 전체 테스트와 실제 DB 품질값·해설 적재 상태를 재검증</li><li>Flask 서비스 계약 PR에서 비DB 테스트와 실제 DB 읽기 요청 확인</li><li>최상위 자동화 PR에서 pipeline 상태·로그 계약과 DB/외부 API 경계 확인</li></ul><p>정량 테스트 개수는 각 PR 시점의 검증 이력으로만 사용하고 프로젝트 전체의 현재 품질 점수처럼 표현하지 않습니다.</p></section>
             </div>
-            <section class="limitations" aria-labelledby="limitations-title"><p class="subsection-marker">한계</p><h3 id="limitations-title">검증 결과를 서비스 의미보다 크게 해석하지 않았습니다.</h3><ul><li>교육 과정의 제한된 기간과 데이터셋으로 수행한 프로젝트</li><li>미래 주가·수급 예측 모델이 아님</li><li>댓글과 실제 매매 행동의 인과관계를 증명하지 않음</li><li>댓글 표현의 사실 여부나 진위를 판단하지 않음</li><li>시간 변화에 따른 분포 이동에서 성능 저하 확인</li><li>외부 API, DB, LLM 환경이 없으면 전체 서비스 흐름을 그대로 재현하기 어려움</li><li>모델 자동 재학습과 운영 수준 drift monitoring은 현재 범위에 포함되지 않음</li></ul><p>이 프로젝트의 성과는 높은 예측 정확도를 주장하는 데 있지 않습니다. 댓글 표현과 당일 수급의 연관성을 제한된 범위에서 모델링하고, 그 결과를 <strong>재현 가능한 모델·품질 상태·사용자 결과·LLM 설명·자동화 흐름</strong>까지 연결해 본 경험에 있습니다.</p></section>
+            <section class="limitations" aria-labelledby="limitations-title"><p class="subsection-marker">한계</p><h3 id="limitations-title">검증 결과를 서비스 의미보다 크게 해석하지 않았습니다.</h3><ul><li>교육 과정의 제한된 기간과 데이터셋으로 수행한 프로젝트</li><li>미래 주가·개인투자자 매매 예측 모델이 아님</li><li>댓글과 실제 매매 행동의 인과관계를 증명하지 않음</li><li>댓글 표현의 사실 여부나 진위를 판단하지 않음</li><li>시간 변화에 따른 분포 이동에서 성능 저하 확인</li><li>외부 API, DB, LLM 환경이 없으면 전체 서비스 흐름을 그대로 재현하기 어려움</li><li>모델 자동 재학습과 운영 수준 drift monitoring은 현재 범위에 포함되지 않음</li></ul><p>이 프로젝트의 성과는 높은 예측 정확도를 주장하는 데 있지 않습니다. 같은 날 관측된 댓글 표현과 개인투자자 매매 우세의 연관성을 제한된 범위에서 모델링하고, 그 결과를 <strong>재현 가능한 모델·결과 제공 상태·사용자 결과·일별 댓글·매매 해설·자동화 흐름</strong>까지 연결해 본 경험에 있습니다.</p></section>
           </div>
         </section>
 
@@ -393,7 +408,7 @@
               <h2 id="retrospective-title">모델을 만드는 것보다, 그 결과가 어떤 조건에서 서비스될 수 있는지를 더 많이 배웠습니다.</h2>
             </header>
             <div class="prose">
-              <p>처음에는 전처리와 모델 성능처럼 분석 과정 자체에 집중했습니다. 하지만 실제 서비스 흐름으로 연결하면서 같은 모델이라도 어떤 Vectorizer와 데이터로 학습됐는지, 입력 근거가 부족한 결과를 정상 결과로 보여줘도 되는지, LLM이 어디까지 해석해도 되는지, 앞 단계가 실패했을 때 뒤 단계가 계속 실행돼도 되는지가 더 큰 문제가 됐습니다.</p>
+              <p>처음에는 전처리와 모델 성능처럼 분석 과정 자체에 집중했습니다. 하지만 실제 서비스 흐름으로 연결하면서 같은 모델이라도 어떤 Vectorizer와 데이터로 학습됐는지, 입력 기준을 충족하지 못한 결과를 제공해도 되는지, LLM이 어디까지 편집해도 되는지, 앞 단계가 실패했을 때 뒤 단계가 계속 실행돼도 되는지가 더 큰 문제가 됐습니다.</p>
               <p>그래서 프로젝트 후반에는 모델 파일 하나보다 artifact 계약, 숫자 하나보다 결과 상태, 개별 Job 하나보다 실패 경계를 가진 전체 실행 흐름을 더 중요하게 다루게 됐습니다.</p>
               <p>이 경험을 통해 백엔드에서 AI 기능을 연결한다는 것은 모델 API를 호출하는 데서 끝나는 것이 아니라, <strong>입력·출력의 의미와 상태, 재실행, 실패 범위까지 서비스가 이해할 수 있는 계약으로 만드는 일</strong>이라는 방향을 잡게 됐습니다.</p>
               <h3>다음 개선</h3>

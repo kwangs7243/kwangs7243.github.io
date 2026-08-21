@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="PILOS Stock Advisor의 데이터·AI pipeline, Flask Backend와 Linux 운영 통합 과정을 정리한 프로젝트 상세" />
+    <meta name="description" content="여러 종목의 뉴스·주가와 뉴스 감성·AI 분석 결과를 대시보드와 종목 상세에서 제공하는 PILOS Stock Advisor 프로젝트 상세" />
     <title>PILOS Stock Advisor | 프로젝트 상세</title>
     <link rel="icon" href="data:," />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css" />
-    <link rel="stylesheet" href="../../project-detail.css?v=20260821-stock" />
+    <link rel="stylesheet" href="../../project-detail.css?v=20260821-step3-final3" />
   </head>
   <body class="project-detail-page stock-advisor-page">
     <a class="skip-link" href="#main-content">본문으로 건너뛰기</a>
@@ -29,7 +29,7 @@
           <div class="shell hero-inner">
             <p class="eyebrow">PROJECT DETAIL</p>
             <h1 id="stock-title">PILOS Stock Advisor</h1>
-            <p class="hero-definition">뉴스·주가 데이터를 수집하고 뉴스 요약·감성분석·예측 결과를 공용 MySQL에 적재한 뒤 Flask 대시보드로 제공한 4인 팀 프로젝트입니다.</p>
+            <p class="hero-definition">여러 종목의 뉴스와 주가, 뉴스 감성과 AI 분석 결과를 대시보드와 종목 상세 화면에서 함께 확인할 수 있게 만든 4인 팀 금융 정보 서비스입니다.</p>
             <dl class="hero-meta">
               <div><dt>기간</dt><dd>3주 2일</dd></div>
               <div><dt>팀</dt><dd>4인 팀</dd></div>
@@ -61,19 +61,19 @@
           <div class="shell document-layout">
             <header class="section-heading">
               <p class="section-marker"><span>01 /</span> 프로젝트 개요</p>
-              <h2 id="overview-title">분리된 뉴스·주가·AI 기능을 공용 DB를 기준으로 하나의 사용자 서비스에 연결했습니다.</h2>
+              <h2 id="overview-title">흩어진 종목 정보와 AI 분석 결과를 한 서비스에서 이어서 볼 수 있게 했습니다.</h2>
             </header>
             <div class="prose">
-              <h3>프로젝트 질문</h3>
-              <p>수집과 AI 분석을 각각 실행하는 데서 끝내지 않고, 여러 팀원의 기능을 같은 데이터 기준과 실행 순서로 연결해 사용자 화면까지 제공하려면 어떻게 해야 할까?</p>
-              <h3>프로젝트 전체 흐름</h3>
-              <p>20개 테마·100개 종목의 뉴스·주가를 수집하고, 뉴스 요약·유사도 그룹화·KR-FinBERT 감성분석과 Direction·RecentFlow 예측 결과를 공용 MySQL에 저장했습니다. 별도 Flask Web 애플리케이션은 같은 DB를 조회해 대시보드와 종목 상세 화면을 제공합니다.</p>
-              <h3>중요한 구조</h3>
-              <p>AI 저장소와 Web 저장소는 서로 HTTP로 직접 호출하지 않습니다. <strong>공용 MySQL이 두 애플리케이션 사이의 데이터 계약</strong>입니다.</p>
-              <h3>서비스 범위</h3>
+              <h3>서비스 문제</h3>
+              <p>여러 종목의 뉴스와 주가, 뉴스 감성과 AI 분석 결과가 기능별로 나뉘어 있으면 사용자가 한 종목의 정보를 같은 맥락에서 이어서 확인하기 어려웠습니다.</p>
+              <h3>만든 서비스</h3>
+              <p>20개 테마·100개 종목을 대상으로 수집·분석한 정보를 Flask 대시보드와 종목 상세 화면에 연결한 금융 정보 서비스를 만들었습니다.</p>
+              <h3>사용자가 확인할 수 있는 정보</h3>
               <ul><li>종목 가격·등락·거래량 조회</li><li>테마별 뉴스 감성 차트</li><li>종목별 감성 추이와 대표 뉴스</li><li>Direction / RecentFlow 결과 표시</li><li>공식 일일 예측과 과거 재추론 결과 구분</li><li>회원가입·로그인·관심 종목</li></ul>
-              <h3>서비스 범위</h3>
+              <h3>정보 범위와 한계</h3>
               <p>교육용 정보 제공 프로젝트이며 실제 투자 추천 서비스가 아닙니다. Direction·RecentFlow의 모델 성능과 운영 실행의 성공 여부도 서로 다른 검증으로 구분합니다.</p>
+              <h3>이주광의 역할</h3>
+              <p>금융 뉴스 감성분석과 Flask Backend를 직접 구현하고, 팀원이 구현한 뉴스 요약·Direction·RecentFlow 기능의 입출력을 공용 MySQL과 Jobs pipeline, 사용자 화면에 맞춰 통합했습니다.</p>
             </div>
           </div>
         </section>
@@ -112,13 +112,18 @@
               <p class="section-marker"><span>03 /</span> 프로젝트 개념도</p>
               <h2 id="architecture-title">AI와 Web은 공용 MySQL을 데이터 계약으로 사용했습니다.</h2>
             </header>
+            <ul class="ownership-legend" aria-label="구현 범위 범례">
+              <li><span class="legend-swatch legend-swatch--direct" aria-hidden="true"></span><strong>직접 구현</strong></li>
+              <li><span class="legend-swatch legend-swatch--integration" aria-hidden="true"></span><strong>직접 통합</strong></li>
+              <li><span class="legend-swatch legend-swatch--team" aria-hidden="true"></span><strong>팀 / 공용</strong></li>
+            </ul>
             <div class="architecture-block stock-architecture-block">
-              <div class="diagram-heading"><p class="subsection-marker">03-A / 시스템 구조</p><span class="ownership-label">전체 구조</span></div>
-              <div class="stock-system-diagram" aria-label="AI와 Web의 Shared MySQL 기반 시스템 구조">
-                <section class="system-column system-column--direct" aria-labelledby="ai-data-title">
+              <div class="diagram-heading"><p class="subsection-marker">A. 시스템 구조</p><span class="ownership-label">구현 범위는 노드별 표기</span></div>
+              <div class="stock-system-diagram" aria-label="AI와 Data에서 Shared MySQL, Flask Backend, 사용자 화면으로 이어지는 시스템 구조">
+                <section class="system-column" aria-labelledby="ai-data-title">
                   <h3 id="ai-data-title">AI / Data</h3>
-                  <small>직접 구현·통합</small>
-                  <ul><li>뉴스·주가 수집</li><li>본문 처리·요약</li><li>유사도 그룹화</li><li>KR-FinBERT 감성분석</li><li class="team-model-node"><span class="neutral-label">팀 모델</span> Direction / RecentFlow</li></ul>
+                  <small>팀 기능 + 직접 구현·통합</small>
+                  <ul><li><span class="neutral-label">팀 / 공용</span> 뉴스·주가 수집</li><li><span class="ownership-label">직접 개선</span> 뉴스 본문 처리·재실행 구조</li><li><span class="neutral-label">팀 기능</span> 뉴스 요약·유사도 그룹화</li><li><span class="ownership-label">직접 구현</span> KR-FinBERT 감성분석</li><li class="team-model-node"><span class="neutral-label">팀 모델</span> Direction / RecentFlow</li></ul>
                 </section>
                 <div class="system-connector" aria-hidden="true"><span>→</span></div>
                 <div class="system-database"><strong>Shared MySQL</strong><span>AI/Data와 Web이 함께 사용하는 데이터 기준</span></div>
@@ -126,16 +131,18 @@
                 <section class="system-column system-column--backend" aria-labelledby="flask-backend-title">
                   <h3 id="flask-backend-title">Flask Backend</h3>
                   <small>직접 구현·통합</small>
-                  <ul><li>Repository</li><li>Service</li><li>Route</li><li>대시보드·종목 상세·JSON API</li><li class="team-model-node"><span class="neutral-label">팀 / 공용</span> Flask 화면 결과</li></ul>
+                  <ul><li>Repository</li><li>Service</li><li>Route</li></ul>
                 </section>
+                <div class="system-connector" aria-hidden="true"><span>→</span></div>
+                <div class="system-interface"><strong>사용자 화면</strong><span>대시보드·종목 상세·JSON API</span><small>팀 / 공용 Flask 화면 결과</small></div>
               </div>
               <div class="operation-layer">
                 <h3>운영 계층</h3>
-                <div class="operation-flow">
-                  <div class="diagram-node diagram-node--direct">Jobs<small>직접 통합</small></div>
-                  <div class="diagram-node diagram-node--direct"><code>pipeline_run</code><small>실행 상태 연결</small></div>
-                  <div class="diagram-node diagram-node--direct"><code>systemd</code><small>Linux 자동화</small></div>
-                  <div class="diagram-node">Web 상태 표시<small>팀 / 공용</small></div>
+                <div class="operation-flow" aria-label="운영 계층의 실행과 상태 관리 역할">
+                  <div class="diagram-node diagram-node--direct"><strong><code>systemd</code></strong><span>주기 실행 담당</span><small>직접 구현</small></div>
+                  <div class="diagram-node diagram-node--direct"><strong>Jobs</strong><span>실행 대상과 순서 통합</span><small>직접 통합</small></div>
+                  <div class="diagram-node diagram-node--direct"><strong><code>pipeline_run</code></strong><span>실행·예측 상태 기록</span><small>직접 연결</small></div>
+                  <div class="diagram-node"><strong>Web 상태 표시</strong><span>저장된 상태 조회·표시</span><small>팀 / 공용</small></div>
                 </div>
               </div>
               <p class="architecture-note">AI 저장소와 Web 저장소는 서로 HTTP로 직접 호출하지 않습니다. Shared MySQL이 두 애플리케이션 사이의 데이터 계약입니다. Direction·RecentFlow 모델 자체는 팀원이 구현했고, 개인 기여는 감성분석·Backend·Jobs를 이 구조에 연결한 범위입니다.</p>
@@ -171,7 +178,7 @@
             </header>
             <div class="process-list">
               <section class="process-block stock-direct-block" aria-labelledby="sentiment-pipeline-title">
-                <p class="subsection-marker">05-A / KR-FinBERT 감성분석을 재실행 가능한 DB 작업으로</p>
+                <p class="subsection-marker">A. KR-FinBERT 감성분석을 재실행 가능한 DB 작업으로</p>
                 <h3 id="sentiment-pipeline-title">감성분석 batch의 대상 조회와 저장을 DB 계약으로 분리했습니다.</h3>
                 <h4>문제</h4><p>초기 DB 통합 단계에서 감성분석 batch를 다시 실행하거나 여러 실행이 겹치면 같은 뉴스와 같은 모델 조합의 결과가 중복 저장될 수 있었습니다.</p>
                 <h4>구현</h4><ul><li>요약 완료 뉴스를 감성분석 대상으로 조회</li><li><code>news_id + model_id</code> 기준 기존 처리 결과를 대상에서 제외</li><li>DB unique key와 upsert로 저장 단계에서도 중복 방어</li><li>대상 조회와 저장 책임을 Repository로 분리</li></ul>
@@ -179,7 +186,7 @@
                 <h4>의미</h4><p>분석 스크립트를 한 번 실행하는 기능에서 끝내지 않고 <strong>다시 실행해도 결과 상태를 관리할 수 있는 DB 작업</strong>으로 바꾸는 경험이었습니다.</p>
               </section>
               <section id="data-state" class="process-block stock-direct-block" aria-labelledby="data-state-title">
-                <p class="subsection-marker">05-B / CSV가 아니라 DB를 처리 상태의 정본으로</p>
+                <p class="subsection-marker">B. CSV가 아니라 DB를 처리 상태의 정본으로</p>
                 <h3 id="data-state-title">실행 파일과 영속 처리 상태의 책임을 분리했습니다.</h3>
                 <h4>문제</h4><p>실행 중인 CSV가 현재 실행 결과와 과거 처리 이력을 동시에 맡고 있어 파일을 정리하면 DB에 이미 처리된 뉴스까지 다시 크롤링할 수 있었습니다.</p>
                 <h4>변경</h4><p><code>stock_code + url_hash</code> 기준으로 DB 상태를 먼저 조회했습니다.</p>
@@ -200,21 +207,21 @@
             </header>
             <div class="contract-list">
               <section class="contract-block stock-direct-block" aria-labelledby="repository-title">
-                <p class="subsection-marker">06-A / Repository → Service → Route</p>
+                <p class="subsection-marker">A. Repository → Service → Route</p>
                 <h3 id="repository-title">DB 접근, 화면용 조합, HTTP 요청/응답의 책임을 분리했습니다.</h3>
                 <h4>문제</h4><p>초기 Flask 구현은 route에 SQL 조회·데이터 조합·응답 책임이 집중돼 있었고 일부 화면은 더미 데이터와 반복 조회에 의존했습니다.</p>
                 <h4>변경</h4><ol class="flow flow-compact"><li>Repository<br />SQL 조회·저장</li><li>Service<br />화면/API 사용 사례와 데이터 조합</li><li>Route<br />요청 파라미터 / 응답</li></ol><ul><li>주식·뉴스·감성·예측을 실제 DB 기준으로 연결</li><li>메인/상세에서 공통 AI card service 재사용</li><li>이후 성능 개선과 날짜 계약을 Service/Repository 단위로 적용</li></ul>
                 <h4>결과</h4><p>단순히 파일을 나눈 것이 아니라 <strong>DB 접근, 화면용 조합, HTTP 요청/응답의 책임을 분리</strong>했습니다.</p>
               </section>
               <section class="contract-block" aria-labelledby="date-title">
-                <p class="subsection-marker">06-B / 뉴스 분석일·주가일·예측 기준일 분리</p>
+                <p class="subsection-marker">B. 뉴스 분석일·주가일·예측 기준일 분리</p>
                 <h3 id="date-title">서로 다른 날짜 의미를 하나의 최신 날짜로 합치지 않았습니다.</h3>
                 <h4>문제</h4><p>화면의 선택 날짜와 주가 거래일, 모델 예측 기준일을 같은 날짜처럼 취급하면 휴장일이나 과거 화면에서 다른 시점의 데이터를 섞어 보여줄 수 있었습니다.</p>
                 <h4>서비스 날짜</h4><ul><li>뉴스 분석일: 뉴스 그룹/감성의 기준일</li><li>주가 기준일: 선택일 당일 또는 그 이전 실제 주가 적재일</li><li>예측 기준일: Features와 일일 예측의 <code>base_date</code></li><li>예측 생성 시각: Direction·RecentFlow가 저장된 실제 시각</li></ul>
                 <h4>정책</h4><ul><li>선택일에 주가가 없으면 이전 실제 거래일을 사용하고 화면에 표시</li><li>과거 날짜에는 다른 기준일의 최신 예측을 임의 fallback하지 않음</li><li>브라우저 현재 시각으로 예측 날짜를 다시 계산하지 않음</li></ul>
               </section>
               <section id="partial-state" class="contract-block stock-direct-block" aria-labelledby="partial-state-title">
-                <p class="subsection-marker">06-C / 공식 일일 예측과 전체 재추론 결과 분리</p>
+                <p class="subsection-marker">C. 공식 일일 예측과 전체 재추론 결과 분리</p>
                 <h3 id="partial-state-title">AI 실행 흐름의 기록을 서비스 계약으로 사용했습니다.</h3>
                 <h4>문제</h4><p>실행 흐름과 연결된 실제 일일 예측과, 과거 전체 데이터를 다시 추론해 DB에 만든 결과를 같은 상태로 보여주면 결과의 출처를 구분할 수 없었습니다.</p>
                 <h4>변경</h4><ul><li><code>pipeline_run</code>의 <code>DAILY_PREDICTION</code> 성공 실행과 결과 연결</li><li>공식 일일 예측과 pipeline 연결 없는 전체 재추론 결과를 별도 상태로 표시</li><li>마지막 SUCCESS와 현재 RUNNING 상태 구분</li><li>Direction은 RecentFlow와 같은 <code>feature_id</code>를 사용해 동일 예측 체인의 결과를 선택</li></ul>
@@ -234,22 +241,22 @@
               <article id="performance" class="engineering-case stock-case-block">
                 <p class="case-number">01 / 조회 책임과 SQL</p>
                 <h3>최신 대표 결과만 필요했지만 최근 90일 <code>summary_analysis</code> 약 17만 행을 정렬하고 있었습니다.</h3>
-                <div class="case-story stock-case-story"><section><h4>문제</h4><p>최신 대표 결과만 필요했지만 최근 90일 <code>summary_analysis</code> 약 17만 행을 정렬하고, 단일 종목에만 필요한 데이터도 100종목 목록 조회에 섞여 있었습니다.</p></section><section><h4>원인</h4><ul><li>최근 90일 전체 window sort</li><li>큰 summary까지 중간 결과에 포함</li><li>목록/상세 조회 책임 혼재</li><li>같은 전체 조회 중복 호출</li><li>한 종목만 필요해도 다수 종목 조회 후 Python 필터링</li></ul></section><section><h4>판단</h4><p>index를 추가하기 전에 <strong>조회 대상과 책임 자체를 줄이는 것</strong>이 우선이라고 판단했습니다.</p></section><section><h4>구현</h4><ul><li>최신 분석일을 SQL에서 먼저 제한</li><li>최신일 데이터만 대표 분석 대상으로 정렬</li><li>사용하지 않는 큰 필드 제거</li><li>100종목 목록과 단일 종목 AI 조회 분리</li><li>필요한 종목을 SQL에서 직접 제한</li><li>동일 전체 조회 2회 제거</li></ul></section><section><h4>측정/검증</h4><ul><li>대표뉴스 100종목: <strong>5.242s → 0.321s</strong></li><li>메인 <code>/</code>: <strong>6.447s → 0.588s</strong></li><li><code>/api/stockTable</code>: <strong>11.775s → 0.256s</strong></li></ul></section><section><h4>결과</h4><p>느린 SQL 한 줄을 고친 것이 아니라 <strong>화면별 조회 책임을 다시 나누고 SQL 입력 범위를 줄인 경험</strong>이었습니다.</p></section></div>
+                <div class="case-story stock-case-story"><section><h4>문제</h4><p>목록에 필요한 최신 대표 결과와 단일 종목에만 필요한 예측·최근 흐름·대표뉴스가 한 조회에 섞여 있었습니다.</p></section><section><h4>검토한 선택지</h4><p>기존 쿼리에 index만 추가하는 방법과, 조회 범위·반환 필드·목록/상세 책임을 먼저 줄이는 방법을 비교했습니다.</p></section><section><h4>판단</h4><p>전체 정렬과 중복 호출을 유지한 채 index에만 기대지 않고, <strong>화면별 조회 책임과 SQL 입력 범위를 먼저 줄였습니다.</strong></p></section><section><h4>측정/검증</h4><ul><li>대표뉴스 100종목: <strong>5.242s → 0.321s</strong></li><li>메인 <code>/</code>: <strong>6.447s → 0.588s</strong></li><li><code>/api/stockTable</code>: <strong>11.775s → 0.256s</strong></li></ul></section></div>
               </article>
               <article class="engineering-case stock-case-block">
                 <p class="case-number">02 / 실행 파일과 영속 상태 분리</p>
                 <h3>CSV를 지우면 DB에 완료된 뉴스도 다시 처리될 수 있었습니다.</h3>
-                <div class="case-story stock-case-story"><section><h4>문제</h4><p>CSV를 지우면 DB에 완료된 뉴스도 다시 처리될 수 있었습니다.</p></section><section><h4>원인</h4><p>일회성 실행 파일이 현재 실행 결과와 과거 처리 이력을 함께 맡고 있었습니다.</p></section><section><h4>판단</h4><p>일회성 파일이 아니라 DB를 과거 처리 상태의 기준으로 사용했습니다.</p></section><section><h4>구현</h4><p><code>stock_code + url_hash</code> 기준으로 완료·재사용·신규 상태를 나누고 필요한 단계만 다시 실행했습니다.</p></section><section><h4>측정/검증</h4><p>DB 상태를 기준으로 재실행 범위를 결정하고 CSV는 확인·복구 자료로만 사용했습니다.</p></section><section><h4>결과</h4><p>완료·재사용·신규 상태에 따라 필요한 단계만 다시 실행하는 구조로 바뀌었습니다.</p></section></div>
+                <div class="case-story stock-case-story"><section><h4>문제</h4><p>일회성 실행 파일이 현재 실행 자료와 과거 처리 이력을 함께 맡아 파일 정리 여부가 재처리 범위를 바꿨습니다.</p></section><section><h4>검토한 선택지</h4><p>CSV를 계속 처리 이력으로 보존하는 방법과, 영속 저장소인 DB를 상태 기준으로 삼고 CSV 역할을 줄이는 방법을 비교했습니다.</p></section><section><h4>판단</h4><p><code>stock_code + url_hash</code> 기준 DB 상태로 완료·본문 재사용·신규를 구분하고, CSV는 현재 실행 확인과 복구 자료로만 사용했습니다.</p></section><section><h4>검증</h4><p>CSV 존재 여부와 무관하게 DB 상태를 먼저 조회해 필요한 단계만 선택하는지 확인했습니다. exactly-once 보장이 아니라 <strong>DB 중심 재실행 중복 방어</strong>로 범위를 제한합니다.</p></section></div>
               </article>
               <article class="engineering-case stock-case-block">
                 <p class="case-number">03 / 장시간 작업 전에 실패 가능한 조건을 검사</p>
                 <h3>모델 객체나 DB 설정이 빠져 있으면 긴 처리 뒤 예측 단계에서야 실패할 수 있었습니다.</h3>
-                <div class="case-story stock-case-story"><section><h4>문제</h4><p>모델 객체나 DB 설정이 빠져 있으면 뉴스 수집·요약을 오래 수행한 뒤 예측 단계에서야 실패할 수 있었습니다.</p></section><section><h4>원인</h4><p>시작 전에 확인할 수 있는 환경 조건을 장시간 처리 이후에 확인하고 있었습니다.</p></section><section><h4>판단</h4><p>시작 전에 확인할 수 있는 실패는 비용이 큰 처리 전에 차단해야 했습니다.</p></section><section><h4>구현</h4><p>모델·DB 조건과 실행 대상을 전체 실행 흐름 시작 전에 검사하는 preflight를 통합했습니다.</p></section><section><h4>측정/검증</h4><ul><li>Direction / RecentFlow 모델 객체 존재</li><li>model table 등록</li><li>direction / recentflow unique key</li><li>실행 대상 설정</li></ul></section><section><h4>결과</h4><p>장시간 실행을 시작하기 전에 환경 조건을 먼저 검증했습니다. 모델 자체는 팀원이 구현했으며 preflight와 실행 통합이 개인 범위입니다.</p></section></div>
+                <div class="case-story stock-case-story"><section><h4>문제</h4><p>시작 전에 알 수 있는 환경 누락도 뉴스 수집·요약이 끝난 뒤 예측 단계에서 확인됐습니다.</p></section><section><h4>검토한 선택지</h4><p>각 Job이 실행 시점에 조건을 확인하는 방식과, 비용이 큰 처리를 시작하기 전에 전체 조건을 한 번에 확인하는 방식을 비교했습니다.</p></section><section><h4>판단</h4><p>실행 시작 전 preflight에서 모델·DB 조건과 실행 대상을 검사해 조기에 중단하도록 통합했습니다.</p></section><section><h4>검증</h4><ul><li>Direction / RecentFlow 모델 객체 존재</li><li>model table 등록</li><li>direction / recentflow unique key</li><li>실행 대상 설정</li></ul><p>모델 자체는 팀원이 구현했으며 preflight와 실행 통합만 개인 범위입니다.</p></section></div>
               </article>
               <article class="engineering-case stock-case-block">
                 <p class="case-number">04 / 서비스가 예측의 출처를 다시 추측하지 않도록 함</p>
                 <h3>최신 DB row를 고르면 과거 재추론 결과가 공식 일일 예측처럼 보일 수 있었습니다.</h3>
-                <div class="case-story stock-case-story"><section><h4>문제</h4><p>최신 DB row를 고르면 과거 재추론 결과가 공식 일일 예측처럼 보일 수 있었습니다.</p></section><section><h4>원인</h4><p>결과 값만 조회하고 어떤 pipeline 실행에서 만들어졌는지 연결하지 않았습니다.</p></section><section><h4>판단</h4><p>결과의 현재 값보다 실행 출처와 예측 상태를 서비스가 함께 확인해야 했습니다.</p></section><section><h4>구현</h4><p><code>pipeline_run</code>과 <code>feature_id</code>를 이용해 실제 <code>DAILY_PREDICTION</code> 결과를 연결하고, pipeline 연결 없는 과거 재추론은 별도 상태로 표시했습니다.</p></section><section><h4>측정/검증</h4><p>마지막 SUCCESS와 현재 RUNNING 상태, 공식 실행과 전체 재추론 상태를 구분했습니다.</p></section><section><h4>결과</h4><p><strong>결과 값뿐 아니라 그 값이 어떤 실행에서 만들어졌는지</strong>를 서비스가 구분할 수 있게 했습니다.</p></section></div>
+                <div class="case-story stock-case-story"><section><h4>문제</h4><p>값만 보면 pipeline과 연결된 일일 예측인지, 과거 데이터를 다시 추론해 만든 결과인지 구분할 수 없었습니다.</p></section><section><h4>검토한 선택지</h4><p>가장 최근 row를 그대로 노출하는 방법과, 생성한 실행 이력까지 연결해 서비스 상태를 판정하는 방법을 비교했습니다.</p></section><section><h4>판단</h4><p><code>pipeline_run</code>의 성공한 <code>DAILY_PREDICTION</code>과 <code>feature_id</code>를 기준으로 공식 결과를 선택하고, 연결 없는 재추론 결과는 별도 상태로 표시했습니다.</p></section><section><h4>검증</h4><p>마지막 SUCCESS와 현재 RUNNING, 공식 일일 예측과 전체 재추론을 각각 구분해 <strong>결과 값과 생성 출처를 함께 확인</strong>했습니다.</p></section></div>
               </article>
             </div>
           </div>
@@ -282,10 +289,10 @@
               <h2 id="results-title">두 저장소를 공용 DB와 실행 상태로 연결했고, 운영 실행과 모델 성능은 따로 봤습니다.</h2>
             </header>
             <div class="result-layout stock-result-layout">
-              <section><p class="subsection-marker">AI / Data</p><ul><li>20개 테마·100개 종목 뉴스·주가 수집 흐름</li><li>뉴스 요약·유사도 그룹화·KR-FinBERT 감성 결과 DB 연결</li><li>감성분석 재실행 중복 방어</li><li>DB 중심 뉴스 처리 상태</li><li>Features / 팀 Direction / 팀 RecentFlow 실행 연결</li><li><code>LIVE_BRIEFING / DAILY_PREDICTION</code> 실행 정책</li><li><code>pipeline_run</code> 실행 이력</li><li>Linux/systemd 정기 실행</li></ul></section>
-              <section><p class="subsection-marker">Web</p><ul><li>공용 MySQL 조회</li><li>Repository / Service / Route 구조</li><li>메인 대시보드와 종목 상세</li><li>뉴스 분석일 / 주가일 / 예측 기준일 구분</li><li>공식 일일 예측 / 전체 재추론 상태 구분</li><li>회원가입·로그인·이메일 인증·관심 종목</li></ul></section>
+              <section><h3 class="subsection-marker">AI / Data</h3><ul><li>20개 테마·100개 종목 뉴스·주가 수집 흐름</li><li>뉴스 요약·유사도 그룹화·KR-FinBERT 감성 결과 DB 연결</li><li>감성분석 재실행 중복 방어</li><li>DB 중심 뉴스 처리 상태</li><li>Features / 팀 Direction / 팀 RecentFlow 실행 연결</li><li><code>LIVE_BRIEFING / DAILY_PREDICTION</code> 실행 정책</li><li><code>pipeline_run</code> 실행 이력</li><li>Linux/systemd 정기 실행</li></ul></section>
+              <section><h3 class="subsection-marker">Web</h3><ul><li>공용 MySQL 조회</li><li>Repository / Service / Route 구조</li><li>메인 대시보드와 종목 상세</li><li>뉴스 분석일 / 주가일 / 예측 기준일 구분</li><li>공식 일일 예측 / 전체 재추론 상태 구분</li><li>회원가입·로그인·이메일 인증·관심 종목</li></ul></section>
             </div>
-            <section class="validation-evidence"><p class="subsection-marker">검증 근거</p><ul><li>AI 저장소 DB/외부 API 비의존 테스트: <strong>114개</strong> 통과</li><li>Web 저장소 DB/SMTP 비의존 테스트: <strong>28개</strong> 통과</li><li>실제 DB 읽기 Flask smoke test: 주요 <strong>8개</strong> 요청 모두 HTTP <strong>200</strong></li><li>제공된 Linux pipeline 로그: <strong>7건</strong> 최종 성공</li></ul><p>위 수치는 해당 시점 코드와 제공된 실행 자료의 검증 이력입니다. 테스트 개수 자체를 프로젝트 품질 점수처럼 사용하지 않고, 어떤 계약을 실제로 확인했는지를 함께 설명합니다.</p></section>
+            <section class="validation-evidence"><h3 class="subsection-marker">검증 근거</h3><ul><li>AI 저장소 DB/외부 API 비의존 테스트: <strong>114개</strong> 통과</li><li>Web 저장소 DB/SMTP 비의존 테스트: <strong>28개</strong> 통과</li><li>실제 DB 읽기 Flask smoke test: 주요 <strong>8개</strong> 요청 모두 HTTP <strong>200</strong></li><li>제공된 Linux pipeline 로그: <strong>7건</strong> 최종 성공</li></ul><p>위 수치는 해당 시점 코드와 제공된 실행 자료의 검증 이력입니다. 테스트 개수 자체를 프로젝트 품질 점수처럼 사용하지 않고, 어떤 계약을 실제로 확인했는지를 함께 설명합니다.</p></section>
             <section class="limitations"><p class="subsection-marker">한계</p><h3>교육 프로젝트 범위와 모델 소유권을 분리해 남겼습니다.</h3><ul><li>Direction·RecentFlow 모델 자체는 개인 구현이 아니며 개인 모델 성과로 주장하지 않음</li><li>모델 예측은 투자 추천이나 수익 보장이 아님</li><li>AI pipeline 실행 성공과 모델 예측 성능은 별개의 검증 항목</li><li>일부 뉴스는 입력/요약 상태에 따라 record 단위 실패 가능</li><li>DB·외부 API·모델 객체가 없으면 전체 pipeline 재현이 어려움</li><li>실제 SMTP 발송, CI, WSGI 운영 배포, health check, metric 수집은 최종 저장소 범위에 포함되지 않음</li><li>LLM/RAG 설명과 자동 재학습은 Stock Advisor 범위에 포함되지 않음</li></ul></section>
           </div>
         </section>

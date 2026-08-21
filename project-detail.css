@@ -8,7 +8,7 @@
   --accent: #7a5238;
   --accent-soft: #e8d8ca;
   --shell: 1240px;
-  --reading: 920px;
+  --reading: 800px;
 }
 
 * {
@@ -22,7 +22,6 @@ html {
 
 body {
   margin: 0;
-  overflow-x: hidden;
   background: var(--bg);
   color: var(--text);
   font-family: "Pretendard Variable", Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", Arial, sans-serif;
@@ -140,12 +139,12 @@ button:focus-visible {
 
 .case-section {
   border-top: 1px solid var(--border);
-  padding: 112px 0;
+  padding: 96px 0;
 }
 
 .hero {
   border-top: 0;
-  padding: 94px 0 108px;
+  padding: 50px 0 56px;
 }
 
 .hero-inner {
@@ -163,15 +162,15 @@ button:focus-visible {
 .hero h1 {
   max-width: 980px;
   margin: 0;
-  font-size: clamp(40px, 5vw, 60px);
+  font-size: clamp(38px, 4.2vw, 48px);
   font-weight: 750;
   letter-spacing: -0.065em;
   line-height: 1.1;
 }
 
 .hero-definition {
-  max-width: 930px;
-  margin: 28px 0 0;
+  max-width: 820px;
+  margin: 18px 0 0;
   font-size: 18px;
 }
 
@@ -179,14 +178,14 @@ button:focus-visible {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   max-width: 1080px;
-  margin: 46px 0 0;
+  margin: 28px 0 0;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }
 
 .hero-meta div {
   min-width: 0;
-  padding: 18px 24px 18px 0;
+  padding: 14px 24px 14px 0;
 }
 
 .hero-meta dt {
@@ -202,12 +201,12 @@ button:focus-visible {
 
 .hero-inner > .text-link {
   display: inline-block;
-  margin-top: 28px;
+  margin-top: 18px;
   font-weight: 700;
 }
 
 .hero-repositories {
-  margin-top: 28px;
+  margin-top: 18px;
 }
 
 .section-nav {
@@ -215,8 +214,8 @@ button:focus-visible {
   flex-wrap: wrap;
   gap: 12px 22px;
   max-width: 1080px;
-  margin-top: 54px;
-  padding-top: 22px;
+  margin-top: 26px;
+  padding-top: 12px;
   border-top: 1px solid var(--border);
   font-size: 14px;
 }
@@ -255,6 +254,9 @@ button:focus-visible {
 }
 
 .section-marker {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  gap: 8px;
   align-self: start;
   margin: 0 0 20px;
   color: var(--text-muted);
@@ -264,10 +266,10 @@ button:focus-visible {
 }
 
 .section-marker span {
-  display: block;
-  margin-bottom: 7px;
+  flex: 0 0 auto;
   color: var(--accent);
   font-size: 13px;
+  white-space: nowrap;
 }
 
 .section-heading h2 {
@@ -280,7 +282,7 @@ button:focus-visible {
 }
 
 .section-intro {
-  max-width: 900px;
+  max-width: var(--reading);
   margin: 22px 0 0;
   color: var(--text-muted);
 }
@@ -407,10 +409,11 @@ strong {
 }
 
 .subsection-marker {
-  margin: 0 0 14px;
-  color: var(--text-muted);
+  margin: 0 0 12px;
+  color: var(--accent);
   font-size: 13px;
-  font-weight: 650;
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
 .architecture-block h3,
@@ -731,6 +734,55 @@ th {
   margin-bottom: 14px;
 }
 
+.ownership-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px 18px;
+  max-width: 1080px;
+  margin: 28px 0 4px;
+  padding: 14px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 13px;
+  list-style: none;
+}
+
+.ownership-legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.ownership-legend + .architecture-list,
+.ownership-legend + .architecture-block {
+  margin-top: 20px;
+}
+
+.ownership-legend strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.legend-swatch {
+  width: 16px;
+  height: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.legend-swatch--direct {
+  border-left: 3px solid var(--accent);
+}
+
+.legend-swatch--integration {
+  background: var(--accent-soft);
+}
+
+.legend-swatch--team {
+  background: var(--surface-soft);
+}
+
 .diagram-stage {
   min-width: 0;
   padding: 24px 24px 26px;
@@ -762,6 +814,15 @@ th {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+}
+
+.branch-kicker {
+  margin: 0 0 9px;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-align: center;
 }
 
 .diagram-node {
@@ -1003,9 +1064,9 @@ th {
 /* Stock Advisor relationship diagram */
 .stock-system-diagram {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 46px minmax(210px, 0.55fr) 46px minmax(0, 1fr);
+  grid-template-columns: minmax(250px, 1.15fr) 24px minmax(155px, 0.7fr) 24px minmax(205px, 0.95fr) 24px minmax(165px, 0.75fr);
   align-items: center;
-  gap: 24px;
+  gap: 12px;
   max-width: 1120px;
   margin-top: 30px;
 }
@@ -1048,6 +1109,20 @@ th {
   font-weight: 700;
 }
 
+.system-column li > .ownership-label,
+.system-column li > .neutral-label {
+  margin-right: 5px;
+  padding: 1px 6px;
+  border: 1px solid var(--border);
+  background: var(--surface-soft);
+  white-space: nowrap;
+}
+
+.system-column li > .ownership-label {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
 .system-database {
   position: relative;
   padding: 22px 16px;
@@ -1063,6 +1138,30 @@ th {
 
 .system-database span {
   display: block;
+  margin-top: 5px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.system-interface {
+  padding: 22px 16px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  text-align: center;
+}
+
+.system-interface strong,
+.system-interface span,
+.system-interface small {
+  display: block;
+}
+
+.system-interface strong {
+  font-size: 18px;
+}
+
+.system-interface span,
+.system-interface small {
   margin-top: 5px;
   color: var(--text-muted);
   font-size: 13px;
@@ -1116,14 +1215,25 @@ th {
   background: var(--surface);
 }
 
-.stock-architecture-block,
+.operation-flow .diagram-node strong,
+.operation-flow .diagram-node span {
+  display: block;
+}
+
+.operation-flow .diagram-node span {
+  margin-top: 5px;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 500;
+}
+
 .stock-direct-block {
   border-left: 3px solid var(--accent);
   padding-left: 22px;
 }
 
 .boundary-label {
-  margin: 34px 0 5px;
+  margin: 22px 0 5px;
   color: var(--text-muted);
   font-size: 13px;
   font-weight: 700;
@@ -1240,19 +1350,24 @@ th {
   }
 
   .inference-diagram {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
   }
 
   .diagram-stage + .diagram-stage {
+    margin-top: 18px;
     margin-left: 0;
   }
 
-  .diagram-stage:nth-child(odd)::before {
-    display: none;
+  .diagram-stage + .diagram-stage::before {
+    display: block;
+    top: -18px;
+    left: 50%;
+    content: "↓";
+    transform: translate(-50%, -50%);
   }
 
-  .diagram-stage:nth-child(even)::before {
-    left: -23px;
+  .case-story {
+    grid-template-columns: 1fr;
   }
 
   .automation-contract-grid,
@@ -1278,6 +1393,12 @@ th {
 
   .system-connector span {
     top: 50%;
+    font-size: 0;
+  }
+
+  .system-connector span::after {
+    content: "↓";
+    font-size: 20px;
   }
 }
 
@@ -1303,14 +1424,13 @@ th {
   }
 
   .hero {
-    padding: 70px 0 82px;
+    padding: 48px 0 54px;
   }
 
   .hero-definition {
     font-size: 16px;
   }
 
-  .hero-meta,
   .document-layout,
   .screen-list,
   .case-story,
@@ -1337,19 +1457,40 @@ th {
     margin-top: 38px;
   }
 
-  .hero-meta div,
-  .hero-meta div:nth-child(2n) {
-    padding: 14px 0;
-    border-top: 1px solid var(--border);
+  .hero-meta div {
+    display: inline;
+    padding: 0;
+    border: 0 !important;
   }
 
-  .hero-meta div:first-child {
-    border-top: 0;
+  .hero-meta {
+    display: block;
+    padding: 12px 0;
+    font-size: 13px;
+    line-height: 1.65;
+  }
+
+  .hero-meta dt,
+  .hero-meta dd {
+    display: inline;
+    margin: 0;
+  }
+
+  .hero-meta dt::after {
+    content: ": ";
+  }
+
+  .hero-meta dd::after {
+    color: var(--border);
+    content: "  ·  ";
+  }
+
+  .hero-meta div:last-child dd::after {
+    content: "";
   }
 
   .section-marker span {
-    display: inline;
-    margin: 0 8px 0 0;
+    margin: 0;
   }
 
   .screen-item + .screen-item {
@@ -1371,7 +1512,6 @@ th {
     margin: 0 0 9px;
   }
 
-  .training-diagram,
   .inference-diagram,
   .automation-contract-grid,
   .operation-flow,
@@ -1380,7 +1520,6 @@ th {
     display: block;
   }
 
-  .diagram-branch + .diagram-branch,
   .diagram-stage + .diagram-stage,
   .training-output .diagram-node + .diagram-node,
   .operation-flow .diagram-node + .diagram-node,
@@ -1388,8 +1527,18 @@ th {
     margin-top: 16px;
   }
 
+  .training-diagram {
+    gap: 16px 12px;
+  }
+
+  .diagram-node {
+    padding: 11px 10px;
+    font-size: 14px;
+  }
+
   .diagram-join {
-    display: none;
+    display: grid;
+    margin-top: -4px;
   }
 
   .diagram-stage + .diagram-stage::before {
@@ -1475,9 +1624,10 @@ th {
 
   .section-nav {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px 16px;
-    margin-top: 38px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px 10px;
+    margin-top: 28px;
+    font-size: 12px;
   }
 
   .diagram-stage {
